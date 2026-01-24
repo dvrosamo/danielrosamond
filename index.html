@@ -6,22 +6,19 @@
   <title>Daniel Rosamond – Mechanical Engineering Portfolio</title>
 
   <style>
-    /* ------------------------------
-       COLOR SYSTEM — SLATE / STEEL
-    ------------------------------ */
     :root {
-      --bg: #0f172a;            /* slate-900 */
-      --bg-alt: #1e293b;        /* slate-800 */
-      --card: #1e293b;          /* slate-800 */
-      --card-alt: #334155;      /* slate-700 */
-      --accent: #38bdf8;        /* sky-400 */
-      --accent-soft: rgba(56, 189, 248, 0.15);
-      --text-main: #e2e8f0;     /* slate-200 */
-      --text-muted: #94a3b8;    /* slate-400 */
-      --border: #334155;        /* slate-700 */
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --bg: #020617;          /* near-black slate */
+      --bg-alt: #020617;
+      --panel: #020617;
+      --panel-alt: #020617;
+      --card: #020617;
+      --border: #1e293b;      /* slate-800 */
+      --grid-line: #0f172a;   /* slate-900 */
+      --accent: #38bdf8;      /* sky-400 */
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --text-main: #e5e7eb;   /* slate-200 */
+      --text-muted: #9ca3af;  /* slate-400 */
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
     }
 
     * {
@@ -32,353 +29,486 @@
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: var(--bg);
+      background:
+        linear-gradient(to bottom, #020617 0, #020617 40%, #020617 100%);
       color: var(--text-main);
       line-height: 1.6;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ------------------------------
-       GLOBAL ANIMATIONS
-    ------------------------------ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .fade-section {
-      animation: fadeUp 0.8s ease forwards;
-      opacity: 0;
-    }
-
-    .delay-1 { animation-delay: 0.15s; }
-    .delay-2 { animation-delay: 0.3s; }
-    .delay-3 { animation-delay: 0.45s; }
-
-    /* ------------------------------
-       LAYOUT
-    ------------------------------ */
+    /* Layout */
     .page {
-      max-width: 1150px;
-      margin: auto;
-      padding: 40px 20px 80px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 18px 64px;
     }
 
     header {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 32px;
-      margin-bottom: 50px;
+      grid-template-columns: 2.1fr 1.1fr;
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 880px) {
       header {
         grid-template-columns: 1fr;
       }
     }
 
-    /* ------------------------------
-       HERO CARD
-    ------------------------------ */
-    .hero-card {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      border-radius: var(--radius-lg);
-      padding: 28px;
+    /* Subtle grid background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      z-index: -1;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    /* Hero / Identity */
+    .hero {
+      background: var(--panel);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      padding: 20px 20px 18px;
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.16), transparent 55%);
-      opacity: 0.6;
-      mix-blend-mode: screen;
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-    }
-
-    .name {
-      font-size: 2rem;
-      font-weight: 650;
-      margin-bottom: 6px;
-    }
-
-    .tagline {
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 16px;
-      font-size: 1rem;
     }
 
-    .chips {
+    .hero-name {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-tagline {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      max-width: 640px;
+    }
+
+    .hero-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
-    .chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--card-alt);
+    .hero-tag {
+      font-size: 0.78rem;
+      padding: 4px 10px;
       border: 1px solid var(--border);
-      font-size: 0.8rem;
+      background: #020617;
       color: var(--text-muted);
     }
 
-    .chip--accent {
-      background: var(--accent-soft);
+    .hero-tag--accent {
       border-color: var(--accent);
       color: var(--accent);
+      background: var(--accent-soft);
     }
 
-    .contact a {
+    /* Contact strip with immediate actions */
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .contact-info a {
       color: var(--accent);
       text-decoration: none;
     }
 
-    /* ------------------------------
-       PHOTO CARD
-    ------------------------------ */
-    .photo-card {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      padding: 18px;
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cta-button {
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cta-button--secondary {
+      border-color: var(--border);
+      background: #020617;
+      color: var(--text-main);
+    }
+
+    .cta-button:hover {
+      background: rgba(56, 189, 248, 0.28);
+    }
+
+    .cta-button--secondary:hover {
+      background: #020617;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Photo panel */
+    .photo-panel {
+      background: var(--panel);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      text-align: center;
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .photo-frame {
       width: 100%;
-      max-width: 260px;
-      aspect-ratio: 3/4;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin: auto;
+      aspect-ratio: 3 / 4;
       border: 1px solid var(--border);
+      overflow: hidden;
+      background: #020617;
     }
 
     .photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    /* ------------------------------
-       PROJECT CARDS
-    ------------------------------ */
-    .projects-grid {
+    .photo-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Main content */
+    main {
+      margin-top: 10px;
+    }
+
+    .section-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .projects {
       display: flex;
       flex-direction: column;
-      gap: 28px;
-    }
-
-    .project-card {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
       gap: 20px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display: grid;
+      grid-template-columns: 1.5fr 1.1fr;
+      gap: 16px;
     }
 
     @media (max-width: 900px) {
-      .project-card {
+      .project {
         grid-template-columns: 1fr;
       }
     }
 
-    .project-title {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
+    .project-header {
+      margin-bottom: 6px;
     }
 
-    .project-subtitle {
-      font-size: 0.9rem;
+    .project-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .project-context {
+      font-size: 0.86rem;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-top: 2px;
     }
 
     .project-body p {
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .project-body strong {
+      color: var(--text-main);
+    }
+
+    .project-metrics {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .project-media {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     figure {
-      background: var(--bg-alt);
-      border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      overflow: hidden;
+      background: #020617;
     }
 
     figure img {
       width: 100%;
       display: block;
+      object-fit: cover;
     }
 
     figcaption {
-      padding: 8px 10px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      background: var(--card-alt);
+      padding: 6px 8px;
       border-top: 1px solid var(--border);
     }
 
     footer {
-      margin-top: 50px;
-      padding-top: 20px;
+      margin-top: 32px;
+      padding-top: 10px;
       border-top: 1px solid var(--border);
-      text-align: center;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   </style>
 </head>
-
 <body>
+  <div class="grid-bg"></div>
+
   <div class="page">
-
     <!-- HEADER -->
-    <header class="fade-section delay-1">
-      <div class="hero-card">
-        <div class="hero-inner">
-          <h1 class="name">Daniel V. Rosamond</h1>
-          <p class="tagline">
-            Mechanical engineering student specializing in DFAM, robotics, and robust field-ready hardware.
-          </p>
-
-          <div class="chips">
-            <span class="chip chip--accent">DFAM</span>
-            <span class="chip">Robotics</span>
-            <span class="chip">Additive Manufacturing</span>
-            <span class="chip">FEA</span>
+    <header>
+      <section class="hero fade delay-1">
+        <div class="hero-top">
+          <div>
+            <div class="hero-label">Mechanical Engineering Portfolio</div>
+            <h1 class="hero-name">Daniel V. Rosamond</h1>
           </div>
-
-          <p class="contact">
-            <strong>Email:</strong> <a href="mailto:danielrosamond13@gmail.com">danielrosamond13@gmail.com</a><br>
-            <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-rosamond-905035309/" target="_blank">/in/daniel-rosamond</a>
-          </p>
         </div>
-      </div>
 
-      <div class="photo-card fade-section delay-2">
+        <p class="hero-tagline">
+          Mechanical engineering student focused on design for additive manufacturing, robotics, and robust,
+          field‑ready hardware for demanding environments.
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag hero-tag--accent">Design for Additive Manufacturing</span>
+          <span class="hero-tag">Robotics &amp; Mechanisms</span>
+          <span class="hero-tag">FEA &amp; Structural Analysis</span>
+          <span class="hero-tag">Rapid Prototyping</span>
+        </div>
+
+        <div class="contact-strip">
+          <div class="contact-info">
+            <span><strong>Email:</strong> <a href="mailto:danielrosamond13@gmail.com">danielrosamond13@gmail.com</a></span>
+            <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-rosamond-905035309/" target="_blank" rel="noopener">/in/daniel-rosamond-905035309</a></span>
+          </div>
+          <div class="contact-actions">
+            <!-- Replace with your phone number if you want direct call support -->
+            <a class="cta-button" href="tel:+15555555555">Call</a>
+            <a class="cta-button cta-button--secondary" href="mailto:danielrosamond13@gmail.com">Email</a>
+          </div>
+        </div>
+      </section>
+
+      <aside class="photo-panel fade delay-2">
         <div class="photo-frame">
-          <img src="headshot.jpg" alt="Daniel Rosamond headshot">
+          <!-- Replace with your actual headshot filename -->
+          <img src="headshot.jpg" alt="Portrait of Daniel Rosamond" />
         </div>
-      </div>
+        <div class="photo-caption">
+          Professional headshot used on this site and via QR code, keeping the résumé itself clean.
+        </div>
+      </aside>
     </header>
 
-    <!-- PROJECTS -->
-    <main class="fade-section delay-3">
-      <h2 style="margin-bottom: 20px; font-size: 1.5rem;">Selected Projects</h2>
+    <!-- MAIN -->
+    <main class="fade delay-3">
+      <section>
+        <div class="section-header">
+          <h2 class="section-title">Selected Projects</h2>
+          <p class="section-subtitle">
+            FPV systems, combat robotics, and tracked mobility platforms, emphasizing DFAM, structural analysis, and
+            rapid, field‑serviceable design.
+          </p>
+        </div>
 
-      <div class="projects-grid">
-
-        <!-- FPV DRONE -->
-        <article class="project-card">
-          <div>
-            <h3 class="project-title">FPV Payload Drone (IAM3D 2025)</h3>
-            <p class="project-subtitle">Fully 3D‑printed FPV drone optimized for rapid fabrication and field repair.</p>
-
-            <div class="project-body">
-              <p><strong>Objective:</strong> Design a fully 3D‑printed FPV payload drone optimized for rapid fabrication, durability, and instant field repair.</p>
-              <p><strong>Design:</strong> DFAM principles, print‑in‑place joints, generative geometry, PLA/TPU struct‑core elastomer frame, electromagnet payload device.</p>
-              <p><strong>Analysis:</strong> Static displacement FEA (~10 N per motor) → ~7.9 mm peak deflection.</p>
-              <p><strong>Results:</strong> >2:1 T/W, ~16 min endurance, ~4.9 kg payload, survived 13 impacts at 40–60 mph.</p>
+        <div class="projects">
+          <!-- Project 1: FPV Payload Drone -->
+          <article class="project">
+            <div>
+              <header class="project-header">
+                <h3 class="project-name">FPV Payload Drone (IAM3D 2025)</h3>
+                <p class="project-context">
+                  Fully 3D‑printed FPV payload drone optimized for rapid fabrication, durability, and instant field repair.
+                </p>
+              </header>
+              <div class="project-body">
+                <p><strong>Objective:</strong> Design a fully 3D‑printed FPV payload drone optimized for rapid fabrication, durability, and instant field repair while maintaining competitive flight performance.</p>
+                <p><strong>Design:</strong> Implemented DFAM principles including print‑in‑place joints, generative design, and a PLA/TPU struct‑core elastomer frame to absorb impact loads without structural failure. Integrated an electromagnet as the payload device.</p>
+                <p><strong>Analysis &amp; Validation:</strong> Modeled motor thrust loading and validated frame stiffness via static displacement FEA (~10 N per motor, ~40 N total) with the battery support constrained, resulting in ~7.9 mm peak deflection at the arm ends. Bench testing and flight validation confirmed stiffness and durability.</p>
+                <p><strong>Results:</strong> Achieved &gt;2:1 thrust‑to‑weight ratio, ~16 min measured flight time, and ~4.9 kg measured payload capacity; survived 13 consecutive 40–60 mph impacts and placed in the top third of 20 teams at IAM3D 2025.</p>
+                <p class="project-metrics"><strong>Key metrics:</strong> &gt;2:1 T/W · ~16 min endurance · ~4.9 kg payload · 13 high‑speed impacts survived</p>
+              </div>
             </div>
-          </div>
-
-          <div>
-            <figure>
-              <img src="fpv_drone_final.jpg">
-              <figcaption>Final 3D‑printed FPV drone design.</figcaption>
-            </figure>
-            <figure>
-              <img src="fpv_drone_fea_displacement.png">
-              <figcaption>Static displacement FEA (~7.9 mm peak deflection).</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- COMBAT ROBOT -->
-        <article class="project-card">
-          <div>
-            <h3 class="project-title">50 lb Combat Robot</h3>
-            <p class="project-subtitle">High‑energy horizontal spinner engineered within NHRL safety limits.</p>
-
-            <div class="project-body">
-              <p><strong>Objective:</strong> Design a compact, high‑energy spinner weapon system.</p>
-              <p><strong>Design:</strong> Single‑piece weapon bar + hub, optimized inertia, bearing‑supported shaft constraints.</p>
-              <p><strong>Analysis:</strong> Von Mises stress FEA under centrifugal loading with refined hub mesh.</p>
-              <p><strong>Results:</strong> ~25 kJ weapon energy, geometry validated for competition use.</p>
+            <div class="project-media">
+              <figure>
+                <!-- Replace with your final drone image -->
+                <img src="fpv_drone_final.jpg" alt="Final 3D‑printed FPV drone design" />
+                <figcaption>Final 3D‑printed FPV drone design with integrated prop guards and DFAM‑optimized geometry.</figcaption>
+              </figure>
+              <figure>
+                <!-- Replace with your FEA image -->
+                <img src="fpv_drone_fea_displacement.png" alt="Static displacement FEA of FPV drone frame" />
+                <figcaption>Static displacement FEA under nominal flight thrust (~10 N per motor), showing ~7.9 mm peak deflection at arm ends.</figcaption>
+              </figure>
             </div>
-          </div>
+          </article>
 
-          <div>
-            <figure>
-              <img src="combat_robot_assembled.jpg">
-              <figcaption>Assembled 50 lb combat robot.</figcaption>
-            </figure>
-            <figure>
-              <img src="combat_robot_fea_vonmises.png">
-              <figcaption>Von Mises stress distribution under operating RPM.</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- FPV ROVER -->
-        <article class="project-card">
-          <div>
-            <h3 class="project-title">FPV Rover Drivetrain (IAM3D 2026)</h3>
-            <p class="project-subtitle">Modular tracked drivetrain designed for abrasive terrain.</p>
-
-            <div class="project-body">
-              <p><strong>Objective:</strong> Design a fully 3D‑printed tracked drivetrain for sandy terrain.</p>
-              <p><strong>Design:</strong> Pin‑jointed modular track system, sprocket‑driven traction, printable components.</p>
-              <p><strong>Analysis:</strong> Worst‑case static load approximations, bench validation.</p>
-              <p><strong>Results:</strong> Smooth tracked motion, minimal derailment, modular repairability.</p>
+          <!-- Project 2: 50 lb Combat Robot -->
+          <article class="project">
+            <div>
+              <header class="project-header">
+                <h3 class="project-name">50 lb Combat Robot</h3>
+                <p class="project-context">
+                  High‑energy horizontal spinner weapon system engineered within NHRL safety parameters.
+                </p>
+              </header>
+              <div class="project-body">
+                <p><strong>Objective:</strong> Design and fabricate a compact, high‑energy horizontal spinner weapon system for a 50 lb combat robot, balancing kinetic energy, structural integrity, and competition safety limits.</p>
+                <p><strong>Design:</strong> Modeled a single‑piece weapon bar and hub assembly optimized for inertia and manufacturability, integrated with bearing‑supported shaft constraints representative of real drivetrain conditions.</p>
+                <p><strong>Analysis:</strong> Performed centrifugal loading analysis using von Mises stress criteria at operating speed, applying local mesh refinement at the hub to capture peak stresses and validate geometry under high rotational loads.</p>
+                <p><strong>Results:</strong> Engineered a horizontal spinner operating at ~25 kJ within NHRL safety parameters, informing material selection, hub geometry, and operating RPM for reliable competition use.</p>
+                <p class="project-metrics"><strong>Key metrics:</strong> ~25 kJ weapon energy · NHRL‑compliant · Hub geometry validated via FEA</p>
+              </div>
             </div>
-          </div>
+            <div class="project-media">
+              <figure>
+                <!-- Replace with your assembled robot photo -->
+                <img src="combat_robot_assembled.jpg" alt="Assembled 50 lb combat robot" />
+                <figcaption>Assembled 50 lb combat robot with aluminum frame and 18‑inch horizontal spinner assembly.</figcaption>
+              </figure>
+              <figure>
+                <!-- Replace with your von Mises FEA image -->
+                <img src="combat_robot_fea_vonmises.png" alt="Von Mises stress distribution under centrifugal loading" />
+                <figcaption>Von Mises stress distribution FEA under centrifugal loading at operating speed with refined hub mesh.</figcaption>
+              </figure>
+            </div>
+          </article>
 
-          <div>
-            <figure>
-              <img src="rover_drivetrain_assembled.jpg">
-              <figcaption>Assembled rover drivetrain.</figcaption>
-            </figure>
-            <figure>
-              <img src="rover_tread_exploded.png">
-              <figcaption>Exploded view of 3D‑printed tread design.</figcaption>
-            </figure>
-          </div>
-        </article>
-
-      </div>
+          <!-- Project 3: FPV Rover Drivetrain -->
+          <article class="project">
+            <div>
+              <header class="project-header">
+                <h3 class="project-name">FPV Rover Drivetrain (IAM3D 2026)</h3>
+                <p class="project-context">
+                  Fully 3D‑printed tracked drivetrain designed for abrasive terrain and modular iteration.
+                </p>
+              </header>
+              <div class="project-body">
+                <p><strong>Objective:</strong> Design a fully 3D‑printed tracked drivetrain for an IAM3D competition rover, prioritizing robustness in sandy terrain, modularity for rapid iteration, and stability capable of supporting a future payload platform.</p>
+                <p><strong>Design:</strong> Implemented a custom pin‑jointed modular track system with sprocket‑driven traction and integrated guide features to maintain alignment under load. Drivetrain designed around printable components and off‑the‑shelf motors and bearings to enable rapid repair and redesign.</p>
+                <p><strong>Analysis &amp; Validation:</strong> Applied conservative worst‑case static load approximations to individual track links and sprocket interfaces; validated articulation, engagement, and drivetrain robustness through extensive bench testing and RC operation.</p>
+                <p><strong>Results:</strong> Achieved smooth, repeatable tracked motion with stable engagement and minimal derailment during testing, with easily swappable components demonstrating feasibility for mounting a material collection device for the final IAM3D project.</p>
+                <p class="project-metrics"><strong>Key metrics:</strong> Robust tracked motion · Minimal derailment · Modular, field‑repairable drivetrain</p>
+              </div>
+            </div>
+            <div class="project-media">
+              <figure>
+                <!-- Replace with your assembled drivetrain photo -->
+                <img src="rover_drivetrain_assembled.jpg" alt="Assembled FPV rover drivetrain" />
+                <figcaption>Fully assembled rover drivetrain with custom 3D‑printed track links, bearings, and sprocket‑driven traction system.</figcaption>
+              </figure>
+              <figure>
+                <!-- Replace with your exploded tread image -->
+                <img src="rover_tread_exploded.png" alt="Exploded view of 3D‑printed tread design" />
+                <figcaption>Exploded view of final 3D‑printed tread design showing modular track link architecture.</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer>
-      © <span id="year"></span> Daniel V. Rosamond — Detailed technical documentation available upon request.
+      <span>Detailed technical documentation available upon request.</span>
+      <span>© <span id="year"></span> Daniel V. Rosamond</span>
     </footer>
   </div>
 
