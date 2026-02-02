@@ -7,17 +7,17 @@
 
   <style>
     :root {
-      --bg: #020617;          /* deep slate */
+      --bg: #020617;         
       --bg-alt: #020617;
       --panel: #020617;
       --card: #020617;
-      --border: #1e293b;      /* slate-800 */
-      --grid-line: #0b1120;   /* slate-950 */
-      --accent: #38bdf8;      /* sky-400 */
+      --border: #1e293b;      
+      --grid-line: #0b1120; 
+      --accent: #38bdf8;      
       --accent-soft: rgba(56, 189, 248, 0.18);
-      --text-main: #e5e7eb;   /* slate-200 */
-      --text-muted: #9ca3af;  /* slate-400 */
-      --danger: #f97373;      /* subtle red for FEA / stress only */
+      --text-main: #e5e7eb;   
+      --text-muted: #9ca3af;
+      --danger: #f97373;      
       --shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
     }
 
@@ -44,7 +44,6 @@
       text-decoration: underline;
     }
 
-    /* Grid background */
     .grid-bg {
       position: fixed;
       inset: 0;
@@ -57,7 +56,6 @@
       background-size: 32px 32px;
     }
 
-    /* Layout: top bar + left rail + main content */
     .shell {
       max-width: 1280px;
       margin: 0 auto;
@@ -122,7 +120,6 @@
       }
     }
 
-    /* Left rail: identity + contact + skills */
     .rail {
       border: 1px solid var(--border);
       background: var(--panel);
@@ -244,7 +241,6 @@
       font-size: 0.8rem;
     }
 
-    /* Main content */
     .main {
       border: 1px solid var(--border);
       background: var(--card);
@@ -369,7 +365,6 @@
       gap: 6px;
     }
 
-    /* Subtle entrance animation */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
@@ -389,18 +384,15 @@
   <div class="grid-bg"></div>
 
   <div class="shell">
-    <!-- TOP BAR -->
     <div class="top-bar">
       <div class="top-bar-title">Mechanical Engineering · Portfolio</div>
       <div class="top-bar-actions">
-        <!-- Replace href with your hosted résumé PDF if desired -->
         <a class="top-bar-button top-bar-button--accent" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
         
       </div>
     </div>
 
     <div class="layout">
-      <!-- LEFT RAIL -->
       <aside class="rail fade delay-1">
         <div>
           <div class="rail-header-label">Profile</div>
@@ -412,7 +404,6 @@
         </div>
 
         <div class="rail-photo">
-          <!-- Replace with your actual headshot filename -->
           <img src="ResumePhoto.png" alt="Portrait of Daniel Rosamond" />
         </div>
 
@@ -420,7 +411,6 @@
           <div><strong>Email:</strong> <a href="mailto:dvrosamo@buffalo.edu">dvrosamo@buffalo.edu</a></div>
           <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-rosamond-905035309/" target="_blank" rel="noopener">/in/daniel-rosamond-905035309</a></div>
           <div class="rail-actions">
-            <!-- Replace with your real phone number if you want direct calls -->
             <a class="rail-cta" href="tel:+19174992510">Call</a>
             <a class="rail-cta rail-cta--secondary" href="mailto:dvrosamo@buffalo.edu">Email</a>
           </div>
@@ -437,7 +427,6 @@
         </div>
       </aside>
 
-      <!-- MAIN CONTENT -->
       <main class="main fade delay-2">
         <header class="main-header">
           <h1 class="main-title">Projects</h1>
@@ -448,7 +437,6 @@
         </header>
 
         <section class="projects">
-          <!-- Project 1: FPV Payload Drone -->
           <article class="project">
             <div>
               <header class="project-header">
@@ -473,12 +461,10 @@
             </div>
             <div class="project-media">
               <figure>
-                <!-- Replace with your final drone image -->
                 <img src="fpv_drone_final.jpg" alt="Final 3D‑printed FPV drone design" />
                 <figcaption>Final 3D‑printed FPV drone design with integrated prop guards and DFAM‑optimized geometry.</figcaption>
               </figure>
               <figure>
-                <!-- Replace with your FEA image -->
                 <img src="fpv_drone_fea_displacement.png" alt="Static displacement FEA of FPV drone frame" />
                 <figcaption class="fea-caption">
                   Static displacement FEA under nominal flight thrust (~10 N per motor), showing ~7.9 mm peak deflection at arm ends.
@@ -487,7 +473,6 @@
             </div>
           </article>
 
-          <!-- Project 2: 50 lb Combat Robot -->
           <article class="project">
             <div>
               <header class="project-header">
@@ -511,12 +496,10 @@
             </div>
             <div class="project-media">
               <figure>
-                <!-- Replace with your assembled robot photo -->
                 <img src="combat_robot_assembled.jpg" alt="Assembled 50 lb combat robot" />
                 <figcaption>Assembled 50 lb combat robot with aluminum frame and 18‑inch horizontal spinner assembly.</figcaption>
               </figure>
               <figure>
-                <!-- Replace with your von Mises FEA image -->
                 <img src="combat_robot_fea_vonmises.png" alt="Von Mises stress distribution under centrifugal loading" />
                 <figcaption class="fea-caption">
                   Von Mises stress distribution FEA under centrifugal loading at operating speed with refined hub mesh.
@@ -525,7 +508,6 @@
             </div>
           </article>
 
-          <!-- Project 3: FPV Rover Drivetrain -->
           <article class="project">
             <div>
               <header class="project-header">
@@ -549,12 +531,10 @@
             </div>
             <div class="project-media">
               <figure>
-                <!-- Replace with your assembled drivetrain photo -->
                 <img src="rover_drivetrain_assembled.jpg" alt="Assembled FPV rover drivetrain" />
                 <figcaption>Fully assembled rover drivetrain with custom 3D‑printed track links, bearings, and sprocket‑driven traction system.</figcaption>
               </figure>
               <figure>
-                <!-- Replace with your exploded tread image -->
                 <img src="rover_tread_exploded.png" alt="Exploded view of 3D‑printed tread design" />
                 <figcaption>Exploded view of final 3D‑printed tread design showing modular track link architecture.</figcaption>
               </figure>
