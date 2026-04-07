@@ -50,14 +50,6 @@
     .hero-corner--br{bottom:32px;right:32px;border-width:0 1px 1px 0}
     .hero-corner--tr{top:32px;right:32px;border-width:1px 1px 0 0}
     .hero-corner--bl{bottom:32px;left:32px;border-width:0 0 1px 1px}
-    .hero-photo-wrap{margin-bottom:24px;opacity:0;animation:fadeUp .6s 0s ease forwards}
-    .hero-photo-frame{position:relative;display:inline-block}
-    .hero-photo-frame::before,.hero-photo-frame::after{content:'';position:absolute;
-      width:10px;height:10px;border-color:var(--accent);border-style:solid}
-    .hero-photo-frame::before{top:-4px;left:-4px;border-width:1px 0 0 1px}
-    .hero-photo-frame::after{bottom:-4px;right:-4px;border-width:0 1px 1px 0}
-    .hero-photo{width:88px;height:88px;border:1px solid var(--border-hi);
-      object-fit:cover;object-position:top center;display:block;filter:grayscale(15%) contrast(1.05)}
     .hero-eyebrow{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);
       margin-bottom:16px;opacity:0;animation:fadeUp .6s .1s ease forwards}
     .hero-name{font-family:var(--display);font-weight:700;
@@ -326,6 +318,127 @@
       .hero-stats{flex-wrap:wrap}.stat{min-width:80px;padding:12px 14px}
       .section{padding:56px 16px}.nav{padding:0 14px}.nav-link{padding:0 9px;font-size:.62rem}
     }
+
+    /* ── SECTION INTRO ── */
+    .section-intro{font-size:1.05rem;color:rgba(204,217,232,0.72);letter-spacing:.01em;
+      line-height:1.5;max-width:640px;margin-bottom:32px;font-family:var(--display);font-weight:300}
+    .section-intro strong{color:var(--text);font-weight:600}
+
+    /* ── FIRST PARAGRAPH ACCENT ── */
+    .proj-body p:first-of-type{border-left:2px solid var(--accent);padding-left:10px;
+      margin-left:-12px}
+
+    /* ── TIGHTER FOOTER AREA ── */
+    .end-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:820px){.end-grid{grid-template-columns:1fr}}
+
+    /* ── GIANT DECORATIVE SECTION NUMBERS ── */
+    .section-label{position:relative}
+    .section-label-num{
+      font-family:var(--display);font-weight:700;
+      font-size:6rem;line-height:1;
+      color:rgba(26,61,96,0.28);
+      letter-spacing:-.04em;
+      position:absolute;right:0;top:50%;transform:translateY(-50%);
+      pointer-events:none;user-select:none;
+      z-index:0}
+    .section-label-text,.section-label-line{position:relative;z-index:1}
+
+    /* ── HERO SCAN LINE ── */
+    .hero-scan{
+      position:absolute;top:0;left:0;right:0;
+      height:2px;
+      background:linear-gradient(to right,transparent 0%,var(--accent) 40%,var(--accent-hi) 50%,var(--accent) 60%,transparent 100%);
+      opacity:0;
+      animation:scandown 3.5s ease forwards;
+      animation-delay:0.3s}
+    @keyframes scandown{
+      0%{top:0;opacity:0}
+      10%{opacity:0.7}
+      90%{opacity:0.3}
+      100%{top:100%;opacity:0}}
+
+    /* ── HERO GLYPH GRID (decorative technical notation) ── */
+    .hero-glyph{
+      font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;
+      color:rgba(14,165,233,0.22);
+      margin-top:28px;margin-bottom:-8px;
+      opacity:0;animation:fadeUp .65s .55s ease forwards}
+
+    /* ── SKILLS SECTION TEXTURE SHIFT ── */
+    .skills-section-bg{
+      background:linear-gradient(180deg,var(--bg) 0%,#040f1e 50%,var(--bg) 100%);
+      margin:0;padding:80px 0}
+
+    /* ── ANALYSIS GRADIENT ACCENT ── */
+    .analysis-section-wrap{
+      position:relative}
+    .analysis-section-wrap::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(to right,transparent,var(--accent),transparent)}
+
+    /* ── STAT HOVER GLOW ── */
+    .stat{transition:background .2s}
+    .stat:hover{background:rgba(14,165,233,0.04)}
+    .stat:hover .stat-num{color:var(--accent-hi)}
+
+    /* ── FEATURED PROJECT TOP ACCENT LINE ── */
+    .featured{position:relative}
+    .featured::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(to right,transparent,var(--accent) 30%,var(--accent) 70%,transparent);
+      z-index:1}
+
+    /* ── EXPERIENCE CARD AMBIENT GLOW ── */
+    .exp-card--a:hover{box-shadow:0 0 28px rgba(14,165,233,0.1),inset 0 0 20px rgba(14,165,233,0.03)}
+    .exp-card--g:hover{box-shadow:0 0 28px rgba(45,212,191,0.1),inset 0 0 20px rgba(45,212,191,0.03)}
+    .exp-card--o:hover{box-shadow:0 0 28px rgba(249,115,22,0.1),inset 0 0 20px rgba(249,115,22,0.03)}
+
+    /* ── SECTION INTRO INDENT MARKER ── */
+    .section-intro{border-left:2px solid rgba(14,165,233,0.3);padding-left:14px}
+
+    /* ── FOOTER GRADIENT TOP ── */
+    .footer-wrap{
+      position:relative}
+    .footer-wrap::before{
+      content:'';display:block;height:1px;
+      background:linear-gradient(to right,transparent,var(--accent) 20%,var(--violet) 50%,var(--accent) 80%,transparent)}
+
+    /* ── NAV ACTIVE SECTION INDICATOR ── */
+    .nav-link{position:relative}
+    .nav-link.active-nav::after{
+      content:'';position:absolute;bottom:0;left:12px;right:12px;
+      height:2px;background:var(--accent)}
+
+    /* ── ANALYSIS CARD STAGGER ANIMATION ── */
+    .an-card{opacity:0;transform:translateY(16px);
+      transition:opacity .5s ease,transform .5s ease,border-color .2s,box-shadow .2s,transform-override .25s}
+    .an-card.visible{opacity:1;transform:translateY(0)}
+    .an-card:hover{transform:translateY(-3px) !important}
+    .an-card:nth-child(1){transition-delay:.05s}
+    .an-card:nth-child(2){transition-delay:.12s}
+    .an-card:nth-child(3){transition-delay:.19s}
+    .an-card:nth-child(4){transition-delay:.26s}
+    .an-card:nth-child(5){transition-delay:.33s}
+    .an-card:nth-child(6){transition-delay:.40s}
+
+    /* ── EXP CARD STAGGER ── */
+    .exp-grid .exp-card:nth-child(1){transition-delay:.04s}
+    .exp-grid .exp-card:nth-child(2){transition-delay:.10s}
+    .exp-grid .exp-card:nth-child(3){transition-delay:.16s}
+
+
+    /* ── ANALYSIS CARD HOVER LIFT ── */
+    .an-card{transition:border-color .2s,box-shadow .2s,transform .25s ease}
+    .an-card:hover{transform:translateY(-3px)}
+
+    /* ── PROJECT CARD HOVER LIFT ── */
+    .proj-card{transition:border-color .25s,box-shadow .25s,transform .25s ease}
+    .proj-card:hover{transform:translateY(-3px)}
+
+    /* ── FEATURED SECTION HOVER ── */
+    .featured{transition:border-color .2s,box-shadow .2s}
+    .featured:hover{box-shadow:0 28px 70px rgba(0,0,0,0.9),0 0 0 1px var(--border-hi)}
   </style>
 </head>
 <body>
@@ -381,15 +494,13 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-scan"></div>
   <div class="hero-corner hero-corner--tl"></div>
   <div class="hero-corner hero-corner--tr"></div>
   <div class="hero-corner hero-corner--bl"></div>
   <div class="hero-corner hero-corner--br"></div>
-  <div class="hero-photo-wrap">
-    <div class="hero-photo-frame">
-      <img class="hero-photo" src="ResumePhoto.png" alt="Daniel Rosamond"/>
-    </div>
   </div>
+  <div class="hero-glyph">[ ME &#183; ROBOTICS &#183; DFAM &#183; FEA &#183; EMBEDDED ]</div>
   <div class="hero-eyebrow">Mechanical Engineering &#183; University at Buffalo &#183; Class of 2028</div>
   <h1 class="hero-name">Daniel<em>Rosamond</em></h1>
   <p class="hero-sub">Hardware systems, additive manufacturing, robotics.<br>DFAM &#183; FEA &#183; Modal Analysis &#183; Embedded &#183; Fabrication</p>
@@ -420,7 +531,7 @@
   </div>
   <div class="exp-grid reveal">
     <div class="exp-card exp-card--a">
-      <div class="exp-org">EMPEQ &#183; Buffalo, NY</div>
+      <div class="exp-org">EMPEQ &#183; Ithaca, NY</div>
       <div class="exp-title">Engineering Intern</div>
       <div class="exp-date">March 2026 &#8212; Present</div>
       <div class="exp-badge"><span class="exp-badge-dot"></span>Current</div>
@@ -430,7 +541,7 @@
     </div>
     <div class="exp-card exp-card--g">
       <div class="exp-org">ASME &#183; University at Buffalo</div>
-      <div class="exp-title">Rover Systems Lead &#8212; IAM3D 2026</div>
+      <div class="exp-title">Project Lead / Rover Systems Lead &#8212; IAM3D 2026</div>
       <div class="exp-date">Aug 2025 &#8212; Present</div>
       <div class="exp-badge"><span class="exp-badge-dot"></span>Current</div>
       <div class="exp-body">Led a <strong>50-member, 5-subteam</strong> program to design a fully 3D-printed excavation rover. Custom PCB, ESP32 electronics architecture, FEA, modal analysis, and full engineering documentation.</div>
@@ -516,21 +627,32 @@
           <div class="chips"><span class="chip--a">50-member team</span><span class="chip--a">5 subteams led</span><span class="chip">30&#215;30&#215;30&#160;cm</span><span class="chip--o">Sand-validated</span><span class="chip--o">Competing April 2026</span></div>
         </div>
         <div class="media-stack">
-          <figure><video data-src="rover_overview.mp4" muted loop playsinline><source data-src="rover_overview.mp4" type="video/mp4"/><img src="rover_assembly_spin.gif" alt="Rover rotating assembly"/></video><figcaption>Full rover assembly &#8212; rotating render showing chassis layout, drivetrain, and payload module.</figcaption></figure>
+          <figure><video data-src="rover_overview.mp4" muted loop playsinline><source data-src="rover_overview.mp4" type="video/mp4"/><img src="rover_assembly_spin.gif" alt="Rover rotating assembly"/></video><figcaption>Rover Assembly</figcaption></figure>
         </div>
       </div>
 
       <div class="rtab-panel" id="p-drive">
         <div class="proj-body">
-          <p><strong>Track System:</strong> Custom pin-jointed modular track architecture with sprocket-driven traction and integrated guide features. Individual link replacement without full disassembly.</p>
-          <p><strong>Validation:</strong> Worst-case static load at sprocket contact interfaces. Bench testing confirmed stable engagement and minimal derailment across sand-bed passes.</p>
-          <div class="chips"><span class="chip--a">Stable tracked motion</span><span class="chip">Modular / field-repairable</span><span class="chip--o">Sand-optimized geometry</span></div>
+          <p><strong>Final Design &#8212; Anti-Sand Tread:</strong> Custom pin-jointed modular track architecture with wide-link geometry and deep sand-displacement grooves. Sprocket-driven with integrated guide features to maintain alignment under abrasive lateral loading. Individual link replacement without full disassembly.</p>
+          <p><strong>Prototype &#8212; Internal Sprocket:</strong> Earlier iteration using an internal sprocket drive with a faster, lighter track. Significantly higher top speed but susceptible to sand ingestion between the sprocket and inner track surface, causing derailment under competition conditions. Replaced by the final design after sandbox validation.</p>
+          <p><strong>Validation:</strong> Worst-case static load at sprocket contact interfaces; tread link pin connection stress analyzed via FEA. Sandbox testing across multiple configurations confirmed the anti-sand design&#8217;s superiority in loose terrain.</p>
+          <div class="chips"><span class="chip--a">Anti-sand geometry</span><span class="chip--o">Two-generation design</span><span class="chip">Modular / field-repairable</span><span class="chip">Pin FEA validated</span></div>
         </div>
         <div class="media-stack">
+          <figure>
+            <video data-src="rover_antisand_tread.mp4" muted loop playsinline><source data-src="rover_antisand_tread.mp4" type="video/mp4"/><img src="rover_tread_exploded.png" alt="Anti-sand tread prototype"/></video>
+            <figcaption>Final anti-sand tread design &#8212; high-torque, wide-link geometry optimized for loose sand. Lower speed, maximum traction and sand displacement.</figcaption>
+          </figure>
+          <figure>
+            <video data-src="rover_sprocket_proto.mp4" muted loop playsinline><source data-src="rover_sprocket_proto.mp4" type="video/mp4"/><img src="rover_track_closeup.jpg" alt="Internal sprocket prototype"/></video>
+            <figcaption>Early internal sprocket prototype &#8212; significantly faster but prone to sand ingestion and track derailment under competition conditions.</figcaption>
+          </figure>
           <figure><img src="rover_tread_exploded.png" alt="Exploded tread assembly"/><figcaption>Exploded view &#8212; pin-joint architecture, sprocket interface, and guide features.</figcaption></figure>
-          <figure><img src="rover_track_closeup.jpg" alt="Track link detail"/><figcaption>Track link and sprocket engagement detail.</figcaption></figure>
-          <figure><img src="rover_drivetrain_assembled.jpg" alt="Assembled drivetrain"/><figcaption>Assembled drivetrain &#8212; sprocket-driven traction with modular track links.</figcaption></figure>
-          <figure><img src="rover_drivetrain_fea.png" alt="Drivetrain FEA"/><figcaption class="fea">Drivetrain FEA &#8212; static loading at sprocket contact interfaces under worst-case terrain conditions.</figcaption></figure>
+          <figure><img src="rover_drivetrain_assembled.jpg" alt="Assembled drivetrain"/><figcaption>Assembled drivetrain &#8212; final anti-sand tread system with modular link replacement.</figcaption></figure>
+          <div style="border:1px solid var(--border);background:var(--bg);padding:12px 14px;margin-top:0;">
+            <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">Structural Section Analysis</div>
+            <p style="font-size:.78rem;color:var(--muted);line-height:1.6;">Full static FEA performed across the drivetrain assembly &#8212; sprocket bearing loads, link tension at maximum drive torque, and chassis mounting interface stresses. Results informed final wall thickness, pin diameter, and print orientation for all load-bearing components. Full methodology and results in the design report. Analysis images in the Analysis Gallery below.</p>
+          </div>
         </div>
       </div>
 
@@ -557,7 +679,10 @@
           <figure><img src="rover_pcb_photo.jpg" alt="Custom PCB"/><figcaption>Custom PCB &#8212; ESP32 across motor control, sensing, and power distribution IO.</figcaption></figure>
           <figure><img src="rover_electronics_diagram.png" alt="3D electronics diagram"/><figcaption>3D electronics architecture &#8212; system layout and signal routing within the rover chassis.</figcaption></figure>
         </div>
-        <div class="chips" style="margin-top:14px;"><span class="chip--a">Custom PCB</span><span class="chip--a">ESP32 &#183; dozens of IO</span><span class="chip">Motor control</span><span class="chip">Power distribution</span></div>
+        <div style="margin-top:10px;">
+          <figure style="border:1px solid var(--border);background:var(--bg);overflow:hidden;"><img src="rover_electrical_schematic.png" alt="Electrical schematic" style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;object-position:center;background:var(--bg);padding:4px;"/><figcaption style="font-size:.7rem;color:var(--muted);padding:5px 9px;border-top:1px solid var(--border);">Full electrical schematic &#8212; power distribution, motor driver wiring, sensor IO, and ESP32 pin mapping.</figcaption></figure>
+        </div>
+        <div class="chips" style="margin-top:14px;"><span class="chip--a">Custom PCB</span><span class="chip--a">ESP32 &#183; dozens of IO</span><span class="chip">Motor control</span><span class="chip">Power distribution</span><span class="chip">Full schematic</span></div>
       </div>
 
       <div class="rtab-panel" id="p-anal">
@@ -663,7 +788,6 @@
       <div class="tab-row" style="border-bottom-color:rgba(45,212,191,.2);">
         <div class="iot-tab active" data-iot="iot-overview">Overview</div>
         <div class="iot-tab" data-iot="iot-hardware">Hardware Modules</div>
-        <div class="iot-tab" data-iot="iot-network">Network &amp; Relays</div>
         <div class="iot-tab" data-iot="iot-software">Software &amp; Control</div>
       </div>
       <div class="tab-body">
@@ -671,45 +795,31 @@
         <div class="iot-panel active" id="iot-overview">
           <div class="proj-body">
             <p><strong>System overview:</strong> A fully self-built home security and automation network integrating over a dozen microcontrollers and sensors across multiple rooms. Every module was designed, wired, and coded from scratch &#8212; no off-the-shelf platforms used. The system runs continuously, reporting live to a custom cloud-hosted dashboard accessible from any phone or laptop.</p>
-            <p><strong>Modules:</strong> Six ESP32-CAM security cameras, a pan-tilt face-tracking turret, two laser tripwires, an RFID entry node, a relay array controlling power to multiple zones, and a voice activation module &#8212; all networked through a chain of ESP32 relay nodes extending signal range across the building.</p>
+            <p><strong>Modules:</strong> Six ESP32-CAM security cameras, a face-tracking pan-tilt system, two laser tripwires, an RFID entry node, a relay array controlling power to multiple zones, and a voice activation module &#8212; all networked through a chain of ESP32 relay nodes extending signal range across the building.</p>
             <p><strong>Why it&#8217;s technically interesting:</strong> Designing a reliable multi-node embedded network from scratch requires solving real distributed systems problems &#8212; signal degradation, message collision, power isolation between relay stages, and latency between events and dashboard updates. Each was solved at hardware and firmware level.</p>
-            <div class="chips"><span class="chip--g">6 ESP32-CAM cameras</span><span class="chip--g">Face-tracking turret</span><span class="chip--g">2 tripwires</span><span class="chip--g">RFID node</span><span class="chip--g">Relay array</span><span class="chip--g">Voice activation</span><span class="chip--a">Cloud dashboard</span><span class="chip">ESP relay chain</span></div>
+            <div class="chips"><span class="chip--g">6 ESP32-CAM cameras</span><span class="chip--g">Face-tracking pan-tilt system</span><span class="chip--g">2 tripwires</span><span class="chip--g">RFID node</span><span class="chip--g">Relay array</span><span class="chip--g">Voice activation</span><span class="chip--a">Cloud dashboard</span><span class="chip">ESP relay chain</span></div>
           </div>
           <div class="media-stack">
-            <figure><img src="iot_phone_access.jpg" alt="Dashboard on phone"/><figcaption>Cloud dashboard accessed from phone &#8212; live camera feeds, sensor states, and zone controls in a fully responsive single-page app.</figcaption></figure>
-            <figure><img src="iot_laptop_access.jpg" alt="Dashboard on laptop"/><figcaption>Laptop control interface &#8212; Python curses terminal showing live node status, message rates, and direct command dispatch.</figcaption></figure>
+            <figure><img src="iot_mobile_dashboard.jpg" alt="Mobile dashboard"/><figcaption>Mobile dashboard &#8212; live camera feeds, sensor states, and zone controls in a fully responsive single-page app.</figcaption></figure>
+            <figure><img src="iot_laptop_dashboard.jpg" alt="Laptop dashboard"/><figcaption>Laptop dashboard &#8212; full system control interface showing live camera grid, sensor states, and relay zone controls.</figcaption></figure>
           </div>
         </div>
 
         <div class="iot-panel" id="iot-hardware">
           <div class="proj-body">
             <p><strong>ESP32-CAM cameras (&#215;6):</strong> Each node runs custom firmware streaming MJPEG over Wi-Fi, triggering motion alerts via GPIO, and reporting health. Mounted in custom 3D-printed housings with adjustable brackets.</p>
-            <p><strong>Face-tracking turret:</strong> Pan-tilt servo platform driven by an ESP32 running a centroid-tracking loop &#8212; detects face bounding boxes from the onboard stream and continuously adjusts servo positions to keep the target centered at ~15&#160;fps on-device.</p>
+            <p><strong>Face-tracking pan-tilt system:</strong> Pan-tilt servo platform driven by an ESP32 running a centroid-tracking loop &#8212; detects face bounding boxes from the onboard stream and continuously adjusts servo positions to keep the target centered at ~15&#160;fps on-device.</p>
             <p><strong>Tripwires (&#215;2):</strong> Laser emitter&#8211;photodiode pairs with dedicated ESP32 nodes. Beam break triggers an interrupt, fires an MQTT message within ~8&#160;ms, and drives a local buzzer independently of network state.</p>
             <p><strong>RFID node:</strong> MFRC522 reader with authenticated UIDs stored in flash. Valid card unlocks the relay and logs a timestamped entry event; invalid card triggers a network-wide alert.</p>
             <p><strong>Relay array:</strong> Eight-channel board driven by an ESP32 GPIO expander, controlling power to multiple zones. Each channel individually addressable from the web interface via MQTT.</p>
             <p><strong>Voice activation:</strong> Offline keyword detection on a dedicated microcontroller. Wakeword triggers command parsing and sends control packets over serial to the nearest relay node, independent of internet connectivity.</p>
-            <div class="chips"><span class="chip--g">~15&#160;fps centroid tracking</span><span class="chip--g">MFRC522 RFID</span><span class="chip--g">8-ch relay array</span><span class="chip--a">~8&#160;ms interrupt latency</span><span class="chip">Offline keyword detection</span><span class="chip">MQTT pub/sub</span></div>
+            <div class="chips"><span class="chip--g">~15&#160;fps face tracking</span><span class="chip--g">MFRC522 RFID</span><span class="chip--g">8-ch relay array</span><span class="chip--a">~8&#160;ms interrupt latency</span><span class="chip">Offline keyword detection</span><span class="chip">MQTT pub/sub</span></div>
           </div>
           <div class="media-stack">
-            <figure><img src="iot_rfid_module.jpg" alt="RFID node"/><figcaption>RFID entry node &#8212; MFRC522 reader with UID authentication; logs timestamped events to cloud dashboard.</figcaption></figure>
-            <figure><img src="iot_camera_rfid.jpg" alt="Camera and RFID module together"/><figcaption>Camera and RFID module co-located &#8212; combined entry point monitoring with simultaneous video and access control.</figcaption></figure>
-            <figure><img src="iot_camera_module.jpg" alt="ESP32-CAM module"/><figcaption>ESP32-CAM node &#8212; custom 3D-printed housing with adjustable mounting bracket and onboard motion detection.</figcaption></figure>
+            <figure><img src="iot_rfid_camera_module.jpg" alt="RFID Camera module"/><figcaption>RFID&#160;+&#160;Camera combo module &#8212; integrated entry point with simultaneous MFRC522 access control and MJPEG video stream.</figcaption></figure>
+            <figure><img src="iot_rfid_camera_exploded.png" alt="Exploded view of RFID Camera module"/><figcaption>Exploded view &#8212; RFID reader, ESP32-CAM, 3D-printed housing, and wiring harness assembly.</figcaption></figure>
+            <figure><img src="iot_camera_only.jpg" alt="Single camera module"/><figcaption>Single ESP32-CAM node &#8212; standalone security camera with adjustable mount and onboard motion detection firmware.</figcaption></figure>
           </div>
-        </div>
-
-        <div class="iot-panel iot-panel--full" id="iot-network">
-          <div class="proj-body">
-            <p><strong>The relay chain problem:</strong> ESP32 Wi-Fi range is limited to ~30&#8211;50&#160;m indoors. Positioning nodes across multiple rooms with walls and floors meant direct connection to the router was unreliable for outer nodes. The solution was a daisy-chained relay architecture built entirely in firmware.</p>
-            <p><strong>How it works:</strong> Each ESP32 operates in dual STA+AP mode simultaneously &#8212; connects to the upstream node as a station, and broadcasts its own AP for downstream nodes. Messages pass hop-by-hop as structured JSON packets over a custom TCP socket protocol. Each hop adds ~4&#8211;6&#160;ms latency; a 3-hop chain reaches the broker in under 20&#160;ms.</p>
-            <p><strong>MQTT broker:</strong> Mosquitto runs on a Raspberry Pi&#160;4 acting as central hub. All nodes publish sensor events and subscribe to command topics. The broker forwards events to the cloud dashboard via outbound HTTPS webhook, keeping the local network decoupled from the internet-facing layer.</p>
-            <p><strong>Failure handling:</strong> Each node monitors its upstream with a 2-second heartbeat. On timeout it falls back to direct router association if in range, or enters local autonomous mode &#8212; logging events to onboard flash until the chain reconnects.</p>
-          </div>
-          <div class="two-col-media" style="margin-top:14px;">
-            <figure><img src="iot_relay_chain_diagram.png" alt="ESP32 relay chain diagram"/><figcaption>ESP32 dual STA+AP relay chain &#8212; hop-by-hop JSON routing with ~4&#8211;6&#160;ms per hop.</figcaption></figure>
-            <figure><img src="iot_network_nodes.jpg" alt="Physical node deployment"/><figcaption>Physical node deployment &#8212; 3D-printed relay enclosures positioned for optimal hop coverage.</figcaption></figure>
-          </div>
-          <div class="chips" style="margin-top:14px;"><span class="chip--a">Dual STA+AP mode</span><span class="chip--a">MQTT &#183; Mosquitto</span><span class="chip--g">3-hop &lt;20&#160;ms</span><span class="chip">JSON over TCP</span><span class="chip">Heartbeat failover</span><span class="chip">Onboard flash fallback</span><span class="chip--o">HTTPS webhook</span></div>
         </div>
 
         <div class="iot-panel iot-panel--full" id="iot-software">
@@ -720,8 +830,8 @@
             <p><strong>Phone access:</strong> Dashboard is fully responsive. Camera tiles reflow to single column on mobile; touch-optimized controls replace hover states. No app install required.</p>
           </div>
           <div class="two-col-media" style="margin-top:14px;">
-            <figure><img src="iot_web_dashboard.jpg" alt="Web dashboard"/><figcaption>Cloud dashboard &#8212; MJPEG feeds, sensor states, and relay controls. &lt;1.5&#160;s load on mobile.</figcaption></figure>
-            <figure><img src="iot_laptop_terminal.jpg" alt="Laptop terminal"/><figcaption>Python curses terminal &#8212; live node status and &lt;10&#160;ms local round-trip dispatch.</figcaption></figure>
+            <figure><img src="iot_mobile_dashboard.jpg" alt="Web dashboard"/><figcaption>Cloud dashboard &#8212; MJPEG feeds, sensor states, and relay controls. &lt;1.5&#160;s load on mobile.</figcaption></figure>
+            <figure><img src="iot_laptop_dashboard.jpg" alt="Laptop terminal"/><figcaption>Python curses terminal &#8212; live node status and &lt;10&#160;ms local round-trip dispatch.</figcaption></figure>
           </div>
           <div class="chips" style="margin-top:14px;"><span class="chip--a">Vanilla HTML/CSS/JS</span><span class="chip--a">REST + MJPEG</span><span class="chip--g">Python WebSocket</span><span class="chip--g">C++ Arduino</span><span class="chip">OTA updates</span><span class="chip">Watchdog timer</span><span class="chip--o">Fully responsive</span></div>
         </div>
@@ -744,12 +854,11 @@
         </div>
       </div>
       <div class="small-card">
-        <div class="small-card-media"><img src="pcb_electroplate.jpg" alt="3D printed electroplated PCB"/></div>
-        <div class="small-card-body">
+        <div class="small-card-body" style="padding:16px 14px;">
           <div class="small-card-title">3D-Printed &amp; Electroplated PCB</div>
-          <div class="small-card-sub">Graphite extraction &#183; Conductive paint &#183; Electroplating</div>
-          <p class="small-card-desc">3D-printed circuit board substrates, extracted graphite from pencils to create conductive paint, applied trace patterns, then electroplated them to produce functional conductive traces &#8212; a fully non-industrial PCB fabrication pipeline.</p>
-          <div class="chips" style="margin-top:8px;"><span class="chip--o">Electroplating</span><span class="chip">Graphite extraction</span><span class="chip">FDM substrate</span></div>
+          <div class="small-card-sub">Graphite extraction &#183; Conductive paint &#183; Copper sulfate electroplating</div>
+          <p class="small-card-desc">3D-printed circuit board substrates, then mechanically refined graphite extracted from pencils to ~80&#8211;85% purity for use as conductive paint. Applied trace patterns by hand, then electroplated the boards in a copper sulfate solution to deposit a continuous copper layer &#8212; producing boards with measurable conductivity using no industrial PCB fabrication equipment whatsoever.</p>
+          <div class="chips" style="margin-top:8px;"><span class="chip--o">Cu&#8322;SO&#8324; electroplating</span><span class="chip">80&#8211;85% graphite purity</span><span class="chip">FDM substrate</span><span class="chip">Conductive paint</span></div>
         </div>
       </div>
     </div>
@@ -757,23 +866,27 @@
 
 </section>
 
+
 <hr class="full-divider"/>
 
 <!-- ANALYSIS -->
-<section id="analysis" class="section">
+<section id="analysis" class="section analysis-section-wrap">
   <div class="section-label reveal"><span class="section-label-text">Analysis Gallery</span><div class="section-label-line"></div><span class="section-label-num">04</span></div>
+  <p class="section-intro reveal">Simulation work spanning <strong>static FEA</strong>, <strong>dynamic event simulation</strong>, and <strong>modal analysis</strong> &#8212; from tread link pin stress to weapon centrifugal loading at 25&#160;kJ.</p>
   <div class="analysis-grid reveal">
     <div class="an-card"><div class="an-card-img"><img src="rover_gimbal_modal.gif" alt="Gimbal modal"/><span class="an-tag an-tag--modal">Modal Analysis</span></div><div class="an-info"><div class="an-title">Camera Gimbal &#8212; Resonance Tuning</div><p class="an-desc">Natural frequency matched to servo vibration modes via flexible material iteration. Rover camera system, IAM3D 2026.</p><div class="an-result">&#8594; Image distortion eliminated under motor operation</div></div></div>
     <div class="an-card"><div class="an-card-img"><img src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><span class="an-tag an-tag--dynamic">Dynamic Event Simulation &#183; Von Mises</span></div><div class="an-info"><div class="an-title">Rover Tread Links &#8212; Terrain Loading</div><p class="an-desc">Dynamic event simulation of a tread link interacting with loose sand, time-dependent loading derived from the rover drivetrain. IAM3D 2026.</p><div class="an-result">&#8594; Link geometry and orientation confirmed</div></div></div>
     <div class="an-card"><div class="an-card-img"><img src="fpv_drone_fea_displacement.png" alt="Drone FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title">FPV Drone Frame &#8212; Motor Thrust Loading</div><p class="an-desc">~10&#160;N per motor (~40&#160;N total); battery support constrained. Static stiffness validation for competition flight loads.</p><div class="an-result">&#8594; ~7.9&#160;mm peak deflection at arm ends</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="combat_robot_fea_vonmises.png" alt="Combat robot FEA"/><span class="an-tag">FEA &#183; Von Mises</span></div><div class="an-info"><div class="an-title">Spinner Bar &#8212; Centrifugal Loading</div><p class="an-desc">Von Mises stress at operating RPM; refined hub mesh captures peak concentration. Informed material selection and hub geometry.</p><div class="an-result">&#8594; ~25&#160;kJ operating &#183; NHRL-compliant geometry</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img src="combat_robot_fea_vonmises.png" alt="Combat robot FEA"/><span class="an-tag">FEA &#183; Von Mises &#183; Centrifugal</span></div><div class="an-info"><div class="an-title">Combat Robot &#8212; Horizontal Spinner FEA</div><p class="an-desc">Von Mises stress at operating RPM; refined hub mesh captures peak concentration. Informed material selection and hub geometry.</p><div class="an-result">&#8594; ~25&#160;kJ operating &#183; NHRL-compliant geometry</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img src="rover_tread_pin_fea.png" alt="Tread pin FEA"/><span class="an-tag">FEA &#183; Pin Stress</span></div><div class="an-info"><div class="an-title">Tread Link Pin Connection</div><p class="an-desc">Stress concentration at the pin-to-link interface under peak sprocket drive force. Informed final pin diameter and link geometry.</p><div class="an-result">&#8594; Pin diameter and orientation confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img src="rover_drivetrain_fea.png" alt="Drivetrain static FEA"/><span class="an-tag">FEA &#183; Static</span></div><div class="an-info"><div class="an-title">Rover Drivetrain &#8212; Sprocket Interface Loading</div><p class="an-desc">Static FEA across drivetrain assembly under maximum drive torque. Validated chassis mounting, bearing load paths, and link tension margins. IAM3D 2026.</p><div class="an-result">&#8594; Wall thickness and print orientation confirmed</div></div></div>
   </div>
 </section>
 
 <hr class="full-divider"/>
 
 <!-- SKILLS -->
-<section class="section">
+<div class="skills-section-bg"><section class="section" style="padding-top:0;padding-bottom:0;">
   <div class="section-label reveal"><span class="section-label-text">Skills</span><div class="section-label-line"></div><span class="section-label-num">05</span></div>
   <div class="skills-grid reveal">
     <div class="skill-col">
@@ -803,12 +916,14 @@
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Rapid Prototyping</span></div>
     </div>
   </div>
-</section>
+</section></div>
 
 <hr class="full-divider"/>
 
+<div class="end-grid" style="max-width:1300px;margin:0 auto;padding:80px 28px 0;">
+
 <!-- EDUCATION & AWARDS -->
-<section id="education" class="section">
+<section id="education" style="padding:0;">
   <div class="section-label reveal"><span class="section-label-text">Education &amp; Awards</span><div class="section-label-line"></div><span class="section-label-num">06</span></div>
   <div class="edu-grid reveal">
     <div class="edu-card"><div class="edu-card-label">Degree</div><div class="edu-card-title">University at Buffalo</div><div class="edu-card-sub">B.S. Mechanical Engineering &#183; Minor in Robotics &#183; Expected May 2028</div></div>
@@ -842,9 +957,9 @@
   </div>
 </section>
 
-<hr class="full-divider"/>
+</div><!-- /end-grid -->
 
-<footer class="footer">
+<div class="footer-wrap"><footer class="footer">
   <div>
     <div class="footer-name">Daniel Rosamond</div>
     <div class="footer-links">
@@ -856,9 +971,9 @@
   </div>
   <div class="footer-copy">
     <span>&#169; <span id="yr"></span> Daniel Rosamond &#183; Brooklyn, NY</span>
-    <button class="edit-footer-btn" id="edit-open-btn">edit</button>
+    <button class="edit-footer-btn" id="edit-open-btn">Edit Page / Access IoT</button>
   </div>
-</footer>
+</footer></div>
 
 <script>
   /* ── YEAR ── */
@@ -1055,6 +1170,31 @@
 
   /* apply saved edits on every page load */
   loadEdits();
+
+
+  /* ── NAV ACTIVE SECTION ── */
+  var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  var sectionIds = [];
+  navLinks.forEach(function(l){ var h = l.getAttribute('href').slice(1); if(h) sectionIds.push(h); });
+  var navObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        navLinks.forEach(function(l){ l.classList.remove('active-nav'); });
+        var match = document.querySelector('.nav-link[href="#'+e.target.id+'"]');
+        if(match) match.classList.add('active-nav');
+      }
+    });
+  },{threshold:0.35,rootMargin:'-46px 0px 0px 0px'});
+  sectionIds.forEach(function(id){ var el=document.getElementById(id); if(el) navObs.observe(el); });
+
+  /* ── ANALYSIS CARD STAGGER ── */
+  var anObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); anObs.unobserve(e.target); }
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.an-card').forEach(function(el){ anObs.observe(el); });
+
 </script>
 </body>
 </html>
