@@ -5,440 +5,573 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Daniel Rosamond — Mechanical Engineering</title>
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta name="description" content="Daniel Rosamond — Mechanical Engineering sophomore at UB. Engineering intern on AFWERX SBIR Phase II contract. Rover Systems Lead directing 50 members. FEA, modal analysis, additive manufacturing, embedded systems."/>
+  <meta property="og:title" content="Daniel Rosamond — Mechanical Engineering"/>
+  <meta property="og:description" content="Engineering intern on AFWERX SBIR Phase II. IAM3D R.O.V.E.R lead. C.O.B.R.A. 6000 co-lead. 50-member team. FEA · DFAM · Embedded."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="rover_assembly_spin.gif"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root{
-      --bg:#020912;--bg-1:#050e1c;--border:#0d2038;--border-hi:#1a3d60;
-      --accent:#0ea5e9;--accent-dim:rgba(14,165,233,0.12);
-      --orange:#f97316;--orange-dim:rgba(249,115,22,0.10);
-      --green:#2dd4bf;--green-dim:rgba(45,212,191,0.08);
-      --violet:#a78bfa;--violet-dim:rgba(167,139,250,0.13);
-      --text:#ccd9e8;--muted:#466880;--faint:#0c1e30;
-      --display:'Chakra Petch',sans-serif;--mono:'IBM Plex Mono',monospace;
-      --sh:0 24px 64px rgba(0,0,0,0.85);
+      --bg:#0b0b0a;
+      --bg-1:#141413;
+      --bg-2:#1c1c1a;
+      --border:#2a2926;
+      --border-hi:#403d39;
+      --text:#edebe8;
+      --muted:#6b6760;
+      --faint:#1a1918;
+      --acc:#e8ff41;
+      --acc-dim:rgba(232,255,65,0.08);
+      --acc2:#ff5533;
+      --acc2-dim:rgba(255,85,51,0.08);
+      --green:#3ddc84;
+      --violet:#a87fff;
+      --display:'Oswald',sans-serif;
+      --mono:'JetBrains Mono',monospace;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:var(--mono);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    body{font-family:var(--mono);background:var(--bg);color:var(--text);
+      line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:var(--acc);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* SUBTLE DOT FIELD */
     body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
-      background-image:radial-gradient(circle,#0d2038 1px,transparent 1px);
-      background-size:26px 26px;opacity:0.55}
-    body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-      background:radial-gradient(ellipse 70% 55% at 50% 20%,rgba(14,165,233,0.055) 0%,transparent 70%)}
+      background-image:radial-gradient(circle,rgba(232,255,65,0.06) 1px,transparent 1px);
+      background-size:32px 32px}
+
+    /* PROGRESS */
     #progress-bar{position:fixed;top:0;left:0;z-index:999;height:2px;width:0%;
-      background:linear-gradient(to right,var(--accent),var(--violet));transition:width .1s linear}
+      background:var(--acc);transition:width .08s linear}
+
     /* NAV */
-    .nav{position:sticky;top:0;z-index:200;height:46px;display:flex;align-items:center;
-      justify-content:space-between;padding:0 28px;
-      background:rgba(2,9,18,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-    .nav-brand{font-family:var(--display);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
-    .nav-brand span{color:var(--accent)}
-    .nav-links{display:flex}
-    .nav-link{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-      padding:0 12px;height:46px;display:flex;align-items:center;border-left:1px solid var(--border);transition:color .18s}
-    .nav-link:hover{color:var(--accent);text-decoration:none}
-    .nav-link--cta{color:var(--accent);background:var(--accent-dim)}
-    .nav-link--cta:hover{background:rgba(14,165,233,0.22)}
-    /* HERO */
-    .hero{min-height:calc(100vh - 46px);display:flex;flex-direction:column;
-      justify-content:center;align-items:center;text-align:center;padding:60px 24px 80px;position:relative}
-    .hero-corner{position:absolute;width:28px;height:28px;border-color:var(--border-hi);border-style:solid}
-    .hero-corner--tl{top:32px;left:32px;border-width:1px 0 0 1px}
-    .hero-corner--br{bottom:32px;right:32px;border-width:0 1px 1px 0}
-    .hero-corner--tr{top:32px;right:32px;border-width:1px 1px 0 0}
-    .hero-corner--bl{bottom:32px;left:32px;border-width:0 0 1px 1px}
-    .hero-eyebrow{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);
-      margin-bottom:16px;opacity:0;animation:fadeUp .6s .1s ease forwards}
+    .nav{position:sticky;top:0;z-index:200;height:52px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;background:rgba(11,11,10,0.95);
+      backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-brand{font-family:var(--display);font-weight:700;font-size:1.05rem;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--text);text-decoration:none;
+      transition:opacity .15s}
+    .nav-brand:hover{opacity:0.8;text-decoration:none}
+    .nav-brand span{color:var(--acc)}
+    .nav-links{display:flex;gap:0}
+    .nav-link{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--muted);padding:0 16px;height:52px;
+      display:flex;align-items:center;border-left:1px solid var(--border);
+      transition:color .15s;position:relative}
+    .nav-link:hover{color:var(--text);text-decoration:none}
+    .nav-link--cta{color:var(--acc);border-left:1px solid var(--border)}
+    .nav-link--cta:hover{background:var(--acc-dim)}
+    .nav-link.active-nav{color:var(--acc) !important;background:rgba(232,255,65,0.05)}
+    .nav-link.active-nav::after{content:'';position:absolute;bottom:0;
+      left:0;right:0;height:2px;background:var(--acc)}
+    @media(max-width:700px){.nav{padding:0 16px}
+      .nav-link{padding:0 10px;font-size:.6rem}}
+
+    /* ─── HERO ─── */
+    .hero{min-height:calc(100vh - 52px);
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:0 0 72px 0;position:relative;overflow:visible}
+
+    /* giant watermark */
+    .hero-watermark{position:absolute;bottom:-0.05em;left:0;
+      font-family:var(--display);font-weight:700;
+      font-size:clamp(13rem,19vw,24rem);line-height:1;
+      letter-spacing:-.03em;text-transform:uppercase;
+      color:rgba(232,255,65,0.04);pointer-events:none;user-select:none;
+      white-space:nowrap;width:100%;overflow:hidden}
+
+    /* crosshair at top-right */
+    .hero-cross{position:absolute;top:60px;right:60px;width:64px;height:64px;
+      opacity:0;animation:crossAppear 1s .9s cubic-bezier(0.16,1,0.3,1) forwards}
+    @keyframes crossAppear{
+      0%{opacity:0;transform:scale(0.4) rotate(45deg)}
+      70%{opacity:.7;transform:scale(1.08) rotate(0deg)}
+      100%{opacity:.6;transform:scale(1) rotate(0deg)}}
+    .hero-cross::before,.hero-cross::after{content:'';position:absolute;
+      background:var(--acc)}
+    .hero-cross::before{width:1px;height:100%;left:50%;top:0}
+    .hero-cross::after{width:100%;height:1px;top:50%;left:0}
+
+    /* ticker top */
+    .hero-ticker{position:absolute;top:0;left:0;right:0;height:36px;
+      border-bottom:1px solid var(--border-hi);
+      display:flex;align-items:center;overflow:hidden;
+      background:rgba(11,11,10,0.7)}
+    .hero-ticker-inner{display:flex;gap:0;animation:ticker 40s linear infinite;
+      white-space:nowrap}
+    .hero-ticker-item{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--muted);padding:0 32px;
+      border-right:1px solid var(--border);line-height:36px}
+    .hero-ticker-item span{color:var(--acc)}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .hero-inner{padding:0 48px;position:relative;z-index:1}
+    @media(max-width:700px){.hero-inner{padding:0 24px}.hero-cross{top:48px;right:24px}}
+
+    .hero-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;
+      text-transform:uppercase;color:var(--acc);margin-bottom:20px;
+      opacity:0;animation:fadeIn .5s .3s ease forwards}
     .hero-name{font-family:var(--display);font-weight:700;
-      font-size:clamp(3.2rem,9vw,7.5rem);letter-spacing:-.01em;line-height:.9;
-      text-transform:uppercase;color:var(--text);opacity:0;animation:fadeUp .65s .18s ease forwards}
-    .hero-name em{font-style:normal;color:var(--accent);display:block}
-    .hero-sub{margin-top:22px;font-size:.82rem;letter-spacing:.06em;color:var(--muted);
-      max-width:460px;opacity:0;animation:fadeUp .65s .28s ease forwards}
-    .hero-stats{display:flex;gap:0;margin:40px 0 36px;border:1px solid var(--border);
-      opacity:0;animation:fadeUp .65s .38s ease forwards;flex-wrap:wrap}
-    .stat{padding:16px 22px;border-right:1px solid var(--border);text-align:center;min-width:90px}
+      font-size:clamp(5rem,13vw,13rem);
+      letter-spacing:-.02em;line-height:.86;text-transform:uppercase;
+      color:var(--text);margin-bottom:32px;
+      opacity:0;animation:fadeIn .6s .4s ease forwards}
+    .hero-name em{font-style:normal;color:var(--acc);display:block}
+
+    .hero-rule{width:0;height:1px;background:linear-gradient(to right,var(--acc),transparent);
+      margin-bottom:28px;
+      animation:rulegrow .8s .5s cubic-bezier(0.16,1,0.3,1) forwards}
+    @keyframes rulegrow{from{width:0;opacity:0}to{width:100%;opacity:1}}
+
+    .hero-lower{display:grid;grid-template-columns:1fr auto;align-items:end;
+      gap:40px;
+      opacity:0;animation:fadeIn .5s .6s ease forwards}
+    @media(max-width:920px){.hero-lower{grid-template-columns:1fr}}
+    .hero-sub{font-family:var(--mono);font-size:.82rem;letter-spacing:.03em;
+      color:var(--muted);max-width:420px;line-height:1.7}
+    .hero-sub strong{color:var(--text)}
+    .hero-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+
+    /* stats inline row */
+    .hero-stats{display:flex;gap:0;
+      border:1px solid var(--border-hi);background:var(--bg-1);
+      opacity:0;animation:fadeIn .5s .7s ease forwards;
+      align-self:flex-end;
+      box-shadow:0 0 0 1px rgba(232,255,65,0.06)}
+    .stat{padding:14px 22px;border-right:1px solid var(--border);
+      text-align:left}
     .stat:last-child{border-right:none}
-    .stat-num{font-family:var(--display);font-weight:700;font-size:2rem;color:var(--accent);
-      line-height:1;display:flex;align-items:baseline;justify-content:center;gap:2px}
-    .stat-num sup{font-size:.85rem;color:var(--orange)}
-    .stat-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-    .hero-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
-      opacity:0;animation:fadeUp .65s .5s ease forwards}
-    .btn{font-family:var(--display);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
-      padding:10px 22px;border:1px solid var(--border);background:transparent;
-      color:var(--text);cursor:pointer;text-decoration:none;display:inline-block;
-      transition:border-color .2s,color .2s,background .2s}
-    .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-    .btn--primary{border-color:var(--accent);background:var(--accent-dim);color:var(--accent)}
-    .btn--primary:hover{background:rgba(14,165,233,0.24)}
-    .btn--violet{border-color:var(--violet);background:var(--violet-dim);color:var(--violet)}
-    .btn--violet:hover{background:rgba(167,139,250,0.24)}
-    .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
-      font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
-      display:flex;flex-direction:column;align-items:center;gap:8px;
-      opacity:0;animation:fadeUp .65s .7s ease forwards}
-    .scroll-hint::after{content:'';width:1px;height:32px;
-      background:linear-gradient(to bottom,var(--border-hi),transparent);
-      animation:pulse 2s ease-in-out infinite}
-    /* LAYOUT */
-    .section{padding:80px 28px;max-width:1300px;margin:0 auto}
+    .stat-num{font-family:var(--display);font-weight:600;font-size:1.9rem;
+      color:var(--acc);line-height:1;
+      display:flex;align-items:baseline;gap:3px;
+      font-variant-numeric:tabular-nums}
+    .stat-num sup{font-size:.48em;color:var(--text)}
+    .stat-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .stat:hover{background:rgba(232,255,65,0.04);box-shadow:inset 0 -2px 0 var(--acc)}
+    .stat:hover .stat-num{color:#f4ff8a}
+
+    /* BUTTONS */
+    .btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+      text-transform:uppercase;padding:10px 22px;cursor:pointer;
+      display:inline-flex;align-items:center;gap:7px;
+      border:1px solid var(--border);background:transparent;
+      color:var(--muted);transition:all .15s;text-decoration:none}
+    .btn:hover{border-color:var(--acc);color:var(--acc);
+      background:var(--acc-dim);text-decoration:none}
+    .btn--primary{border-color:var(--acc);background:var(--acc);
+      color:var(--bg);font-weight:500}
+    .btn--primary:hover{background:#f4ff8a;border-color:#f4ff8a;color:var(--bg)}
+
+    /* DIVIDERS */
     .full-divider{border:none;border-top:1px solid var(--border)}
-    .section-label{display:flex;align-items:center;gap:16px;margin-bottom:36px}
-    .section-label-text{font-family:var(--display);font-weight:600;font-size:.72rem;
-      letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
-    .section-label-line{flex:1;height:1px;background:var(--border)}
-    .section-label-num{font-size:.68rem;color:var(--border-hi);letter-spacing:.1em}
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+
+    /* SECTIONS */
+    .section{padding:80px 48px;max-width:1440px;margin:0 auto}
+    @media(max-width:700px){.section{padding:56px 20px}}
+
+    .section-label{display:flex;align-items:center;gap:0;margin-bottom:40px;
+      border-bottom:1px solid var(--border);padding-bottom:12px}
+    .section-label-num{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+      color:var(--bg);background:var(--acc);padding:2px 10px;
+      margin-right:14px;font-weight:500;flex-shrink:0}
+    .section-label-text{font-family:var(--display);font-weight:600;font-size:.82rem;
+      letter-spacing:.28em;text-transform:uppercase;color:var(--text);flex:1}
+    .section-label-line{display:block;flex:1;height:1px;
+      background:linear-gradient(to right,var(--border-hi),transparent);
+      margin-left:16px}
+
+    .section-intro{font-family:var(--mono);font-size:.85rem;color:rgba(232,228,220,0.6);
+      max-width:640px;margin-bottom:36px;line-height:1.75;
+      padding-left:14px;border-left:2px solid var(--acc)}
+    .section-intro strong{color:var(--text)}
+
+    .reveal{opacity:0;transform:translateY(18px);
+      transition:opacity .55s ease,transform .55s ease}
     .reveal.visible{opacity:1;transform:none}
+
     /* EXPERIENCE */
-    .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .exp-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+      background:var(--border)}
+    .exp-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+      background:var(--border)}
     @media(max-width:820px){.exp-grid,.exp-grid-2{grid-template-columns:1fr}}
-    .exp-card{border:1px solid var(--border);background:var(--bg-1);padding:18px 20px;
-      position:relative;transition:border-color .2s,box-shadow .2s}
-    .exp-card:hover{border-color:var(--border-hi);box-shadow:0 0 22px rgba(14,165,233,.06)}
-    .exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-    .exp-card--a::before{background:var(--accent)}
-    .exp-card--g::before{background:var(--green)}
-    .exp-card--o::before{background:var(--orange)}
-    .exp-card--v::before{background:var(--violet)}
-    .exp-card--muted::before{background:var(--muted)}
-    .exp-org{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-    .exp-title{font-family:var(--display);font-weight:600;font-size:.94rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
-    .exp-date{font-size:.66rem;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}
-    .exp-body{font-size:.78rem;color:var(--muted);line-height:1.6}
+    .exp-card{background:var(--bg-1);padding:24px;position:relative;
+      transition:background .15s;overflow:hidden}
+    .exp-card:hover{background:var(--bg-2)}
+    .exp-card--a::after{content:'';position:absolute;bottom:0;left:0;right:0;
+      height:2px;background:var(--acc)}
+    .exp-card--g::after{content:'';position:absolute;bottom:0;left:0;right:0;
+      height:2px;background:var(--green)}
+    .exp-card--o::after{content:'';position:absolute;bottom:0;left:0;right:0;
+      height:2px;background:var(--acc2)}
+    .exp-card--v::after{content:'';position:absolute;bottom:0;left:0;right:0;
+      height:2px;background:var(--violet)}
+    .exp-card--muted::after{content:'';position:absolute;bottom:0;left:0;right:0;
+      height:2px;background:var(--muted)}
+    .exp-org{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .exp-title{font-family:var(--display);font-weight:600;font-size:1rem;
+      letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+    .exp-date{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+      color:rgba(232,228,220,0.38);margin-bottom:12px}
+    .exp-body{font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.65}
     .exp-body strong{color:var(--text)}
-    .exp-badge{display:inline-flex;align-items:center;gap:5px;font-size:.58rem;letter-spacing:.18em;
-      text-transform:uppercase;color:var(--green);border:1px solid rgba(45,212,191,.3);
-      padding:2px 7px;margin-bottom:10px;background:var(--green-dim)}
-    .exp-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:ping 1.8s ease-in-out infinite}
-    .exp-badge--orange{color:var(--orange);border-color:rgba(249,115,22,.3);background:var(--orange-dim)}
-    .exp-badge--orange .exp-badge-dot{background:var(--orange);animation:ping-o 1.8s ease-in-out infinite}
-    .exp-badge--air-force{color:var(--accent);border-color:rgba(14,165,233,.3);background:var(--accent-dim)}
-    .exp-badge--air-force .exp-badge-dot{background:var(--accent)}
+    .exp-badge{display:inline-flex;align-items:center;gap:5px;
+      font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--acc);
+      border:1px solid rgba(232,255,65,.25);padding:2px 8px;margin-bottom:10px;
+      background:var(--acc-dim)}
+    .exp-badge-dot{width:5px;height:5px;border-radius:50%;
+      background:var(--acc);animation:ping-a 2s ease-in-out infinite}
+    .exp-badge--orange{color:var(--acc2);border-color:rgba(255,85,51,.25);
+      background:var(--acc2-dim)}
+    .exp-badge--orange .exp-badge-dot{background:var(--acc2);animation:ping-b 2s ease-in-out infinite}
+    .exp-badge--air-force{color:#7aadff;border-color:rgba(122,173,255,.25);
+      background:rgba(122,173,255,.06)}
+    .exp-badge--air-force .exp-badge-dot{background:#7aadff}
+
     /* CHIPS */
-    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-    .chip{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);padding:3px 9px;color:var(--muted)}
-    .chip--a{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
-    .chip--o{border-color:var(--orange);color:var(--orange);background:var(--orange-dim)}
-    .chip--g{border-color:var(--green);color:var(--green);background:var(--green-dim)}
-    .chip--v{border-color:var(--violet);color:var(--violet);background:var(--violet-dim)}
-    /* ROVER / FEATURED PROJECT SHELL */
-    .featured{border:1px solid var(--border);background:var(--bg-1);box-shadow:var(--sh);margin-bottom:14px}
+    .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+    .chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+      text-transform:uppercase;border:1px solid var(--border);
+      padding:2px 8px;color:var(--muted);background:var(--bg)}
+    .chip--a{border-color:rgba(232,255,65,.3);color:var(--acc);background:var(--acc-dim)}
+    .chip--o{border-color:rgba(255,85,51,.3);color:var(--acc2);background:var(--acc2-dim)}
+    .chip--g{border-color:rgba(61,220,132,.3);color:var(--green);background:rgba(61,220,132,.06)}
+    .chip--v{border-color:rgba(168,127,255,.3);color:var(--violet);background:rgba(168,127,255,.06)}
+
+    /* FEATURED */
+    .featured{border:1px solid var(--border);background:var(--bg-1);
+      margin-bottom:16px;position:relative;overflow:hidden;
+      transition:border-color .2s,box-shadow .2s}
+    .featured:hover{border-color:var(--border-hi);
+      box-shadow:0 0 32px rgba(232,255,65,0.05)}
+    /* animated corner accent */
+    .featured::before{content:'';position:absolute;top:0;left:0;
+      width:4px;height:100%;background:var(--acc);
+      box-shadow:0 0 12px rgba(232,255,65,0.25)}
     .featured-head{display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border)}
+      flex-wrap:wrap;gap:10px;padding:18px 24px;
+      border-bottom:1px solid var(--border-hi)}
     .featured-head-left{display:flex;align-items:center;gap:14px}
-    .featured-head-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .feat-diamond{width:8px;height:8px;background:var(--accent);transform:rotate(45deg);flex-shrink:0}
-    .feat-eyebrow{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
-    .feat-title{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase}
-    .feat-badge{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-      border:1px solid var(--accent);color:var(--accent);background:var(--accent-dim);padding:4px 10px}
-    .report-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
-      font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);
-      border:1px solid var(--violet);background:var(--violet-dim);padding:5px 12px;
-      cursor:pointer;transition:background .2s;text-decoration:none}
-    .report-btn:hover{background:rgba(167,139,250,.24);text-decoration:none;color:var(--violet)}
-    /* TABS — rover uses .rtab / .rtab-panel ; iot uses .iot-tab / .iot-panel */
-    .tab-row{display:flex;border-bottom:1px solid var(--border);padding:0 20px;overflow-x:auto}
-    .rtab,.iot-tab{padding:10px 18px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
-      transition:color .18s,border-color .18s;user-select:none;margin-bottom:-1px;white-space:nowrap}
+    .featured-head-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .feat-diamond{width:10px;height:10px;background:var(--acc);
+      transform:rotate(45deg);flex-shrink:0}
+    .feat-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--acc);margin-bottom:2px}
+    .feat-title{font-family:var(--display);font-weight:700;font-size:1.4rem;
+      letter-spacing:.05em;text-transform:uppercase}
+    .feat-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
+      text-transform:uppercase;border:1px solid rgba(232,255,65,.3);
+      color:var(--acc);background:var(--acc-dim);padding:4px 12px}
+    .report-btn{display:inline-flex;align-items:center;gap:6px;
+      font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--muted);
+      border:1px solid var(--border);background:var(--bg);
+      padding:5px 12px;cursor:pointer;transition:all .15s;text-decoration:none}
+    .report-btn:hover{border-color:var(--acc);color:var(--acc);
+      background:var(--acc-dim);text-decoration:none}
+
+    /* TABS */
+    .tab-row{display:flex;border-bottom:1px solid var(--border);
+      padding:0 24px;overflow-x:auto;background:var(--bg)}
+    .rtab,.iot-tab{font-family:var(--mono);padding:12px 18px;font-size:.66rem;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+      cursor:pointer;border-bottom:2px solid transparent;
+      transition:color .15s,border-color .15s;user-select:none;
+      margin-bottom:-1px;white-space:nowrap}
     .rtab:hover,.iot-tab:hover{color:var(--text)}
-    .rtab.active,.iot-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-    .tab-body{padding:20px}
+    .rtab.active,.iot-tab.active{color:var(--acc);border-bottom-color:var(--acc);background:rgba(232,255,65,0.04)}
+    .tab-body{padding:24px}
     .rtab-panel{display:none}
-    .rtab-panel.active{display:grid;grid-template-columns:1.35fr 1fr;gap:20px}
+    .rtab-panel.active{display:grid;grid-template-columns:1.35fr 1fr;gap:22px}
     .rtab-panel--full.active{display:block}
     .iot-panel{display:none}
-    .iot-panel.active{display:grid;grid-template-columns:1.35fr 1fr;gap:20px}
+    .iot-panel.active{display:grid;grid-template-columns:1.35fr 1fr;gap:22px}
     .iot-panel--full.active{display:block}
     @media(max-width:820px){.rtab-panel.active,.iot-panel.active{grid-template-columns:1fr}}
-    .proj-body p{font-size:.82rem;margin-bottom:7px}
+
+    .proj-body p{font-family:var(--mono);font-size:.8rem;
+      margin-bottom:10px;color:var(--muted);line-height:1.7}
+    .proj-body p:first-of-type{border-left:2px solid var(--acc);
+      padding-left:10px;margin-left:-12px;color:var(--text)}
     .proj-body strong{color:var(--text)}
+
     /* MEDIA */
-    .media-stack{display:flex;flex-direction:column;gap:10px}
-    figure{border:1px solid var(--border);background:var(--bg);overflow:hidden}
-    figure img,figure video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;object-position:center}
-    figcaption{font-size:.7rem;color:var(--muted);padding:5px 9px;border-top:1px solid var(--border);line-height:1.45}
-    figcaption.fea{color:var(--orange)}
-    .two-col-media{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .media-stack{display:flex;flex-direction:column;gap:8px}
+    figure{border:1px solid var(--border);background:var(--bg-2);overflow:hidden}
+    figure img,figure video{width:100%;display:block;aspect-ratio:16/9;
+      object-fit:cover;object-position:center}
+    figure.portrait img{object-fit:contain;aspect-ratio:auto;max-height:380px;
+      background:var(--bg-2)}
+    figure.natural img{object-fit:contain;aspect-ratio:auto;max-height:340px;
+      background:var(--bg-2)}
+    figcaption{font-family:var(--mono);font-size:.66rem;color:var(--muted);
+      padding:6px 10px;border-top:1px solid var(--border);line-height:1.45}
+    figcaption.fea{color:var(--acc)}
+    .two-col-media{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
     @media(max-width:600px){.two-col-media{grid-template-columns:1fr}}
-    .elec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+
+    /* ELEC */
+    .elec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      margin-top:12px;background:var(--border)}
     @media(max-width:600px){.elec-grid{grid-template-columns:1fr}}
-    .elec-card{border:1px solid var(--border);padding:12px 14px;background:var(--bg)}
-    .elec-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
-    .elec-card p{font-size:.78rem;color:var(--muted);line-height:1.55}
-    /* PROJECT CARD GRIDS */
+    .elec-card{background:var(--bg);padding:14px 16px}
+    .elec-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--acc);margin-bottom:6px}
+    .elec-card p{font-family:var(--mono);font-size:.76rem;color:var(--muted);line-height:1.55}
+
+    /* PROJECT GRIDS */
     .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .proj-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     @media(max-width:900px){.proj-grid-3{grid-template-columns:1fr 1fr}}
     @media(max-width:600px){.proj-grid,.proj-grid-3{grid-template-columns:1fr}}
-    .proj-card{border:1px solid var(--border);background:var(--bg-1);overflow:hidden;
-      box-shadow:var(--sh);transition:border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
-    .proj-card:hover{border-color:var(--border-hi);box-shadow:0 0 32px rgba(14,165,233,.07)}
+
+    /* PROJECT CARD */
+    .proj-card{background:var(--bg-1);border:1px solid var(--border);
+      overflow:hidden;display:flex;flex-direction:column;
+      transition:border-color .2s,transform .22s,box-shadow .2s}
+    .proj-card:hover{border-color:var(--acc);transform:translateY(-2px);
+      box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 0 1px rgba(232,255,65,0.1)}
     .proj-card-media{position:relative;overflow:hidden}
-    .proj-card-media img,.proj-card-media video{width:100%;display:block;aspect-ratio:16/9;
-      object-fit:cover;object-position:center;transition:transform .45s ease}
-    .proj-card:hover .proj-card-media img,.proj-card:hover .proj-card-media video{transform:scale(1.04)}
-    .proj-img-tag{position:absolute;top:10px;right:10px;font-size:.6rem;letter-spacing:.18em;
-      text-transform:uppercase;background:rgba(2,9,18,.9);border:1px solid var(--border-hi);
-      color:var(--text);padding:3px 8px}
-    .proj-img-tag--g{color:var(--green);border-color:var(--green)}
-    .proj-card-body{padding:16px;flex:1;display:flex;flex-direction:column}
-    .proj-card-title{font-family:var(--display);font-weight:700;font-size:.96rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-    .proj-card-sub{font-size:.74rem;color:var(--muted);margin-bottom:10px}
-    .proj-card-desc{font-size:.78rem;color:var(--muted);line-height:1.6;flex:1}
-    .proj-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .proj-card-fea{border-top:1px solid var(--border);margin-top:12px}
-    .proj-card-fea img,.proj-card-fea video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;object-position:center}
-    .proj-fea-cap{font-size:.66rem;color:var(--orange);padding:4px 8px;border-top:1px solid var(--border)}
-    /* SMALL CARD */
-    .small-card{border:1px solid var(--border);background:var(--bg-1);overflow:hidden;
-      transition:border-color .2s,box-shadow .2s}
-    .small-card:hover{border-color:var(--border-hi);box-shadow:0 0 18px rgba(14,165,233,.06)}
-    .small-card-media img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;object-position:center;
+    .proj-card-media img,.proj-card-media video{width:100%;display:block;
+      aspect-ratio:16/9;object-fit:cover;object-position:center;
       transition:transform .4s ease}
-    .small-card:hover .small-card-media img{transform:scale(1.04)}
-    .small-card-body{padding:12px 14px}
-    .small-card-title{font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-    .small-card-sub{font-size:.7rem;color:var(--muted);margin-bottom:6px}
-    .small-card-desc{font-size:.74rem;color:var(--muted);line-height:1.55}
+    .proj-card:hover .proj-card-media img,
+    .proj-card:hover .proj-card-media video{transform:scale(1.03)}
+    .proj-img-tag{position:absolute;top:0;right:0;
+      font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;
+      text-transform:uppercase;background:var(--acc);color:var(--bg);padding:4px 10px;
+      font-weight:500}
+    .proj-img-tag--g{background:var(--green);color:var(--bg)}
+    .proj-card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .proj-card-title{font-family:var(--display);font-weight:700;font-size:1.05rem;
+      letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+    .proj-card-sub{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:10px}
+    .proj-card-desc{font-family:var(--mono);font-size:.78rem;color:var(--muted);
+      line-height:1.65;flex:1}
+    .proj-card-desc strong{color:var(--text)}
+    .proj-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .proj-card-fea{border-top:1px solid var(--border)}
+    .proj-card-fea img,.proj-card-fea video{width:100%;display:block;
+      aspect-ratio:16/9;object-fit:cover;object-position:center}
+    .proj-fea-cap{font-family:var(--mono);font-size:.64rem;color:var(--acc);
+      padding:5px 10px;border-top:1px solid var(--border)}
+
+    /* SMALL CARD */
+    .small-card{background:var(--bg-1);border:1px solid var(--border);overflow:hidden;
+      transition:border-color .15s,transform .2s}
+    .small-card:hover{border-color:var(--acc);transform:translateY(-2px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+    .small-card-media img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+    .small-card-body{padding:14px 16px}
+    .small-card-title{font-family:var(--display);font-weight:600;font-size:.9rem;
+      letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+    .small-card-sub{font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-bottom:6px}
+    .small-card-desc{font-family:var(--mono);font-size:.74rem;color:var(--muted);line-height:1.55}
+
     /* ANALYSIS */
-    .analysis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-    .an-card{border:1px solid var(--border);background:var(--bg-1);overflow:hidden;transition:border-color .2s,box-shadow .2s}
-    .an-card:hover{border-color:var(--border-hi);box-shadow:0 0 22px rgba(14,165,233,.06)}
+    .analysis-section-wrap{position:relative}
+    /* blueprint grid overlay */
+    .analysis-section-wrap::before{content:'';
+      position:absolute;inset:0;z-index:0;pointer-events:none;
+      background-image:
+        linear-gradient(to right,rgba(232,255,65,.05) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(232,255,65,.05) 1px,transparent 1px);
+      background-size:44px 44px}
+    /* top accent line on analysis section */
+    .analysis-section-wrap .section::before{content:'SIMULATION DOCUMENTATION';
+      display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.28em;
+      text-transform:uppercase;color:rgba(232,255,65,0.2);margin-bottom:-30px;
+      text-align:right}
+    .analysis-section-wrap .section{position:relative;z-index:1}
+    .analysis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+    .an-card{background:var(--bg-1);border:1px solid var(--border);overflow:hidden;
+      opacity:0;transform:translateY(16px);
+      transition:opacity .5s ease,transform .5s ease,border-color .15s}
+    .an-card.visible{opacity:1;transform:none}
+    .an-card:hover{border-color:var(--acc);box-shadow:0 4px 24px rgba(0,0,0,0.4)}
+    .an-card:nth-child(1){transition-delay:.04s}.an-card:nth-child(2){transition-delay:.10s}
+    .an-card:nth-child(3){transition-delay:.16s}.an-card:nth-child(4){transition-delay:.22s}
+    .an-card:nth-child(5){transition-delay:.28s}.an-card:nth-child(6){transition-delay:.34s}
+    .an-card:nth-child(7){transition-delay:.40s}.an-card:nth-child(8){transition-delay:.46s}
     .an-card-img{position:relative}
-    .an-card-img img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;object-position:center}
-    .an-tag{position:absolute;top:0;left:0;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:3px 8px;background:var(--orange);color:#fff}
-    .an-tag--modal{background:var(--violet);color:#09061a}
-    .an-tag--dynamic{background:var(--accent);color:#020912}
+    .an-card-img img,.an-card-img video{width:100%;display:block;
+      aspect-ratio:16/9;object-fit:cover;object-position:center;
+      transition:transform .35s ease}
+    .an-card:hover .an-card-img img{transform:scale(1.03)}
+    .an-tag{position:absolute;top:0;left:0;font-family:var(--mono);
+      font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
+      padding:3px 8px;background:var(--acc2);color:#fff}
+    .an-tag--modal{background:var(--violet);color:#fff}
+    .an-tag--dynamic{background:#2277cc;color:#fff}
     .an-info{padding:12px 14px}
-    .an-title{font-family:var(--display);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-    .an-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
-    .an-result{font-size:.7rem;color:var(--accent);margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+    .an-title{font-family:var(--display);font-weight:600;font-size:.82rem;
+      text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+    .an-desc{font-family:var(--mono);font-size:.73rem;color:var(--muted);line-height:1.5}
+    .an-result{font-family:var(--mono);font-size:.68rem;color:var(--acc);
+      margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+
     /* SKILLS */
-    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .skills-section-bg{background:var(--bg-1);
+      border-top:2px solid var(--acc);
+      border-bottom:1px solid var(--border);
+      position:relative}
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
     @media(max-width:700px){.skills-grid{grid-template-columns:1fr}}
-    .skill-col{border:1px solid var(--border);background:var(--bg-1);padding:16px 18px;transition:border-color .2s}
-    .skill-col:hover{border-color:var(--border-hi)}
-    .skill-col-label{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-    .skill-item{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--faint)}
+    .skill-col{background:var(--bg-1);padding:20px 22px;transition:background .15s}
+    .skill-col:hover{background:var(--bg-2)}
+    .skill-col-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+    .skill-item{display:flex;align-items:center;gap:10px;
+      padding:5px 0;border-bottom:1px solid var(--faint)}
     .skill-item:last-child{border-bottom:none}
     .skill-dot{width:4px;height:4px;background:var(--border-hi);flex-shrink:0}
-    .skill-name{font-size:.78rem}
+    .skill-name{font-family:var(--mono);font-size:.76rem;color:var(--text)}
+
     /* EDUCATION */
-    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
     @media(max-width:700px){.edu-grid{grid-template-columns:1fr}}
-    .edu-card{border:1px solid var(--border);background:var(--bg-1);padding:16px 20px;transition:border-color .2s}
-    .edu-card:hover{border-color:var(--border-hi)}
-    .edu-card-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-    .edu-card-title{font-family:var(--display);font-weight:700;font-size:.96rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-    .edu-card-sub{font-size:.78rem;color:var(--muted)}
+    .edu-card{background:var(--bg-1);padding:18px 22px;transition:background .15s}
+    .edu-card:hover{background:var(--bg-2);border-color:var(--border-hi)}
+    .edu-card-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .edu-card-title{font-family:var(--display);font-weight:600;font-size:.96rem;
+      letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+    .edu-card-sub{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+
     /* CONTACT */
-    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
     @media(max-width:820px){.contact-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:500px){.contact-grid{grid-template-columns:1fr}}
-    .contact-card{border:1px solid var(--border);background:var(--bg-1);padding:16px 20px;transition:border-color .2s}
-    .contact-card:hover{border-color:var(--border-hi)}
-    .contact-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-    .contact-value{font-family:var(--display);font-weight:600;font-size:.88rem;letter-spacing:.04em}
-    .contact-value a{color:var(--text);transition:color .18s}
-    .contact-value a:hover{color:var(--accent);text-decoration:none}
-    .lang-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-    .lang-chip{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-      border:1px solid var(--border-hi);color:var(--text);padding:3px 10px;background:var(--bg)}
-    .outside-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .outside-item{border:1px solid var(--border);background:var(--bg-1);padding:12px 16px;flex:1;min-width:200px;transition:border-color .2s}
-    .outside-item:hover{border-color:var(--border-hi)}
-    .outside-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-    .outside-val{font-size:.82rem}
+    .contact-card{background:var(--bg-1);padding:18px 22px;transition:background .15s}
+    .contact-card:hover{background:var(--bg-2);border-color:var(--border-hi)}
+    .contact-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .contact-value{font-family:var(--mono);font-weight:400;font-size:.84rem;
+      letter-spacing:.02em;color:var(--text)}
+    .contact-value a{color:var(--text);transition:color .15s}
+    .contact-value a:hover{color:var(--acc);text-decoration:none}
+    .lang-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+    .lang-chip{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;
+      text-transform:uppercase;border:1px solid var(--border);
+      color:var(--muted);padding:3px 10px;background:var(--bg)}
+    .outside-row{display:flex;gap:1px;flex-wrap:wrap;margin-top:14px;
+      background:var(--border)}
+    .outside-item{background:var(--bg-1);padding:14px 18px;flex:1;min-width:180px}
+    .outside-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .outside-val{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+
+    /* END GRID */
+    .end-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    @media(max-width:820px){.end-grid{grid-template-columns:1fr}}
+
     /* PDF MODAL */
-    .modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(2,9,18,.92);
-      backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px}
+    .modal-overlay{display:none;position:fixed;inset:0;z-index:500;
+      background:rgba(5,5,5,0.92);backdrop-filter:blur(10px);
+      align-items:center;justify-content:center;padding:20px}
     .modal-overlay.open{display:flex}
-    .modal-box{width:100%;max-width:940px;height:90vh;border:1px solid var(--border-hi);
-      background:var(--bg-1);display:flex;flex-direction:column;box-shadow:var(--sh)}
+    .modal-box{width:100%;max-width:960px;height:90vh;
+      border:1px solid var(--border);background:var(--bg-1);
+      display:flex;flex-direction:column}
     .modal-head{display:flex;align-items:center;justify-content:space-between;
-      padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
-    .modal-head-title{font-family:var(--display);font-size:.82rem;font-weight:600;
-      letter-spacing:.12em;text-transform:uppercase;color:var(--violet)}
-    .modal-head-sub{font-size:.7rem;color:var(--muted);margin-top:2px}
-    .modal-close{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-      color:var(--muted);border:1px solid var(--border);background:transparent;
-      padding:5px 12px;cursor:pointer;transition:color .2s,border-color .2s}
-    .modal-close:hover{color:var(--text);border-color:var(--border-hi)}
+      padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
+    .modal-head-title{font-family:var(--display);font-size:.88rem;font-weight:600;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+    .modal-head-sub{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:2px}
+    .modal-close{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--muted);border:1px solid var(--border);
+      background:transparent;padding:5px 12px;cursor:pointer;transition:all .15s}
+    .modal-close:hover{color:var(--acc);border-color:var(--acc)}
     .modal-iframe{flex:1;border:none;display:block;width:100%}
-    /* EDIT OVERLAY */
-    .edit-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(2,9,18,.97);
-      backdrop-filter:blur(12px);flex-direction:column}
+
+    /* EDIT */
+    .edit-overlay{display:none;position:fixed;inset:0;z-index:600;
+      background:rgba(11,11,10,0.97);flex-direction:column}
     .edit-overlay.open{display:flex}
-    .edit-bar{height:52px;border-bottom:1px solid var(--border);display:flex;align-items:center;
-      justify-content:space-between;padding:0 20px;flex-shrink:0}
-    .edit-bar-title{font-family:var(--display);font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+    .edit-bar{height:52px;border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 20px;flex-shrink:0}
+    .edit-bar-title{font-family:var(--display);font-size:.82rem;font-weight:600;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
     .edit-bar-actions{display:flex;gap:8px}
-    .edit-frame{flex:1;border:none;width:100%;background:var(--bg)}
-    .edit-auth{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px}
-    .edit-auth-title{font-family:var(--display);font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
+    .edit-auth{display:flex;flex-direction:column;align-items:center;
+      justify-content:center;height:100%;gap:16px}
+    .edit-auth-title{font-family:var(--display);font-size:1rem;letter-spacing:.14em;
+      text-transform:uppercase}
     .edit-auth input{font-family:var(--mono);font-size:.9rem;padding:10px 16px;
       background:var(--bg-1);border:1px solid var(--border);color:var(--text);
       width:220px;text-align:center;letter-spacing:.3em}
-    .edit-auth input:focus{outline:none;border-color:var(--accent)}
-    .edit-auth-err{font-size:.76rem;color:var(--orange);display:none}
-    /* EDIT MODE STYLES applied to main page */
-    body.edit-mode [data-editable]{outline:1px dashed rgba(249,115,22,.4);cursor:text;min-width:20px;min-height:1em}
-    body.edit-mode [data-editable]:focus{outline:2px solid var(--orange);background:rgba(249,115,22,.06)}
-    body.edit-mode .img-wrap{position:relative;cursor:pointer}
-    body.edit-mode .img-wrap::after{content:'Click to replace';position:absolute;inset:0;
-      background:rgba(249,115,22,.18);display:flex;align-items:center;justify-content:center;
-      font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
-      border:1px dashed var(--orange);pointer-events:none}
-    /* EDIT BUTTON in footer */
-    .edit-footer-btn{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
-      color:rgba(70,104,128,0.4);border:1px solid rgba(70,104,128,0.2);background:transparent;
-      padding:3px 8px;cursor:pointer;transition:color .2s,border-color .2s;font-family:var(--mono)}
-    .edit-footer-btn:hover{color:var(--muted);border-color:var(--muted)}
+    .edit-auth input:focus{outline:none;border-color:var(--acc)}
+    .edit-auth-err{font-family:var(--mono);font-size:.74rem;color:var(--acc2);display:none}
+    body.edit-mode [data-editable]{outline:1px dashed rgba(232,255,65,.35);
+      cursor:text;min-width:20px;min-height:1em}
+    body.edit-mode [data-editable]:focus{outline:2px solid var(--acc);
+      background:rgba(232,255,65,.04)}
+
     /* FOOTER */
-    .footer{border-top:1px solid var(--border);padding:32px 28px;display:flex;
-      justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
-      max-width:1300px;margin:0 auto}
-    .footer-name{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
-    .footer-links{display:flex;gap:18px;font-size:.76rem;flex-wrap:wrap}
-    .footer-copy{font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:12px}
+    .footer-wrap::before{content:'';display:block;height:2px;
+      background:linear-gradient(to right,transparent,var(--acc),transparent)}
+    .footer{padding:36px 48px;display:flex;justify-content:space-between;
+      align-items:center;flex-wrap:wrap;gap:20px;
+      max-width:1440px;margin:0 auto}
+    @media(max-width:700px){.footer{padding:28px 20px}}
+    .footer-name{font-family:var(--display);font-weight:700;font-size:1.1rem;
+      letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;
+      color:var(--text);transition:color .15s}
+    .footer-name:hover{color:var(--acc)}
+    .footer-links{display:flex;gap:20px;font-family:var(--mono);font-size:.72rem;flex-wrap:wrap}
+    .footer-links a{color:var(--muted)}
+    .footer-links a:hover{color:var(--acc)}
+    .footer-copy{font-family:var(--mono);font-size:.66rem;color:var(--muted);
+      display:flex;align-items:center;gap:14px}
+    .edit-footer-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--muted);border:1px solid var(--border);
+      background:transparent;padding:3px 8px;cursor:pointer;transition:all .15s}
+    .edit-footer-btn:hover{color:var(--acc);border-color:var(--acc)}
+
+    /* SPECIAL */
+    .kresling-fig img{object-fit:contain !important;aspect-ratio:auto !important;max-height:360px;background:var(--bg-2)}
+    .drone-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+    .drone-strip figure img{aspect-ratio:4/3;max-height:none}
+    @media(max-width:600px){.drone-strip{grid-template-columns:1fr 1fr}}
+
+    /* BUTTON FIX — ensure dark text on yellow primary */
+    a.btn--primary,button.btn--primary,
+    a.btn.btn--primary,button.btn.btn--primary{color:#0b0b0a !important}
+    a.btn--primary:hover,button.btn--primary:hover{color:#0b0b0a !important}
+    /* SCROLL MARGIN — prevents section anchors hiding behind sticky nav */
+    #experience,#projects,#analysis,#education,#contact{scroll-margin-top:60px}
+
     /* ANIMATIONS */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes ping{0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,.5)}50%{box-shadow:0 0 0 5px rgba(45,212,191,0)}}
-    @keyframes ping-o{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,.5)}50%{box-shadow:0 0 0 5px rgba(249,115,22,0)}}
-    @media(max-width:600px){
-      .hero-stats{flex-wrap:wrap}.stat{min-width:80px;padding:12px 14px}
-      .section{padding:56px 16px}.nav{padding:0 14px}.nav-link{padding:0 9px;font-size:.62rem}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @keyframes ping-a{0%,100%{box-shadow:0 0 0 0 rgba(232,255,65,.5)}50%{box-shadow:0 0 0 5px rgba(232,255,65,0)}}
+    @keyframes ping-b{0%,100%{box-shadow:0 0 0 0 rgba(255,85,51,.5)}50%{box-shadow:0 0 0 5px rgba(255,85,51,0)}}
+
+    @media print{
+      .nav,.hero-ticker,.hero-cross,.hero-watermark,
+      #progress-bar,.modal-overlay,.edit-overlay,
+      .hero-btns,.footer-wrap,.edit-footer-btn{display:none!important}
+      .hero{min-height:auto;padding:40px 48px 32px;justify-content:flex-start}
+      .hero-name{font-size:5rem}
+      .hero-stats{border:1px solid #ccc}
+      .section{padding:32px 48px}
+      .featured,.proj-card,.an-card,.exp-card,.skill-col,.edu-card,.contact-card{
+        border:1px solid #ccc!important;box-shadow:none!important}
+      body{background:#fff;color:#000}
+      :root{--bg:#fff;--bg-1:#f5f5f5;--bg-2:#eee;--text:#000;--muted:#555;
+        --border:#ccc;--border-hi:#999}
+      .tab-row,.rtab,.iot-tab{display:none}
+      .rtab-panel,.iot-panel{display:block!important}
+      figure img,figure video{aspect-ratio:auto;max-height:200px;object-fit:contain}
     }
-
-    /* ── SECTION INTRO ── */
-    .section-intro{font-size:1.05rem;color:rgba(204,217,232,0.72);letter-spacing:.01em;
-      line-height:1.5;max-width:640px;margin-bottom:32px;font-family:var(--display);font-weight:300}
-    .section-intro strong{color:var(--text);font-weight:600}
-
-    /* ── FIRST PARAGRAPH ACCENT ── */
-    .proj-body p:first-of-type{border-left:2px solid var(--accent);padding-left:10px;
-      margin-left:-12px}
-
-    /* ── TIGHTER FOOTER AREA ── */
-    .end-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    @media(max-width:820px){.end-grid{grid-template-columns:1fr}}
-
-    /* ── GIANT DECORATIVE SECTION NUMBERS ── */
-    .section-label{position:relative}
-    .section-label-num{
-      font-family:var(--display);font-weight:700;
-      font-size:6rem;line-height:1;
-      color:rgba(26,61,96,0.28);
-      letter-spacing:-.04em;
-      position:absolute;right:0;top:50%;transform:translateY(-50%);
-      pointer-events:none;user-select:none;
-      z-index:0}
-    .section-label-text,.section-label-line{position:relative;z-index:1}
-
-    /* ── HERO SCAN LINE ── */
-    .hero-scan{
-      position:absolute;top:0;left:0;right:0;
-      height:2px;
-      background:linear-gradient(to right,transparent 0%,var(--accent) 40%,var(--accent-hi) 50%,var(--accent) 60%,transparent 100%);
-      opacity:0;
-      animation:scandown 3.5s ease forwards;
-      animation-delay:0.3s}
-    @keyframes scandown{
-      0%{top:0;opacity:0}
-      10%{opacity:0.7}
-      90%{opacity:0.3}
-      100%{top:100%;opacity:0}}
-
-    /* ── HERO GLYPH GRID (decorative technical notation) ── */
-    .hero-glyph{
-      font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;
-      color:rgba(14,165,233,0.22);
-      margin-top:28px;margin-bottom:-8px;
-      opacity:0;animation:fadeUp .65s .55s ease forwards}
-
-    /* ── SKILLS SECTION TEXTURE SHIFT ── */
-    .skills-section-bg{
-      background:linear-gradient(180deg,var(--bg) 0%,#040f1e 50%,var(--bg) 100%);
-      margin:0;padding:80px 0}
-
-    /* ── ANALYSIS GRADIENT ACCENT ── */
-    .analysis-section-wrap{
-      position:relative}
-    .analysis-section-wrap::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:1px;
-      background:linear-gradient(to right,transparent,var(--accent),transparent)}
-
-    /* ── STAT HOVER GLOW ── */
-    .stat{transition:background .2s}
-    .stat:hover{background:rgba(14,165,233,0.04)}
-    .stat:hover .stat-num{color:var(--accent-hi)}
-
-    /* ── FEATURED PROJECT TOP ACCENT LINE ── */
-    .featured{position:relative}
-    .featured::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:1px;
-      background:linear-gradient(to right,transparent,var(--accent) 30%,var(--accent) 70%,transparent);
-      z-index:1}
-
-    /* ── EXPERIENCE CARD AMBIENT GLOW ── */
-    .exp-card--a:hover{box-shadow:0 0 28px rgba(14,165,233,0.1),inset 0 0 20px rgba(14,165,233,0.03)}
-    .exp-card--g:hover{box-shadow:0 0 28px rgba(45,212,191,0.1),inset 0 0 20px rgba(45,212,191,0.03)}
-    .exp-card--o:hover{box-shadow:0 0 28px rgba(249,115,22,0.1),inset 0 0 20px rgba(249,115,22,0.03)}
-
-    /* ── SECTION INTRO INDENT MARKER ── */
-    .section-intro{border-left:2px solid rgba(14,165,233,0.3);padding-left:14px}
-
-    /* ── FOOTER GRADIENT TOP ── */
-    .footer-wrap{
-      position:relative}
-    .footer-wrap::before{
-      content:'';display:block;height:1px;
-      background:linear-gradient(to right,transparent,var(--accent) 20%,var(--violet) 50%,var(--accent) 80%,transparent)}
-
-    /* ── NAV ACTIVE SECTION INDICATOR ── */
-    .nav-link{position:relative}
-    .nav-link.active-nav::after{
-      content:'';position:absolute;bottom:0;left:12px;right:12px;
-      height:2px;background:var(--accent)}
-
-    /* ── ANALYSIS CARD STAGGER ANIMATION ── */
-    .an-card{opacity:0;transform:translateY(16px);
-      transition:opacity .5s ease,transform .5s ease,border-color .2s,box-shadow .2s,transform-override .25s}
-    .an-card.visible{opacity:1;transform:translateY(0)}
-    .an-card:hover{transform:translateY(-3px) !important}
-    .an-card:nth-child(1){transition-delay:.05s}
-    .an-card:nth-child(2){transition-delay:.12s}
-    .an-card:nth-child(3){transition-delay:.19s}
-    .an-card:nth-child(4){transition-delay:.26s}
-    .an-card:nth-child(5){transition-delay:.33s}
-    .an-card:nth-child(6){transition-delay:.40s}
-
-    /* ── EXP CARD STAGGER ── */
-    .exp-grid .exp-card:nth-child(1){transition-delay:.04s}
-    .exp-grid .exp-card:nth-child(2){transition-delay:.10s}
-    .exp-grid .exp-card:nth-child(3){transition-delay:.16s}
-
-
-    /* ── ANALYSIS CARD HOVER LIFT ── */
-    .an-card{transition:border-color .2s,box-shadow .2s,transform .25s ease}
-    .an-card:hover{transform:translateY(-3px)}
-
-    /* ── PROJECT CARD HOVER LIFT ── */
-    .proj-card{transition:border-color .25s,box-shadow .25s,transform .25s ease}
-    .proj-card:hover{transform:translateY(-3px)}
-
-    /* ── FEATURED SECTION HOVER ── */
-    .featured{transition:border-color .2s,box-shadow .2s}
-    .featured:hover{box-shadow:0 28px 70px rgba(0,0,0,0.9),0 0 0 1px var(--border-hi)}
   </style>
 </head>
 <body>
@@ -465,7 +598,7 @@
     <span class="edit-bar-title">&#9998; Edit Mode</span>
     <div class="edit-bar-actions">
       <button class="btn btn--primary" style="padding:5px 14px;font-size:.7rem;" id="edit-save-btn">Save All</button>
-      <button class="btn" style="padding:5px 14px;font-size:.7rem;" id="edit-exit-btn">Exit</button>
+      <button class="btn btn--ghost" style="padding:5px 14px;font-size:.7rem;" id="edit-exit-btn">Exit</button>
     </div>
   </div>
   <div id="edit-auth-screen" class="edit-auth">
@@ -475,7 +608,7 @@
     <button class="btn btn--primary" style="padding:6px 20px;font-size:.72rem;" id="edit-pw-btn">Unlock</button>
   </div>
   <div id="edit-instructions" style="display:none;padding:16px 20px;font-size:.76rem;color:var(--muted);border-bottom:1px solid var(--border);">
-    Click any <span style="color:var(--orange);">highlighted text</span> on the page to edit it. Click any image to replace it. Press <strong style="color:var(--text);">Save All</strong> when done &#x2014; changes persist in this browser.
+    Click any highlighted text to edit. Click any image to replace it. Press Save All when done.
   </div>
 </div>
 
@@ -494,30 +627,59 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-scan"></div>
-  <div class="hero-corner hero-corner--tl"></div>
-  <div class="hero-corner hero-corner--tr"></div>
-  <div class="hero-corner hero-corner--bl"></div>
-  <div class="hero-corner hero-corner--br"></div>
+  <!-- ticker strip -->
+  <div class="hero-ticker">
+    <div class="hero-ticker-inner">
+      <div class="hero-ticker-item">Mechanical Engineering <span>&#183;</span> UB Class of 2028</div>
+      <div class="hero-ticker-item">AFWERX <span>&#183;</span> SBIR Phase II</div>
+      <div class="hero-ticker-item">50-Member Team Lead</div>
+      <div class="hero-ticker-item">FEA <span>&#183;</span> Modal Analysis <span>&#183;</span> Dynamic Simulation</div>
+      <div class="hero-ticker-item">IAM3D R.O.V.E.R <span>&#183;</span> C.O.B.R.A. 6000</div>
+      <div class="hero-ticker-item">DFAM <span>&#183;</span> Altair Inspire&#8482;</div>
+      <div class="hero-ticker-item">25&#160;kJ Weapon System</div>
+      <div class="hero-ticker-item">Custom PCB <span>&#183;</span> ESP32</div>
+      <!-- duplicate for seamless loop -->
+      <div class="hero-ticker-item">Mechanical Engineering <span>&#183;</span> UB Class of 2028</div>
+      <div class="hero-ticker-item">AFWERX <span>&#183;</span> SBIR Phase II</div>
+      <div class="hero-ticker-item">50-Member Team Lead</div>
+      <div class="hero-ticker-item">FEA <span>&#183;</span> Modal Analysis <span>&#183;</span> Dynamic Simulation</div>
+      <div class="hero-ticker-item">IAM3D R.O.V.E.R <span>&#183;</span> C.O.B.R.A. 6000</div>
+      <div class="hero-ticker-item">DFAM <span>&#183;</span> Altair Inspire&#8482;</div>
+      <div class="hero-ticker-item">25&#160;kJ Weapon System</div>
+      <div class="hero-ticker-item">Custom PCB <span>&#183;</span> ESP32</div>
+    </div>
   </div>
-  <div class="hero-glyph">[ ME &#183; ROBOTICS &#183; DFAM &#183; FEA &#183; EMBEDDED ]</div>
-  <div class="hero-eyebrow">Mechanical Engineering &#183; University at Buffalo &#183; Class of 2028</div>
-  <h1 class="hero-name">Daniel<em>Rosamond</em></h1>
-  <p class="hero-sub">Hardware systems, additive manufacturing, robotics.<br>DFAM &#183; FEA &#183; Modal Analysis &#183; Embedded &#183; Fabrication</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num"><span class="counter" data-target="50">0</span></div><div class="stat-label">Members Led</div></div>
-    <div class="stat"><div class="stat-num"><span class="counter" data-target="25">0</span><sup>kJ</sup></div><div class="stat-label">Weapon Energy</div></div>
-    <div class="stat"><div class="stat-num"><span class="counter" data-target="13">0</span></div><div class="stat-label">Crash Impacts</div></div>
-    <div class="stat"><div class="stat-num"><span class="counter" data-target="160">0</span></div><div class="stat-label">Page Report</div></div>
-    <div class="stat"><div class="stat-num"><span class="counter" data-target="3">0</span></div><div class="stat-label">Competitions</div></div>
+
+  <!-- crosshair decoration -->
+  <div class="hero-cross"></div>
+
+  <!-- giant background watermark -->
+  <div class="hero-watermark">ROSAMOND</div>
+
+  <!-- content -->
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Mechanical Engineering &#183; University at Buffalo &#183; Class of 2028</div>
+    <h1 class="hero-name">Daniel<em>Rosamond</em></h1>
+    <div class="hero-rule"></div>
+    <div class="hero-lower">
+      <div>
+        <p class="hero-sub"><strong>Hardware systems, additive manufacturing, robotics.</strong><br>DFAM &#183; FEA &#183; Modal Analysis &#183; Embedded &#183; Fabrication</p>
+        <div class="hero-btns" style="margin-top:20px;">
+          <a class="btn btn--primary" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank">Resume PDF</a>
+          <a class="btn" href="https://www.linkedin.com/in/dvrosamo/" target="_blank">LinkedIn</a>
+          <a class="btn" href="https://github.com/dvrosamo" target="_blank">GitHub</a>
+          <a class="btn" id="hero-email-btn" href="#">Email</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num"><span class="counter" data-target="50">0</span></div><div class="stat-label">Members Led</div></div>
+        <div class="stat"><div class="stat-num"><span class="counter" data-target="25">0</span><sup>kJ</sup></div><div class="stat-label">Weapon Energy</div></div>
+        <div class="stat"><div class="stat-num"><span class="counter" data-target="13">0</span></div><div class="stat-label">Crash Impacts</div></div>
+        <div class="stat"><div class="stat-num"><span class="counter" data-target="160">0</span></div><div class="stat-label">Page Report</div></div>
+        <div class="stat"><div class="stat-num"><span class="counter" data-target="3">0</span></div><div class="stat-label">Competitions</div></div>
+      </div>
+    </div>
   </div>
-  <div class="hero-btns">
-    <a class="btn btn--primary" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank">Resume PDF</a>
-    <a class="btn" href="https://www.linkedin.com/in/dvrosamo/" target="_blank">LinkedIn</a>
-    <a class="btn" href="https://github.com/dvrosamo" target="_blank">GitHub</a>
-    <a class="btn" id="hero-email-btn" href="#">Email</a>
-  </div>
-  <div class="scroll-hint">Scroll</div>
 </section>
 
 <hr class="full-divider"/>
@@ -525,10 +687,11 @@
 <!-- CURRENT EXPERIENCE -->
 <section id="experience" class="section">
   <div class="section-label reveal">
+    <span class="section-label-num">01</span>
     <span class="section-label-text">Current Experience</span>
     <div class="section-label-line"></div>
-    <span class="section-label-num">01</span>
   </div>
+  <p class="section-intro reveal">Three concurrent roles &#8212; <strong>engineering intern</strong> at an Air Force SBIR contractor, <strong>rover systems lead</strong> directing 50 members, and <strong>fabrication lab manager</strong> for 130+ active builders.</p>
   <div class="exp-grid reveal">
     <div class="exp-card exp-card--a">
       <div class="exp-org">EMPEQ &#183; Ithaca, NY</div>
@@ -536,12 +699,13 @@
       <div class="exp-date">March 2026 &#8212; Present</div>
       <div class="exp-badge"><span class="exp-badge-dot"></span>Current</div>
       <div class="exp-badge exp-badge--air-force" style="margin-left:6px;margin-bottom:0;"><span class="exp-badge-dot"></span>AFWERX / SBIR &#183; U.S. Air Force</div>
-      <div class="exp-body" style="margin-top:10px;">Supporting hardware supply chain modernization for defense and utilities sectors. Logging industrial equipment data and assigning technical manuals and specifications. <strong>EMPEQ holds a Direct&#8209;to&#8209;Phase&#160;II SBIR contract (AFWERX / U.S. Air Force)</strong> focused on hardware supply chain modernization.</div>
+      <div class="exp-badge" style="margin-left:6px;margin-bottom:0;color:#5aaa88;border-color:rgba(90,170,136,.3);background:rgba(90,170,136,.07);"><span class="exp-badge-dot" style="background:#5aaa88;animation:none;"></span>NYSERDA Internship</div>
+      <div class="exp-body" style="margin-top:10px;">Supporting hardware supply chain modernization for defense and utilities sectors. <strong>EMPEQ holds a Direct&#8209;to&#8209;Phase&#160;II SBIR contract (AFWERX / U.S. Air Force)</strong> focused on hardware supply chain modernization.</div>
       <div class="chips"><span class="chip--a">Defense Industry</span><span class="chip--a">AFWERX SBIR Ph.II</span><span class="chip">Utilities</span><span class="chip">Supply Chain</span></div>
     </div>
     <div class="exp-card exp-card--g">
       <div class="exp-org">ASME &#183; University at Buffalo</div>
-      <div class="exp-title">Project Lead / Rover Systems Lead &#8212; IAM3D 2026</div>
+      <div class="exp-title">Project Lead / Rover Systems Lead &#8212; ASME IAM3D R.O.V.E.R</div>
       <div class="exp-date">Aug 2025 &#8212; Present</div>
       <div class="exp-badge"><span class="exp-badge-dot"></span>Current</div>
       <div class="exp-body">Led a <strong>50-member, 5-subteam</strong> program to design a fully 3D-printed excavation rover. Custom PCB, ESP32 electronics architecture, FEA, modal analysis, and full engineering documentation.</div>
@@ -551,7 +715,7 @@
       <div class="exp-title">Fabrication Lab Manager</div>
       <div class="exp-date">Jan 2025 &#8212; Present</div>
       <div class="exp-badge"><span class="exp-badge-dot"></span>Current</div>
-      <div class="exp-body">Managed lab (FDM, CNC, laser, GF/CF/KF layups) for <strong>130+ members</strong>. Increased machine uptime <strong>~20% &#8594; &gt;60%</strong>. Built Raspberry Pi print monitoring system.</div>
+      <div class="exp-body">Managed student fabrication lab (FDM, CNC, laser, GF/CF/KF layups) for <strong>130+ members</strong>. Increased machine uptime <strong>~20% &#8594; &gt;60%</strong>. Researched, sourced, and modernized equipment &#8212; replacing oldest machines to raise lab capability. Expanded lab capacity <strong>~300%</strong> through storage buildout and space reorganization. Established a dedicated <strong>electronics workstation</strong> (soldering, full component inventory). Secured <strong>Autodesk sponsorship ($700)</strong> and <strong>Red Bull sponsorship (100 units/month)</strong>. Built Raspberry Pi print monitoring system. Trained and certified 3D printer operators.</div>
     </div>
   </div>
 </section>
@@ -561,9 +725,9 @@
 <!-- PREVIOUS ROLES -->
 <section class="section">
   <div class="section-label reveal">
+    <span class="section-label-num">02</span>
     <span class="section-label-text">Previous Roles</span>
     <div class="section-label-line"></div>
-    <span class="section-label-num">02</span>
   </div>
   <div class="exp-grid-2 reveal">
     <div class="exp-card exp-card--v">
@@ -586,24 +750,25 @@
 <!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="section-label reveal">
+    <span class="section-label-num">03</span>
     <span class="section-label-text">Projects</span>
     <div class="section-label-line"></div>
-    <span class="section-label-num">03</span>
   </div>
+  <p class="section-intro reveal">Competition hardware, deployable mechanisms, and autonomous systems &#8212; each documented with <strong>FEA, modal analysis, and full design reports</strong>.</p>
 
-  <!-- ── ROVER ── -->
+  <!-- ROVER -->
   <div class="featured reveal">
     <div class="featured-head">
       <div class="featured-head-left">
         <div class="feat-diamond"></div>
         <div>
-          <div class="feat-eyebrow">Flagship Project &#183; IAM3D 2026</div>
-          <div class="feat-title">Excavation Rover</div>
+          <div class="feat-eyebrow">ASME IAM3D R.O.V.E.R &#183; 2025&#8211;26 &#183; The Axolotls</div>
+          <div class="feat-title">IAM3D R.O.V.E.R</div>
         </div>
       </div>
       <div class="featured-head-right">
         <div class="exp-badge exp-badge--orange" style="margin-bottom:0;"><span class="exp-badge-dot"></span>Competing April 2026</div>
-        <button class="report-btn" onclick="openReport('IAM3D_2026_Design_Report.pdf','IAM3D 2026 &#8212; Engineering Design Report','Excavation Rover &#183; Drivetrain &#183; Gimbal &#183; Electronics &#183; Analysis')">
+        <button class="report-btn" onclick="openReport('IAM3D_2026_Design_Report.pdf','ASME IAM3D R.O.V.E.R 2025&#8211;26 &#8212; The Axolotls','Drivetrain &#183; Gimbal &#183; Electronics &#183; FEA &#183; Modal Analysis')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           Design Report
         </button>
@@ -614,7 +779,7 @@
       <div class="rtab active" data-panel="p-overview">Overview</div>
       <div class="rtab" data-panel="p-drive">Drivetrain</div>
       <div class="rtab" data-panel="p-gimbal">Gimbal</div>
-      <div class="rtab" data-panel="p-elec">Electronics</div>
+      <div class="rtab" data-panel="p-elec">Electronics / PCB</div>
       <div class="rtab" data-panel="p-anal">Analysis</div>
     </div>
     <div class="tab-body">
@@ -627,77 +792,76 @@
           <div class="chips"><span class="chip--a">50-member team</span><span class="chip--a">5 subteams led</span><span class="chip">30&#215;30&#215;30&#160;cm</span><span class="chip--o">Sand-validated</span><span class="chip--o">Competing April 2026</span></div>
         </div>
         <div class="media-stack">
-          <figure><video data-src="rover_overview.mp4" muted loop playsinline><source data-src="rover_overview.mp4" type="video/mp4"/><img src="rover_assembly_spin.gif" alt="Rover rotating assembly"/></video><figcaption>Rover Assembly</figcaption></figure>
+          <figure><video data-src="rover_overview.mp4" muted loop playsinline><source data-src="rover_overview.mp4" type="video/mp4"/><img loading="lazy" src="rover_assembly_spin.gif" alt="Rover assembly"/></video><figcaption>Rover Assembly</figcaption></figure>
+          <figure class="natural"><img loading="lazy" src="rover_drivetrain_assembled.jpg" alt="Full assembly" style="object-fit:contain;aspect-ratio:auto;max-height:340px;background:var(--bg-2);"/><figcaption>Full assembly &#8212; Fusion&#160;360 render showing final drivetrain layout, chassis structure, and payload module integration.</figcaption></figure>
         </div>
       </div>
 
       <div class="rtab-panel" id="p-drive">
         <div class="proj-body">
-          <p><strong>Final Design &#8212; Anti-Sand Tread:</strong> Custom pin-jointed modular track architecture with wide-link geometry and deep sand-displacement grooves. Sprocket-driven with integrated guide features to maintain alignment under abrasive lateral loading. Individual link replacement without full disassembly.</p>
-          <p><strong>Prototype &#8212; Internal Sprocket:</strong> Earlier iteration using an internal sprocket drive with a faster, lighter track. Significantly higher top speed but susceptible to sand ingestion between the sprocket and inner track surface, causing derailment under competition conditions. Replaced by the final design after sandbox validation.</p>
-          <p><strong>Validation:</strong> Worst-case static load at sprocket contact interfaces; tread link pin connection stress analyzed via FEA. Sandbox testing across multiple configurations confirmed the anti-sand design&#8217;s superiority in loose terrain.</p>
+          <p><strong>Final Design &#8212; Anti-Sand Tread:</strong> Custom pin-jointed modular track architecture with wide-link geometry and deep sand-displacement grooves. Sprocket-driven with integrated guide features. Individual link replacement without full disassembly.</p>
+          <p><strong>Prototype &#8212; Internal Sprocket:</strong> Earlier iteration using an internal sprocket drive, significantly faster but susceptible to sand ingestion. Replaced after sandbox validation.</p>
+          <p><strong>Sectional Analysis:</strong> Cross-section of the final drivetrain reveals sprocket tooth geometry, link-to-sprocket contact interface, track channel walls, and bearing seat load paths &#8212; informed wall thickness and print orientation for all load-bearing features.</p>
+          <p><strong>Validation:</strong> Worst-case static load at sprocket contact interfaces; tread link pin connection stress analyzed via FEA.</p>
           <div class="chips"><span class="chip--a">Anti-sand geometry</span><span class="chip--o">Two-generation design</span><span class="chip">Modular / field-repairable</span><span class="chip">Pin FEA validated</span></div>
+          <figure style="margin-top:12px;"><img loading="lazy" src="rover_tread_exploded.png" alt="Exploded tread"/><figcaption>Exploded view &#8212; pin-joint architecture, sprocket interface, and guide features.</figcaption></figure>
+          <figure style="margin-top:8px;" class="natural"><img loading="lazy" src="rover_bearing_fusion.jpg" alt="Bearing in Fusion 360" style="object-fit:contain;aspect-ratio:auto;max-height:220px;width:100%;display:block;background:var(--bg-2);"/><figcaption>Custom bearing &#8212; Fusion&#160;360 model of the drivetrain bearing assembly.</figcaption></figure>
+          <figure style="margin-top:8px;" class="natural"><img loading="lazy" src="rover_bearing_parameters.png" alt="Bearing parameters" style="object-fit:contain;aspect-ratio:auto;max-height:220px;width:100%;display:block;background:var(--bg-2);"/><figcaption>Bearing design parameters &#8212; geometry constraints driving the Fusion&#160;360 model.</figcaption></figure>
+          <div style="border:1px solid var(--border);background:var(--bg);padding:12px 14px;margin-top:8px;">
+            <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:6px;font-family:var(--mono);">Structural Section Analysis</div>
+            <p style="font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:1.6;">Full static FEA performed across the drivetrain assembly. Results informed final wall thickness, pin diameter, and print orientation. Full methodology in the design report.</p>
+          </div>
         </div>
         <div class="media-stack">
-          <figure>
-            <video data-src="rover_antisand_tread.mp4" muted loop playsinline><source data-src="rover_antisand_tread.mp4" type="video/mp4"/><img src="rover_tread_exploded.png" alt="Anti-sand tread prototype"/></video>
-            <figcaption>Final anti-sand tread design &#8212; high-torque, wide-link geometry optimized for loose sand. Lower speed, maximum traction and sand displacement.</figcaption>
-          </figure>
-          <figure>
-            <video data-src="rover_sprocket_proto.mp4" muted loop playsinline><source data-src="rover_sprocket_proto.mp4" type="video/mp4"/><img src="rover_track_closeup.jpg" alt="Internal sprocket prototype"/></video>
-            <figcaption>Early internal sprocket prototype &#8212; significantly faster but prone to sand ingestion and track derailment under competition conditions.</figcaption>
-          </figure>
-          <figure><img src="rover_tread_exploded.png" alt="Exploded tread assembly"/><figcaption>Exploded view &#8212; pin-joint architecture, sprocket interface, and guide features.</figcaption></figure>
-          <figure><img src="rover_drivetrain_assembled.jpg" alt="Assembled drivetrain"/><figcaption>Assembled drivetrain &#8212; final anti-sand tread system with modular link replacement.</figcaption></figure>
-          <div style="border:1px solid var(--border);background:var(--bg);padding:12px 14px;margin-top:0;">
-            <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">Structural Section Analysis</div>
-            <p style="font-size:.78rem;color:var(--muted);line-height:1.6;">Full static FEA performed across the drivetrain assembly &#8212; sprocket bearing loads, link tension at maximum drive torque, and chassis mounting interface stresses. Results informed final wall thickness, pin diameter, and print orientation for all load-bearing components. Full methodology and results in the design report. Analysis images in the Analysis Gallery below.</p>
-          </div>
+          <figure><video data-src="rover_antisand_tread.mp4" muted loop playsinline><source data-src="rover_antisand_tread.mp4" type="video/mp4"/><img loading="lazy" src="rover_tread_exploded.png" alt="Anti-sand tread"/></video><figcaption>Final anti-sand tread &#8212; prototype snow testing, validating traction and continuous track engagement under low-grip conditions.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_drivetrain_section.png" alt="Drivetrain sectional analysis" style="object-fit:contain;aspect-ratio:auto;width:100%;display:block;background:var(--bg-2);"/><figcaption class="fea">Final drivetrain &#8212; cross-sectional view showing sprocket geometry, link engagement interface, track channel, and bearing load paths.</figcaption></figure>
+          <figure><video data-src="rover_sprocket_proto.mp4" muted loop playsinline><source data-src="rover_sprocket_proto.mp4" type="video/mp4"/><img loading="lazy" src="rover_track_closeup.jpg" alt="Internal sprocket"/></video><figcaption>Early internal sprocket prototype &#8212; faster but derailed in sand.</figcaption></figure>
         </div>
       </div>
 
       <div class="rtab-panel" id="p-gimbal">
         <div class="proj-body">
-          <p><strong>Gimbal System:</strong> Servo-driven two-axis camera gimbal designed to maintain a stable image plane during rover traversal over uneven terrain. Mount geometry and material selected to decouple the camera from structural vibration transmitted through the chassis.</p>
-          <p><strong>Modal Analysis:</strong> Tuned the mount&#8217;s natural frequency to servo vibration modes through iterative flexible material selection and geometry changes. Before tuning, servo harmonics induced visible image distortion at operating frequencies. After, distortion was fully eliminated.</p>
-          <p><strong>Design:</strong> Entirely 3D-printed using a flexible TPU mount interfacing rigid PLA structural arms. The compliance in the mount acts as a mechanical low-pass filter for high-frequency vibration, while retaining sufficient stiffness for precise pan/tilt positioning.</p>
-          <div class="chips"><span class="chip--a">Modal analysis validated</span><span class="chip">TPU / PLA hybrid mount</span><span class="chip--o">Vibration isolation</span><span class="chip">2-axis servo control</span></div>
+          <p><strong>Gimbal System:</strong> Servo-driven two-axis camera gimbal designed to maintain a stable image plane during rover traversal over uneven terrain. TPU/PLA hybrid mount decouples the camera from chassis vibration.</p>
+          <p><strong>Modal Analysis:</strong> Tuned mount natural frequency to servo vibration modes through flexible material and geometry iteration. Image distortion fully eliminated under motor operation.</p>
+          <p><strong>Design:</strong> Entirely 3D-printed &#8212; flexible TPU mount interfaces rigid PLA structural arms. The compliant mount acts as a mechanical low-pass filter for high-frequency vibration.</p>
+          <div class="chips"><span class="chip--a">Modal analysis validated</span><span class="chip">TPU / PLA hybrid</span><span class="chip--o">Vibration isolation</span><span class="chip">2-axis servo control</span></div>
         </div>
         <div class="media-stack">
-          <figure><img src="rover_gimbal_move.gif" alt="Gimbal sweeping back and forth"/><figcaption class="fea">Gimbal pan/tilt sweep &#8212; demonstrating range of motion and servo-driven positioning under load.</figcaption></figure>
-          <figure><img src="rover_gimbal_exploded.png" alt="Gimbal exploded view"/><figcaption>Exploded view &#8212; TPU isolation mount, servo interfaces, and camera platform assembly.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_gimbal_exploded.png" alt="Gimbal exploded"/><figcaption>Exploded view &#8212; TPU isolation mount, servo interfaces, and camera platform.</figcaption></figure>
         </div>
       </div>
 
       <div class="rtab-panel rtab-panel--full" id="p-elec">
-        <div class="proj-body"><p><strong>Architecture:</strong> Complete rover electronics system designed from scratch &#8212; motor control, sensor integration, and power distribution within the 30&#160;cm envelope. Designed around a custom PCB integrating an ESP32 across all IO channels.</p></div>
+        <div class="proj-body"><p><strong>Architecture:</strong> Complete rover electronics system designed from scratch &#8212; motor control, sensor integration, and power distribution within the 30&#160;cm envelope. Custom PCB integrating an ESP32 across all IO channels.</p></div>
         <div class="elec-grid">
           <div class="elec-card"><div class="elec-label">Custom PCB</div><p>Designed a custom PCB integrating an ESP32 across dozens of IO channels &#8212; consolidating motor control, sensing, and power distribution into one space-efficient board.</p></div>
           <div class="elec-card"><div class="elec-label">Motor / ESC Control</div><p>ESP32-driven motor control across all drivetrain and payload actuators; ESC signal routing with current monitoring for drivetrain health feedback.</p></div>
         </div>
         <div class="two-col-media">
-          <figure><img src="rover_pcb_photo.jpg" alt="Custom PCB"/><figcaption>Custom PCB &#8212; ESP32 across motor control, sensing, and power distribution IO.</figcaption></figure>
-          <figure><img src="rover_electronics_diagram.png" alt="3D electronics diagram"/><figcaption>3D electronics architecture &#8212; system layout and signal routing within the rover chassis.</figcaption></figure>
+          <figure class="natural"><img loading="lazy" src="rover_pcb_photo.jpg" alt="Custom PCB" style="object-fit:contain;aspect-ratio:auto;max-height:320px;background:var(--bg-2);"/><figcaption>Custom PCB &#8212; ESP32 across motor control, sensing, and power distribution IO.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_electrical_schematic.png" alt="Electrical schematic" style="width:100%;display:block;aspect-ratio:auto;object-fit:contain;object-position:center;background:var(--bg-2);max-height:320px;"/><figcaption>Full electrical schematic &#8212; power distribution, motor driver wiring, sensor IO, and ESP32 pin mapping.</figcaption></figure>
         </div>
-        <div style="margin-top:10px;">
-          <figure style="border:1px solid var(--border);background:var(--bg);overflow:hidden;"><img src="rover_electrical_schematic.png" alt="Electrical schematic" style="width:100%;display:block;aspect-ratio:16/9;object-fit:contain;object-position:center;background:var(--bg);padding:4px;"/><figcaption style="font-size:.7rem;color:var(--muted);padding:5px 9px;border-top:1px solid var(--border);">Full electrical schematic &#8212; power distribution, motor driver wiring, sensor IO, and ESP32 pin mapping.</figcaption></figure>
-        </div>
+        <div style="margin-top:10px;"><figure class="natural"><img loading="lazy" src="rover_electronics_diagram.png" alt="3D electronics diagram" style="object-fit:contain;aspect-ratio:auto;max-height:380px;width:100%;display:block;background:var(--bg-2);"/><figcaption>3D electronics architecture &#8212; system layout and signal routing within the rover chassis.</figcaption></figure></div>
         <div class="chips" style="margin-top:14px;"><span class="chip--a">Custom PCB</span><span class="chip--a">ESP32 &#183; dozens of IO</span><span class="chip">Motor control</span><span class="chip">Power distribution</span><span class="chip">Full schematic</span></div>
       </div>
 
       <div class="rtab-panel" id="p-anal">
         <div class="proj-body">
-          <p><strong>Modal Analysis &#8212; Gimbal:</strong> Tuned mount natural frequency to servo vibration modes. Image distortion fully eliminated under motor operation. See Gimbal tab for full detail.</p>
-          <p><strong>Tread FEA:</strong> Dynamic event simulation of tread link interaction with loose sand under time-dependent loading. Validated geometry and print orientation before fabrication.</p>
-          <p><strong>Full-system:</strong> Structural FEA across multiple rover components. Complete methodology in the design report.</p>
-          <div class="chips"><span class="chip--a">Modal analysis</span><span class="chip--a">Dynamic event simulation</span><span class="chip--v">Design report available</span></div>
+          <p><strong>Modal Analysis &#8212; Gimbal:</strong> Tuned mount natural frequency to servo vibration modes. Distortion fully eliminated under motor operation.</p>
+          <p><strong>Tread FEA:</strong> Dynamic event simulation of tread link interaction with loose sand under time-dependent loading.</p>
+          <p><strong>Outer Chassis FEA:</strong> Static structural analysis under worst-case payload and terrain impact loads. Validated wall thickness, rib geometry, and print orientation.</p>
+          <p><strong>Full-system:</strong> Complete FEA methodology in the design report.</p>
+          <div class="chips"><span class="chip--a">Modal analysis</span><span class="chip--a">Dynamic event simulation</span><span class="chip--a">Chassis FEA</span><span class="chip--a">Crossbar FEA</span><span class="chip--a">Diagonal crossmember</span><span class="chip--v">Design report</span></div>
         </div>
         <div class="media-stack">
-          <figure><img src="rover_gimbal_modal.gif" alt="Modal analysis"/><figcaption class="fea">Modal analysis &#8212; gimbal base. Natural frequency tuned to servo vibration modes; distortion eliminated.</figcaption></figure>
-          <figure><img src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><figcaption class="fea">Dynamic event simulation &#8212; tread link under time-dependent terrain loading.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_gimbal_modal.gif" alt="Modal analysis"/><figcaption class="fea">Modal analysis &#8212; gimbal base. Natural frequency tuned to servo vibration modes.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><figcaption class="fea">Dynamic event simulation &#8212; tread link under time-dependent terrain loading.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_chassis_fea.png" alt="Outer chassis FEA"/><figcaption class="fea">Outer chassis FEA &#8212; worst-case payload and terrain impact. Wall thickness and rib geometry validated.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_tread_pin_fea.png" alt="Pin FEA"/><figcaption class="fea">Tread link pin FEA (Displacement) &#8212; stress concentration at pin-to-link interface under peak sprocket drive force.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_crossbar_fea.png" alt="Horizontal crossbar FEA"/><figcaption class="fea">Horizontal crossbar FEA (Displacement) &#8212; static loading under combined chassis and payload weight.</figcaption></figure>
+          <figure><img loading="lazy" src="rover_drivetrain_fea.png" alt="Diagonal crossmember FEA"/><figcaption class="fea">Diagonal crossmember FEA (Displacement) &#8212; static simulation under torsional and chassis loading.</figcaption></figure>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -705,65 +869,104 @@
   <div class="proj-grid reveal">
     <div class="proj-card">
       <div class="proj-card-media">
-        <video data-src="drone_action.mp4" muted loop playsinline><source data-src="drone_action.mp4" type="video/mp4"/><img src="fpv_drone_final.jpg" alt="FPV Drone"/></video>
-        <span class="proj-img-tag">Top third &#183; IAM3D 2025</span>
+        <video data-src="drone_action.mp4" muted loop playsinline><source data-src="drone_action.mp4" type="video/mp4"/><img loading="lazy" src="fpv_drone_final.jpg" alt="C.O.B.R.A. 6000"/></video>
+        <span class="proj-img-tag">Top third &#183; IAM3D 2024&#8211;25</span>
       </div>
       <div class="proj-card-body">
-        <div class="proj-card-title">FPV Payload Drone</div>
-        <div class="proj-card-sub">Fully 3D-printed &#183; DFAM &#183; PLA/TPU Struct-Core</div>
-        <p class="proj-card-desc">Co-led design of a fully 3D-printed FPV payload drone within a 30&#215;30&#215;30&#160;cm limit. PLA/TPU struct-core elastomer frame survived 13 consecutive 40&#8211;60&#160;mph impacts. Completed three-lap obstacle course with 100&#160;g payload pickup/drop each lap.</p>
-        <div class="chips" style="margin-top:10px;"><span class="chip--a">&gt;2:1 T/W</span><span class="chip--a">~16&#160;min flight</span><span class="chip--a">4.9&#160;lb payload</span><span class="chip">13 impacts</span><span class="chip--o">Top third &#183; 20 teams</span></div>
+        <div class="proj-card-title">C.O.B.R.A.&#160;6000</div>
+        <div class="proj-card-sub">Constructed Optimally by Rapid Additive-Manufacturing &#183; Iteration&#160;6 &#183; ASME UB</div>
+        <p class="proj-card-desc">Co-led design of the C.O.B.R.A. 6000 &#8212; a fully 3D-printed FPV cargo racing drone for ASME IAM3D 2024&#8211;25. Frame topology-optimized using <strong>Altair Inspire&#8482;</strong> across three load cases. Biomimetic <strong>Struct-Core Elastomer Shell</strong> (rigid PLA + flexible TPU). Dual payload: electromagnet + precision motorized claw. Zero purchased fasteners. Survived 13 consecutive 40&#8211;60&#160;mph impacts.</p>
+        <div class="chips" style="margin-top:10px;"><span class="chip--a">&gt;2:1 T/W</span><span class="chip--a">~16&#160;min flight</span><span class="chip--a">~4.9&#160;lb payload</span><span class="chip--a">6 iterations</span><span class="chip">13 impacts</span><span class="chip--o">Altair Inspire&#8482;</span><span class="chip--o">Top third &#183; 20 teams</span></div>
         <div class="proj-card-actions">
-          <button class="report-btn" style="font-size:.66rem;padding:4px 10px;" onclick="openReport('IAM3D_2025_Design_Report.pdf','IAM3D 2025 &#8212; Engineering Design Report','FPV Payload Drone &#183; DFAM &#183; PLA/TPU Struct-Core &#183; FEA')">
+          <button class="report-btn" style="font-size:.64rem;padding:4px 10px;" onclick="openReport('IAM3D_2025_Design_Report.pdf','C.O.B.R.A.&#160;6000 &#8212; IAM3D Drone Competition 2024&#8211;25','Struct-Core Elastomer &#183; Altair Inspire&#8482; Topology &#183; Dual Payload &#183; 6 Iterations')">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Design Report
           </button>
         </div>
+        <div class="drone-strip">
+          <figure><img loading="lazy" src="fpv_drone_assembly.jpg" alt="Drone assembly"/><figcaption>Assembly</figcaption></figure>
+          <figure><img loading="lazy" src="fpv_drone_fea_displacement.png" alt="FEA"/><figcaption>Frame FEA</figcaption></figure>
+          <figure><img loading="lazy" src="fpv_drone_competition.jpg" alt="Competition"/><figcaption>IAM3D 2025</figcaption></figure>
+        </div>
       </div>
-      <div class="proj-card-fea"><img src="fpv_drone_fea_displacement.png" alt="Displacement FEA"/><div class="proj-fea-cap">FEA: ~10&#160;N/motor &#183; ~7.9&#160;mm peak arm deflection</div></div>
+      <div class="proj-card-fea"><img loading="lazy" src="fpv_drone_exploded.png" alt="Exploded view" style="object-fit:contain;aspect-ratio:auto;max-height:420px;width:100%;display:block;background:var(--bg-2);"/><div class="proj-fea-cap">C.O.B.R.A.&#160;6000 explosion view &#8212; 25-component assembly, TPU frame, hexagonal prop guards, dual payload system</div></div>
     </div>
+
     <div class="proj-card">
       <div class="proj-card-media">
-        <video data-src="battlebot_action.mp4" muted loop playsinline><source data-src="battlebot_action.mp4" type="video/mp4"/><img src="combat_robot_assembled.jpg" alt="Combat Robot"/></video>
-        <span class="proj-img-tag proj-img-tag--g">Top 4 &#183; EWeek 2026</span>
+        <video data-src="battlebot_action.mp4" muted loop playsinline><source data-src="battlebot_action.mp4" type="video/mp4"/><img loading="lazy" src="combat_robot_assembled.jpg" alt="50lb Combat Robot"/></video>
+        <span class="proj-img-tag proj-img-tag--g">Top 4 &#183; UB Engineers Week 2026</span>
       </div>
       <div class="proj-card-body">
         <div class="proj-card-title">50&#160;lb Combat Robot</div>
-        <div class="proj-card-sub">Horizontal Spinner &#183; NHRL-Compliant &#183; Machined Al</div>
-        <p class="proj-card-desc">Led design and machining of a 50&#160;lb combat robot in a team of three. Horizontal spinner at 25&#160;kJ &#8212; equivalent to a small car crash &#8212; within NHRL safety parameters. Weapon inertia, stresses, and geometry validated through centrifugal loading FEA. Placed top&#160;4 in competition.</p>
-        <div class="chips" style="margin-top:10px;"><span class="chip--a">~25&#160;kJ weapon energy</span><span class="chip">NHRL-compliant</span><span class="chip--o">Hub FEA validated</span><span class="chip--g">Top 4 finish</span></div>
+        <div class="proj-card-sub">Horizontal Spinner &#183; NHRL-Compliant &#183; Machined Al &#183; UB Engineers Week 2026</div>
+        <p class="proj-card-desc">Led design and machining of a 50&#160;lb combat robot in a team of three. Horizontal spinner at 25&#160;kJ &#8212; equivalent to a small car crash &#8212; within NHRL safety parameters. Weapon inertia, stresses, and geometry validated through centrifugal loading FEA. Placed top&#160;4 at UB Engineers Week 2026 competition.</p>
+        <div style="border:1px solid var(--border);margin-top:16px;margin-bottom:16px;background:var(--bg);">
+          <!-- Big stats row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);">
+            <div style="background:var(--bg);padding:18px 16px;">
+              <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Total Weight</div>
+              <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--text);line-height:1;">50<span style="font-size:.9rem;color:var(--muted);font-weight:400;"> lb</span></div>
+            </div>
+            <div style="background:var(--bg);padding:18px 16px;">
+              <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Weapon Energy</div>
+              <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--acc);line-height:1;">25<span style="font-size:.9rem;color:var(--muted);font-weight:400;"> kJ</span></div>
+            </div>
+            <div style="background:var(--bg);padding:18px 16px;">
+              <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Placement</div>
+              <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--green);line-height:1;">Top<span style="font-size:.9rem;font-weight:400;color:var(--muted);"> 4</span></div>
+            </div>
+          </div>
+          <!-- Detail row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border);">
+            <div style="background:var(--bg);padding:14px 16px;">
+              <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Frame / Weapon Material</div>
+              <div style="font-family:var(--mono);font-size:.8rem;color:var(--text);line-height:1.5;">Machined aluminium frame<br><span style="color:var(--acc2);">15&#8211;20&#160;lb hardened steel</span> weapon bar</div>
+            </div>
+            <div style="background:var(--bg);padding:14px 16px;">
+              <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Weapon Type / Config</div>
+              <div style="font-family:var(--mono);font-size:.8rem;color:var(--text);line-height:1.5;">Horizontal full-body spinner<br>NHRL-compliant geometry</div>
+            </div>
+          </div>
+          <!-- Energy equivalence callout -->
+          <div style="padding:14px 16px;border-top:1px solid var(--border);background:rgba(232,255,65,0.03);">
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:6px;">Energy Equivalence</div>
+            <div style="font-family:var(--mono);font-size:.8rem;color:var(--muted);line-height:1.6;">25&#160;kJ&#160;&#8776;&#160;a compact car at highway speed &#183; weapon inertia, hub stresses, and centrifugal loading validated through FEA before machining &#183; 3-person team, 5-month build</div>
+          </div>
+        </div>
+        <div class="chips" style="margin-top:0;"><span class="chip--a">~25&#160;kJ weapon energy</span><span class="chip">NHRL-compliant</span><span class="chip--o">Hub FEA validated</span><span class="chip--g">Top 4 finish</span></div>
       </div>
-      <div class="proj-card-fea"><img src="combat_robot_fea_vonmises.png" alt="Von Mises FEA"/><div class="proj-fea-cap">Von Mises FEA: centrifugal loading &#183; refined hub mesh</div></div>
+      <div class="proj-card-fea" style="background:var(--bg-2);"><img loading="lazy" src="combat_robot_fea_vonmises.png" alt="Von Mises FEA" style="object-fit:contain;aspect-ratio:auto;width:100%;display:block;max-height:420px;background:var(--bg-2);"/><div class="proj-fea-cap">Von Mises stress &#8212; horizontal spinner bar at operating RPM</div></div>
     </div>
   </div>
 
   <!-- KRESLING -->
-  <div style="margin-top:14px;" class="reveal">
-    <div class="featured" style="border-color:rgba(167,139,250,.3);">
+  <div style="margin-top:16px;" class="reveal">
+    <div class="featured" style="border-color:var(--border);">
       <div class="featured-head">
         <div class="featured-head-left">
-          <div class="feat-diamond" style="background:var(--violet);"></div>
+          <div class="feat-diamond" style="background:#7a6aaa;"></div>
           <div>
-            <div class="feat-eyebrow" style="color:var(--violet);">In Progress &#183; Deployable Mechanisms</div>
+            <div class="feat-eyebrow" style="color:#7a6aaa;">In Progress &#183; Deployable Mechanisms</div>
             <div class="feat-title">Kresling Origami Mechanism</div>
           </div>
         </div>
         <div class="featured-head-right">
-          <div class="exp-badge" style="margin-bottom:0;color:var(--violet);border-color:rgba(167,139,250,.3);background:var(--violet-dim);"><span class="exp-badge-dot" style="background:var(--violet);animation:none;"></span>Active Development</div>
+          <div class="exp-badge" style="margin-bottom:0;color:#7a6aaa;border-color:rgba(122,106,170,.3);background:rgba(122,106,170,.07);"><span class="exp-badge-dot" style="background:#7a6aaa;animation:none;"></span>Active Development</div>
         </div>
       </div>
       <div class="tab-body">
-        <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:20px;">
+        <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:24px;">
           <div class="proj-body">
             <p><strong>Concept:</strong> A spring-activated deployable camera system based on the Kresling origami pattern &#8212; a cylindrical structure that simultaneously rotates and collapses along its central axis. When triggered, it snaps from compact stowed state into a fully deployed gimbal platform.</p>
-            <p><strong>Parametric Design:</strong> Fully parametrized in Fusion&#160;360 &#8212; panel count, fold angle, cylinder radius, and deployment stroke driven by a single parameter table, enabling rapid iteration without rebuilding geometry.</p>
-            <p><strong>Fabrication:</strong> 3D-printed using multi-material FDM, printing flexible and rigid zones in a single pass to eliminate hinges and fasteners. Fold geometry tuned to minimize supports while maintaining deployment repeatability.</p>
-            <p><strong>End Goal:</strong> A throwable device that deploys on impact into a stable camera gimbal platform, surveys for gas leaks or thermal anomalies, and points a laser at detected targets.</p>
+            <p><strong>Parametric Design:</strong> Fully parametrized in Fusion&#160;360 &#8212; panel count, fold angle, cylinder radius, and deployment stroke driven by a single parameter table.</p>
+            <p><strong>Fabrication:</strong> Multi-material FDM, printing flexible and rigid zones in a single pass to eliminate hinges and fasteners.</p>
+            <p><strong>End Goal:</strong> A throwable device that deploys on impact into a stable camera gimbal, surveys for gas leaks or thermal anomalies, and points a laser at detected targets.</p>
             <div class="chips"><span class="chip--v">Parametric Fusion 360</span><span class="chip--v">Kresling pattern</span><span class="chip">Multi-material FDM</span><span class="chip--o">Spring-activated</span><span class="chip">Sensor payload</span></div>
           </div>
           <div class="media-stack">
-            <figure><img src="kresling_expand.gif" alt="Kresling expanding and contracting in Fusion 360"/><figcaption>Fusion&#160;360 parametric animation &#8212; Kresling mechanism expanding and contracting through full deployment stroke.</figcaption></figure>
-            <figure><img src="kresling_printed.jpg" alt="3D printed Kresling module"/><figcaption>3D-printed prototype &#8212; multi-material FDM module showing panel geometry and flexible fold zones.</figcaption></figure>
+            <figure class="kresling-fig"><img loading="lazy" src="kresling_fusion.jpg" alt="Kresling in Fusion 360"/><figcaption>Kresling origami mechanism modeled in Fusion&#160;360 &#8212; cylindrical structure that simultaneously rotates and collapses along its central axis.</figcaption></figure>
+            <figure><img loading="lazy" src="kresling_printed.gif" alt="3D printed Kresling deploying"/><figcaption>3D-printed prototype deploying through full stroke, showing fold propagation and panel engagement.</figcaption></figure>
           </div>
         </div>
       </div>
@@ -771,21 +974,21 @@
   </div>
 
   <!-- IOT SECURITY SYSTEM -->
-  <div style="margin-top:14px;" class="reveal">
-    <div class="featured" style="border-color:rgba(45,212,191,.25);">
-      <div class="featured-head" style="border-bottom-color:rgba(45,212,191,.2);">
+  <div style="margin-top:16px;" class="reveal">
+    <div class="featured" style="border-color:var(--border);">
+      <div class="featured-head">
         <div class="featured-head-left">
-          <div class="feat-diamond" style="background:var(--green);"></div>
+          <div class="feat-diamond" style="background:#5a8a68;"></div>
           <div>
-            <div class="feat-eyebrow" style="color:var(--green);">Full-Stack IoT &#183; Embedded Systems &#183; Home Network</div>
+            <div class="feat-eyebrow" style="color:#5a8a68;">Full-Stack IoT &#183; Embedded Systems &#183; Home Network</div>
             <div class="feat-title">Autonomous IoT Security System</div>
           </div>
         </div>
         <div class="featured-head-right">
-          <span class="feat-badge" style="border-color:var(--green);color:var(--green);background:var(--green-dim);">Multi-Node Embedded System</span>
+          <span class="feat-badge" style="border-color:#5a8a68;color:#5a8a68;background:rgba(90,138,104,.07);">Multi-Node Embedded System</span>
         </div>
       </div>
-      <div class="tab-row" style="border-bottom-color:rgba(45,212,191,.2);">
+      <div class="tab-row">
         <div class="iot-tab active" data-iot="iot-overview">Overview</div>
         <div class="iot-tab" data-iot="iot-hardware">Hardware Modules</div>
         <div class="iot-tab" data-iot="iot-software">Software &amp; Control</div>
@@ -794,100 +997,111 @@
 
         <div class="iot-panel active" id="iot-overview">
           <div class="proj-body">
-            <p><strong>System overview:</strong> A fully self-built home security and automation network integrating over a dozen microcontrollers and sensors across multiple rooms. Every module was designed, wired, and coded from scratch &#8212; no off-the-shelf platforms used. The system runs continuously, reporting live to a custom cloud-hosted dashboard accessible from any phone or laptop.</p>
-            <p><strong>Modules:</strong> Six ESP32-CAM security cameras, a face-tracking pan-tilt system, two laser tripwires, an RFID entry node, a relay array controlling power to multiple zones, and a voice activation module &#8212; all networked through a chain of ESP32 relay nodes extending signal range across the building.</p>
-            <p><strong>Why it&#8217;s technically interesting:</strong> Designing a reliable multi-node embedded network from scratch requires solving real distributed systems problems &#8212; signal degradation, message collision, power isolation between relay stages, and latency between events and dashboard updates. Each was solved at hardware and firmware level.</p>
-            <div class="chips"><span class="chip--g">6 ESP32-CAM cameras</span><span class="chip--g">Face-tracking pan-tilt system</span><span class="chip--g">2 tripwires</span><span class="chip--g">RFID node</span><span class="chip--g">Relay array</span><span class="chip--g">Voice activation</span><span class="chip--a">Cloud dashboard</span><span class="chip">ESP relay chain</span></div>
+            <p><strong>System overview:</strong> A fully self-built home security and automation network integrating over a dozen microcontrollers and sensors. Every module designed, wired, and coded from scratch &#8212; no off-the-shelf platforms used.</p>
+            <p><strong>Modules:</strong> Six ESP32-CAM security cameras, a face-tracking pan-tilt system, two laser tripwires, an RFID entry node, a relay array controlling power to multiple zones, and voice activation &#8212; all networked through a chain of ESP32 relay nodes.</p>
+            <p><strong>Why it matters technically:</strong> Designing a reliable multi-node embedded network from scratch requires solving real distributed systems problems &#8212; signal degradation, message collision, power isolation, and latency. Each solved at hardware and firmware level.</p>
+            <div class="chips"><span class="chip--g">6 ESP32-CAM cameras</span><span class="chip--g">Face-tracking pan-tilt</span><span class="chip--g">2 tripwires</span><span class="chip--g">RFID node</span><span class="chip--g">Relay array</span><span class="chip--g">Voice activation</span><span class="chip--a">Cloud dashboard</span><span class="chip">ESP relay chain</span></div>
           </div>
           <div class="media-stack">
-            <figure><img src="iot_mobile_dashboard.jpg" alt="Mobile dashboard"/><figcaption>Mobile dashboard &#8212; live camera feeds, sensor states, and zone controls in a fully responsive single-page app.</figcaption></figure>
-            <figure><img src="iot_laptop_dashboard.jpg" alt="Laptop dashboard"/><figcaption>Laptop dashboard &#8212; full system control interface showing live camera grid, sensor states, and relay zone controls.</figcaption></figure>
+            <figure><video controls preload="metadata" style="width:100%;max-width:100%;display:block;background:var(--bg-2);"><source src="iot_demo.mp4" type="video/mp4"/></video><figcaption>Early prototype demo &#8212; RFID tag authentication triggering relay activation and real-time dashboard state update.</figcaption></figure>
           </div>
         </div>
 
         <div class="iot-panel" id="iot-hardware">
           <div class="proj-body">
-            <p><strong>ESP32-CAM cameras (&#215;6):</strong> Each node runs custom firmware streaming MJPEG over Wi-Fi, triggering motion alerts via GPIO, and reporting health. Mounted in custom 3D-printed housings with adjustable brackets.</p>
-            <p><strong>Face-tracking pan-tilt system:</strong> Pan-tilt servo platform driven by an ESP32 running a centroid-tracking loop &#8212; detects face bounding boxes from the onboard stream and continuously adjusts servo positions to keep the target centered at ~15&#160;fps on-device.</p>
-            <p><strong>Tripwires (&#215;2):</strong> Laser emitter&#8211;photodiode pairs with dedicated ESP32 nodes. Beam break triggers an interrupt, fires an MQTT message within ~8&#160;ms, and drives a local buzzer independently of network state.</p>
-            <p><strong>RFID node:</strong> MFRC522 reader with authenticated UIDs stored in flash. Valid card unlocks the relay and logs a timestamped entry event; invalid card triggers a network-wide alert.</p>
-            <p><strong>Relay array:</strong> Eight-channel board driven by an ESP32 GPIO expander, controlling power to multiple zones. Each channel individually addressable from the web interface via MQTT.</p>
-            <p><strong>Voice activation:</strong> Offline keyword detection on a dedicated microcontroller. Wakeword triggers command parsing and sends control packets over serial to the nearest relay node, independent of internet connectivity.</p>
+            <p><strong>ESP32-CAM cameras (&#215;6):</strong> Custom firmware streaming MJPEG over Wi-Fi, triggering motion alerts via GPIO. Mounted in custom 3D-printed housings.</p>
+            <p><strong>Face-tracking pan-tilt system:</strong> Pan-tilt servo platform with centroid-tracking loop detecting face bounding boxes at ~15&#160;fps on-device.</p>
+            <p><strong>Tripwires (&#215;2):</strong> Laser emitter&#8211;photodiode pairs firing MQTT messages within ~8&#160;ms on beam break. Operates independently of network state.</p>
+            <p><strong>RFID node:</strong> MFRC522 reader with authenticated UIDs stored in flash. Valid card unlocks relay and logs timestamped entry event.</p>
+            <p><strong>Relay array:</strong> Eight-channel board driven by an ESP32 GPIO expander. Each channel individually addressable from the web interface via MQTT.</p>
+            <p><strong>Voice activation:</strong> Offline keyword detection sending control packets over serial to the nearest relay node.</p>
             <div class="chips"><span class="chip--g">~15&#160;fps face tracking</span><span class="chip--g">MFRC522 RFID</span><span class="chip--g">8-ch relay array</span><span class="chip--a">~8&#160;ms interrupt latency</span><span class="chip">Offline keyword detection</span><span class="chip">MQTT pub/sub</span></div>
           </div>
           <div class="media-stack">
-            <figure><img src="iot_rfid_camera_module.jpg" alt="RFID Camera module"/><figcaption>RFID&#160;+&#160;Camera combo module &#8212; integrated entry point with simultaneous MFRC522 access control and MJPEG video stream.</figcaption></figure>
-            <figure><img src="iot_rfid_camera_exploded.png" alt="Exploded view of RFID Camera module"/><figcaption>Exploded view &#8212; RFID reader, ESP32-CAM, 3D-printed housing, and wiring harness assembly.</figcaption></figure>
-            <figure><img src="iot_camera_only.jpg" alt="Single camera module"/><figcaption>Single ESP32-CAM node &#8212; standalone security camera with adjustable mount and onboard motion detection firmware.</figcaption></figure>
+            <figure><img loading="lazy" src="iot_rfid_camera_module.jpg" alt="RFID Camera module"/><figcaption>RFID&#160;+&#160;Camera combo module &#8212; integrated entry point with simultaneous access control and MJPEG video.</figcaption></figure>
+            <figure><img loading="lazy" src="iot_rfid_camera_exploded.png" alt="Exploded RFID Camera"/><figcaption>Exploded view &#8212; RFID reader, ESP32-CAM, 3D-printed housing, and wiring harness.</figcaption></figure>
+            <figure><img loading="lazy" src="iot_camera_only.jpg" alt="Single camera module"/><figcaption>Single ESP32-CAM node &#8212; standalone security camera with adjustable mount and onboard motion detection.</figcaption></figure>
           </div>
         </div>
 
         <div class="iot-panel iot-panel--full" id="iot-software">
           <div class="proj-body">
-            <p><strong>Cloud dashboard (HTML/CSS/JS):</strong> Built from scratch without frameworks. A single-page app serves live camera feeds as MJPEG streams, polls sensor states every 500&#160;ms via REST, and renders zone control toggles that map directly to relay MQTT commands. Loads in under 1.5&#160;s on mobile.</p>
-            <p><strong>Laptop control panel:</strong> A local Python script running a WebSocket server provides lower-latency control when on the home network. A curses terminal UI shows live node status, message rates, and alerts. Commands propagate to target nodes in under 10&#160;ms local round-trip.</p>
-            <p><strong>ESP firmware:</strong> All node firmware in C++ (Arduino framework). Each module type extends a base class handling Wi-Fi reconnect, MQTT lifecycle, watchdog reset, and OTA updates. Adding a new node type requires ~40 lines of module-specific code.</p>
-            <p><strong>Phone access:</strong> Dashboard is fully responsive. Camera tiles reflow to single column on mobile; touch-optimized controls replace hover states. No app install required.</p>
+            <p><strong>Cloud dashboard (HTML/CSS/JS):</strong> Built from scratch without frameworks. Single-page app serving live MJPEG feeds, polling sensor states every 500&#160;ms, rendering relay zone toggles mapped directly to MQTT commands. Loads in &lt;1.5&#160;s on mobile.</p>
+            <p><strong>Laptop control panel:</strong> Python WebSocket server with curses terminal UI. Commands propagate to target nodes in &lt;10&#160;ms local round-trip.</p>
+            <p><strong>ESP firmware:</strong> All node firmware in C++ (Arduino framework). Base class handles Wi-Fi reconnect, MQTT lifecycle, watchdog, and OTA updates. New node type requires ~40 lines of module-specific code.</p>
+            <p><strong>Relay chain:</strong> Each ESP32 operates in dual STA+AP mode. Messages hop as JSON over TCP sockets; 3-hop chain reaches broker in &lt;20&#160;ms. Heartbeat failover with onboard flash logging.</p>
           </div>
           <div class="two-col-media" style="margin-top:14px;">
-            <figure><img src="iot_mobile_dashboard.jpg" alt="Web dashboard"/><figcaption>Cloud dashboard &#8212; MJPEG feeds, sensor states, and relay controls. &lt;1.5&#160;s load on mobile.</figcaption></figure>
-            <figure><img src="iot_laptop_dashboard.jpg" alt="Laptop terminal"/><figcaption>Python curses terminal &#8212; live node status and &lt;10&#160;ms local round-trip dispatch.</figcaption></figure>
+            <figure class="portrait"><img loading="lazy" src="iot_mobile_dashboard.jpg" alt="Mobile dashboard"/><figcaption>Mobile dashboard &#8212; MJPEG feeds, sensor states, relay controls. &lt;1.5&#160;s load.</figcaption></figure>
+            <figure><img loading="lazy" src="iot_laptop_dashboard.jpg" alt="Laptop dashboard"/><figcaption>Laptop dashboard &#8212; full system control, live node status, &lt;10&#160;ms dispatch.</figcaption></figure>
           </div>
-          <div class="chips" style="margin-top:14px;"><span class="chip--a">Vanilla HTML/CSS/JS</span><span class="chip--a">REST + MJPEG</span><span class="chip--g">Python WebSocket</span><span class="chip--g">C++ Arduino</span><span class="chip">OTA updates</span><span class="chip">Watchdog timer</span><span class="chip--o">Fully responsive</span></div>
+          <div class="chips" style="margin-top:14px;"><span class="chip--a">Vanilla HTML/CSS/JS</span><span class="chip--a">REST + MJPEG</span><span class="chip--g">Python WebSocket</span><span class="chip--g">C++ Arduino</span><span class="chip">OTA updates</span><span class="chip">Dual STA+AP relay chain</span><span class="chip--o">Fully responsive</span></div>
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- SIDE PROJECTS -->
-  <div style="margin-top:14px;" class="reveal">
-    <div class="section-label" style="margin-bottom:16px;"><span class="section-label-text" style="font-size:.64rem;">Side Projects</span><div class="section-label-line"></div></div>
+  <div style="margin-top:16px;" class="reveal">
+    <div class="section-label" style="margin-bottom:16px;">
+      <span class="section-label-num" style="font-size:.62rem;">&#8211;</span>
+      <span class="section-label-text" style="font-size:.62rem;">Side Projects</span>
+      <div class="section-label-line"></div>
+    </div>
     <div class="proj-grid-3">
       <div class="small-card">
-        <div class="small-card-media"><img src="octopus_lamp.jpg" alt="Laser-cut octopus lamp"/></div>
+        <div class="small-card-media"><img loading="lazy" src="octopus_lamp.jpg" alt="Laser-cut octopus lamp"/></div>
         <div class="small-card-body">
           <div class="small-card-title">Laser-Cut Octopus Lamp</div>
           <div class="small-card-sub">~30 interlocking pieces &#183; Industrial design</div>
-          <p class="small-card-desc">Designed and cut a multi-piece interlocking lamp in wood &#8212; roughly 30 unique panels with press-fit joinery and no fasteners. An exercise in flat-to-3D industrial design and kerf compensation.</p>
+          <p class="small-card-desc">~30 unique wood panels with press-fit joinery and no fasteners. An exercise in flat-to-3D industrial design and kerf compensation.</p>
           <div class="chips" style="margin-top:8px;"><span class="chip">Laser cut</span><span class="chip">Press-fit joinery</span><span class="chip">Industrial design</span></div>
         </div>
       </div>
       <div class="small-card">
-        <div class="small-card-body" style="padding:16px 14px;">
+        <div class="small-card-body" style="padding:18px 16px;">
           <div class="small-card-title">3D-Printed &amp; Electroplated PCB</div>
-          <div class="small-card-sub">Graphite extraction &#183; Conductive paint &#183; Copper sulfate electroplating</div>
-          <p class="small-card-desc">3D-printed circuit board substrates, then mechanically refined graphite extracted from pencils to ~80&#8211;85% purity for use as conductive paint. Applied trace patterns by hand, then electroplated the boards in a copper sulfate solution to deposit a continuous copper layer &#8212; producing boards with measurable conductivity using no industrial PCB fabrication equipment whatsoever.</p>
-          <div class="chips" style="margin-top:8px;"><span class="chip--o">Cu&#8322;SO&#8324; electroplating</span><span class="chip">80&#8211;85% graphite purity</span><span class="chip">FDM substrate</span><span class="chip">Conductive paint</span></div>
+          <div class="small-card-sub">Graphite extraction &#183; Conductive paint &#183; Cu&#8322;SO&#8324; electroplating</div>
+          <p class="small-card-desc">3D-printed substrates, mechanically refined graphite from pencils to ~80&#8211;85% purity as conductive paint, then electroplated in copper sulfate solution &#8212; fully functional traces with no industrial PCB fabrication equipment.</p>
+          <div class="chips" style="margin-top:8px;"><span class="chip--o">Cu&#8322;SO&#8324; electroplating</span><span class="chip">80&#8211;85% graphite purity</span><span class="chip">FDM substrate</span></div>
         </div>
       </div>
     </div>
   </div>
-
 </section>
-
 
 <hr class="full-divider"/>
 
 <!-- ANALYSIS -->
 <section id="analysis" class="section analysis-section-wrap">
-  <div class="section-label reveal"><span class="section-label-text">Analysis Gallery</span><div class="section-label-line"></div><span class="section-label-num">04</span></div>
-  <p class="section-intro reveal">Simulation work spanning <strong>static FEA</strong>, <strong>dynamic event simulation</strong>, and <strong>modal analysis</strong> &#8212; from tread link pin stress to weapon centrifugal loading at 25&#160;kJ.</p>
+  <div class="section-label reveal">
+    <span class="section-label-num">04</span>
+    <span class="section-label-text">Analysis Gallery</span>
+    <div class="section-label-line"></div>
+  </div>
+  <p class="section-intro reveal">Simulation work spanning <strong>static FEA</strong>, <strong>dynamic event simulation</strong>, and <strong>modal analysis</strong> &#8212; from tread link pin stress and outer chassis loading to weapon centrifugal stress at 25&#160;kJ.</p>
   <div class="analysis-grid reveal">
-    <div class="an-card"><div class="an-card-img"><img src="rover_gimbal_modal.gif" alt="Gimbal modal"/><span class="an-tag an-tag--modal">Modal Analysis</span></div><div class="an-info"><div class="an-title">Camera Gimbal &#8212; Resonance Tuning</div><p class="an-desc">Natural frequency matched to servo vibration modes via flexible material iteration. Rover camera system, IAM3D 2026.</p><div class="an-result">&#8594; Image distortion eliminated under motor operation</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><span class="an-tag an-tag--dynamic">Dynamic Event Simulation &#183; Von Mises</span></div><div class="an-info"><div class="an-title">Rover Tread Links &#8212; Terrain Loading</div><p class="an-desc">Dynamic event simulation of a tread link interacting with loose sand, time-dependent loading derived from the rover drivetrain. IAM3D 2026.</p><div class="an-result">&#8594; Link geometry and orientation confirmed</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="fpv_drone_fea_displacement.png" alt="Drone FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title">FPV Drone Frame &#8212; Motor Thrust Loading</div><p class="an-desc">~10&#160;N per motor (~40&#160;N total); battery support constrained. Static stiffness validation for competition flight loads.</p><div class="an-result">&#8594; ~7.9&#160;mm peak deflection at arm ends</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="combat_robot_fea_vonmises.png" alt="Combat robot FEA"/><span class="an-tag">FEA &#183; Von Mises &#183; Centrifugal</span></div><div class="an-info"><div class="an-title">Combat Robot &#8212; Horizontal Spinner FEA</div><p class="an-desc">Von Mises stress at operating RPM; refined hub mesh captures peak concentration. Informed material selection and hub geometry.</p><div class="an-result">&#8594; ~25&#160;kJ operating &#183; NHRL-compliant geometry</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="rover_tread_pin_fea.png" alt="Tread pin FEA"/><span class="an-tag">FEA &#183; Pin Stress</span></div><div class="an-info"><div class="an-title">Tread Link Pin Connection</div><p class="an-desc">Stress concentration at the pin-to-link interface under peak sprocket drive force. Informed final pin diameter and link geometry.</p><div class="an-result">&#8594; Pin diameter and orientation confirmed</div></div></div>
-    <div class="an-card"><div class="an-card-img"><img src="rover_drivetrain_fea.png" alt="Drivetrain static FEA"/><span class="an-tag">FEA &#183; Static</span></div><div class="an-info"><div class="an-title">Rover Drivetrain &#8212; Sprocket Interface Loading</div><p class="an-desc">Static FEA across drivetrain assembly under maximum drive torque. Validated chassis mounting, bearing load paths, and link tension margins. IAM3D 2026.</p><div class="an-result">&#8594; Wall thickness and print orientation confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_gimbal_modal.gif" alt="Gimbal modal"/><span class="an-tag an-tag--modal">Modal Analysis</span></div><div class="an-info"><div class="an-title">Camera Gimbal &#8212; Resonance Tuning</div><p class="an-desc">Natural frequency matched to servo vibration modes via flexible material iteration. IAM3D 2026.</p><div class="an-result">&#8594; Image distortion eliminated under motor operation</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><span class="an-tag an-tag--dynamic">Dynamic Event Simulation &#183; Von Mises</span></div><div class="an-info"><div class="an-title">Rover Tread Links &#8212; Terrain Loading</div><p class="an-desc">Dynamic event simulation of a tread link interacting with loose sand, time-dependent loading derived from the rover drivetrain.</p><div class="an-result">&#8594; Link geometry and orientation confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="fpv_drone_fea_displacement.png" alt="Drone FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title" style="display:none">Drone FEA</div><div class="an-title">C.O.B.R.A.&#160;6000 &#8212; Altair Inspire&#8482; Topology</div><p class="an-desc">Three load cases: motor thrust, frontal impact, side impact. Mass minimized across all cases. Frame ~40% lighter than initial design space.</p><div class="an-result">&#8594; ~7.9&#160;mm peak deflection at arm ends</div></div></div>
+    <div class="an-card"><div class="an-card-img" style="background:var(--bg-2);"><img loading="lazy" src="combat_robot_fea_vonmises.png" alt="Combat robot FEA" style="object-fit:contain;aspect-ratio:auto;max-height:165px;width:100%;display:block;background:var(--bg-2);"/><span class="an-tag">FEA &#183; Von Mises</span></div><div class="an-info"><div class="an-title">Horizontal Spinner Weapon Bar &#8212; Von Mises Stress</div><p class="an-desc">Von Mises stress at operating RPM; refined hub mesh captures peak concentration. Informed material selection and hub geometry.</p><div class="an-result">&#8594; ~25&#160;kJ operating &#183; NHRL-compliant geometry</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_tread_pin_fea.png" alt="Tread pin FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title" style="display:none">Pin FEA</div><p class="an-desc">Stress concentration at the pin-to-link interface under peak sprocket drive force. Informed final pin diameter and link geometry.</p><div class="an-result">&#8594; Pin diameter and orientation confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_drivetrain_fea.png" alt="Diagonal crossmember FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title">Diagonal Crossmember &#8212; Static Simulation</div><p class="an-desc">Displacement FEA of diagonal crossmember under static load. Validated cross-section geometry and print orientation for structural margin under combined chassis and torsional loading.</p><div class="an-result">&#8594; Cross-section and orientation confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_chassis_fea.png" alt="Chassis FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title" style="display:none">Chassis FEA</div><p class="an-desc">Static FEA of outer chassis shell under worst-case payload weight and terrain impact. Validated rib geometry, wall thickness, and print orientation.</p><div class="an-result">&#8594; Chassis geometry and wall thickness confirmed</div></div></div>
+    <div class="an-card"><div class="an-card-img"><img loading="lazy" src="rover_crossbar_fea.png" alt="Crossbar FEA"/><span class="an-tag">FEA &#183; Displacement</span></div><div class="an-info"><div class="an-title" style="display:none">Crossbar FEA</div><p class="an-desc">Static FEA of horizontal crossbar under combined chassis and payload loads. Validated cross-section and print orientation for structural margin.</p><div class="an-result">&#8594; Crossbar geometry and wall thickness confirmed</div></div></div>
   </div>
 </section>
 
 <hr class="full-divider"/>
 
 <!-- SKILLS -->
-<div class="skills-section-bg"><section class="section" style="padding-top:0;padding-bottom:0;">
-  <div class="section-label reveal"><span class="section-label-text">Skills</span><div class="section-label-line"></div><span class="section-label-num">05</span></div>
+<div class="skills-section-bg">
+<section class="section" style="padding-top:0;padding-bottom:0;">
+  <div class="section-label reveal">
+    <span class="section-label-num">05</span>
+    <span class="section-label-text">Skills</span>
+    <div class="section-label-line"></div>
+  </div>
   <div class="skills-grid reveal">
     <div class="skill-col">
       <div class="skill-col-label">CAD &amp; Analysis</div>
@@ -897,6 +1111,7 @@
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Modal Analysis</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Dynamic Event Simulation</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">DFAM / DFMA</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Altair Inspire&#8482; (Topology)</span></div>
     </div>
     <div class="skill-col">
       <div class="skill-col-label">Robotics &amp; Embedded</div>
@@ -914,41 +1129,49 @@
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Laser Cutting</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Composite Layups (GF/CF/KF)</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Rapid Prototyping</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Electroplating (Cu&#8322;SO&#8324;)</span></div>
     </div>
   </div>
-</section></div>
+</section>
+</div>
 
 <hr class="full-divider"/>
 
-<div class="end-grid" style="max-width:1300px;margin:0 auto;padding:80px 28px 0;">
+<div class="end-grid" style="max-width:1400px;margin:0 auto;padding:80px 64px 0;">
 
-<!-- EDUCATION & AWARDS -->
+<!-- EDUCATION -->
 <section id="education" style="padding:0;">
-  <div class="section-label reveal"><span class="section-label-text">Education &amp; Awards</span><div class="section-label-line"></div><span class="section-label-num">06</span></div>
+  <div class="section-label reveal">
+    <span class="section-label-num">06</span>
+    <span class="section-label-text">Education &amp; Awards</span>
+    <div class="section-label-line"></div>
+  </div>
   <div class="edu-grid reveal">
     <div class="edu-card"><div class="edu-card-label">Degree</div><div class="edu-card-title">University at Buffalo</div><div class="edu-card-sub">B.S. Mechanical Engineering &#183; Minor in Robotics &#183; Expected May 2028</div></div>
-    <div class="edu-card"><div class="edu-card-label">Award</div><div class="edu-card-title">International Baccalaureate Diploma</div><div class="edu-card-sub">Full IB Diploma recipient &#8212; internationally recognized pre-university academic credential requiring extended essay, theory of knowledge, and higher-level coursework across six subjects.</div></div>
-    <div class="edu-card"><div class="edu-card-label">Competition</div><div class="edu-card-title">IAM3D 2025 &#8212; Top Third</div><div class="edu-card-sub">Top third of 20 teams &#183; Fully 3D-printed FPV payload drone &#183; ASME national design competition</div></div>
-    <div class="edu-card"><div class="edu-card-label">Competition</div><div class="edu-card-title">UB EWeek Battlebot 2026 &#8212; Top 4</div><div class="edu-card-sub">Top 4 &#183; 50&#160;lb combat robot with 25&#160;kJ horizontal spinner &#183; Led design and machining in team of three</div></div>
+    <div class="edu-card"><div class="edu-card-label">Award</div><div class="edu-card-title">International Baccalaureate Diploma</div><div class="edu-card-sub">Full IB Diploma recipient &#8212; extended essay, theory of knowledge, higher-level coursework across six subjects.</div></div>
+    <div class="edu-card"><div class="edu-card-label">Competition</div><div class="edu-card-title">IAM3D 2025 &#8212; Top Third</div><div class="edu-card-sub">Top third of 20 teams &#183; C.O.B.R.A. 6000 FPV payload drone &#183; ASME national competition</div></div>
+    <div class="edu-card"><div class="edu-card-label">Competition</div><div class="edu-card-title">UB EWeek Battlebot 2026 &#8212; Top 4</div><div class="edu-card-sub">Top 4 &#183; 50&#160;lb combat robot with 25&#160;kJ horizontal spinner &#183; Led design and machining</div></div>
   </div>
 </section>
 
-<hr class="full-divider"/>
-
 <!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="section-label reveal"><span class="section-label-text">Contact</span><div class="section-label-line"></div><span class="section-label-num">07</span></div>
+<section id="contact" style="padding:0;">
+  <div class="section-label reveal">
+    <span class="section-label-num">07</span>
+    <span class="section-label-text">Contact</span>
+    <div class="section-label-line"></div>
+  </div>
   <div class="contact-grid reveal">
     <div class="contact-card"><div class="contact-label">Email</div><div class="contact-value"><a class="email-lnk" data-u="dvrosamo" data-d="buffalo.edu" href="#">&#8212;</a></div></div>
     <div class="contact-card"><div class="contact-label">LinkedIn</div><div class="contact-value"><a href="https://www.linkedin.com/in/dvrosamo/" target="_blank">/in/dvrosamo</a></div></div>
     <div class="contact-card"><div class="contact-label">GitHub</div><div class="contact-value"><a href="https://github.com/dvrosamo" target="_blank">github.com/dvrosamo</a></div></div>
     <div class="contact-card"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:+19174992510">917-499-2510</a></div></div>
-    <div class="contact-card"><div class="contact-label">Languages</div><div class="contact-value" style="font-family:var(--mono);font-weight:400;font-size:.82rem;"><div class="lang-row"><span class="lang-chip">English</span><span class="lang-chip">Polish</span><span class="lang-chip">Latin</span></div></div></div>
+    <div class="contact-card"><div class="contact-label">Languages</div><div class="contact-value" style="font-family:var(--mono);font-size:.82rem;font-weight:400;"><div class="lang-row"><span class="lang-chip">English</span><span class="lang-chip">Polish</span><span class="lang-chip">Latin</span></div></div></div>
     <div class="contact-card"><div class="contact-label">Documentation</div>
       <div class="contact-value" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
-        <a class="btn btn--primary" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank" style="font-size:.66rem;padding:5px 12px;">Resume</a>
-        <button class="btn btn--violet" style="font-size:.66rem;padding:5px 12px;" onclick="openReport('IAM3D_2026_Design_Report.pdf','IAM3D 2026 &#8212; Engineering Design Report','Excavation Rover &#183; Drivetrain &#183; Electronics &#183; Analysis')">Rover Report</button>
-        <button class="btn btn--violet" style="font-size:.66rem;padding:5px 12px;" onclick="openReport('IAM3D_2025_Design_Report.pdf','IAM3D 2025 &#8212; Engineering Design Report','FPV Payload Drone &#183; DFAM &#183; Struct-Core &#183; FEA')">Drone Report</button>
+        <a class="btn btn--primary" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank" style="font-size:.66rem;padding:5px 14px;">Resume</a>
+        <button class="btn btn--ghost" style="font-size:.66rem;padding:5px 14px;" onclick="openReport('IAM3D_2026_Design_Report.pdf','ASME IAM3D R.O.V.E.R 2025&#8211;26 &#8212; The Axolotls','Drivetrain &#183; Electronics &#183; Analysis')">Rover Report</button>
+        <button class="btn btn--ghost" style="font-size:.66rem;padding:5px 14px;" onclick="openReport('IAM3D_2025_Design_Report.pdf','C.O.B.R.A.&#160;6000 &#8212; IAM3D Drone 2024&#8211;25','Struct-Core &#183; Altair Inspire&#8482; &#183; Dual Payload')">Drone Report</button>
       </div>
     </div>
   </div>
@@ -957,9 +1180,11 @@
   </div>
 </section>
 
-</div><!-- /end-grid -->
+</div>
 
-<div class="footer-wrap"><footer class="footer">
+<hr class="full-divider"/>
+<div class="footer-wrap">
+<footer class="footer">
   <div>
     <div class="footer-name">Daniel Rosamond</div>
     <div class="footer-links">
@@ -973,228 +1198,177 @@
     <span>&#169; <span id="yr"></span> Daniel Rosamond &#183; Brooklyn, NY</span>
     <button class="edit-footer-btn" id="edit-open-btn">Edit Page / Access IoT</button>
   </div>
-</footer></div>
+</footer>
+</div>
 
 <script>
-  /* ── YEAR ── */
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  /* ── EMAIL (bypass Cloudflare obfuscation) ── */
-  document.querySelectorAll('.email-lnk').forEach(function(el) {
-    var addr = el.dataset.u + '@' + el.dataset.d;
-    el.href = 'mailto:' + addr;
-    el.textContent = addr;
+  // EMAIL
+  document.querySelectorAll('.email-lnk').forEach(function(el){
+    var addr = el.dataset.u+'@'+el.dataset.d;
+    el.href='mailto:'+addr; el.textContent=addr;
   });
-  var heroEmailBtn = document.getElementById('hero-email-btn');
-  if (heroEmailBtn) { heroEmailBtn.href = 'mailto:dvrosamo@buffalo.edu'; }
+  var heb=document.getElementById('hero-email-btn');
+  if(heb){heb.href='mailto:dvrosamo@buffalo.edu';}
 
-  /* ── SCROLL PROGRESS ── */
-  window.addEventListener('scroll', function() {
-    var d = document.documentElement;
-    document.getElementById('progress-bar').style.width =
-      (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  // PROGRESS
+  window.addEventListener('scroll',function(){
+    var d=document.documentElement;
+    document.getElementById('progress-bar').style.width=
+      (d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
   });
 
-  /* ── COUNTER ANIMATION ── */
-  function animateCounter(el) {
-    var target = parseInt(el.dataset.target, 10), dur = 1300, start = performance.now();
-    (function tick(now) {
-      var p = Math.min((now - start) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(ease * target);
-      if (p < 1) requestAnimationFrame(tick); else el.textContent = target;
+  // COUNTERS
+  function animateCounter(el){
+    var target=parseInt(el.dataset.target,10),dur=1300,start=performance.now();
+    (function tick(now){
+      var p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);
+      el.textContent=Math.round(ease*target);
+      if(p<1)requestAnimationFrame(tick);else el.textContent=target;
     })(start);
   }
-  window.addEventListener('load', function() {
-    setTimeout(function() { document.querySelectorAll('.counter').forEach(animateCounter); }, 550);
+  window.addEventListener('load',function(){
+    setTimeout(function(){document.querySelectorAll('.counter').forEach(animateCounter);},400);
   });
 
-  /* ── ROVER TABS (rtab / rtab-panel) ── */
-  document.querySelectorAll('.rtab').forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.rtab').forEach(function(t) { t.classList.remove('active'); });
-      document.querySelectorAll('.rtab-panel').forEach(function(p) { p.classList.remove('active'); });
+  // ROVER TABS
+  document.querySelectorAll('.rtab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('.rtab').forEach(function(t){t.classList.remove('active');});
+      document.querySelectorAll('.rtab-panel').forEach(function(p){p.classList.remove('active');});
       tab.classList.add('active');
       document.getElementById(tab.dataset.panel).classList.add('active');
     });
   });
 
-  /* ── IOT TABS (iot-tab / iot-panel) ── */
-  document.querySelectorAll('.iot-tab').forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.iot-tab').forEach(function(t) { t.classList.remove('active'); });
-      document.querySelectorAll('.iot-panel').forEach(function(p) { p.classList.remove('active'); });
+  // IOT TABS
+  document.querySelectorAll('.iot-tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('.iot-tab').forEach(function(t){t.classList.remove('active');});
+      document.querySelectorAll('.iot-panel').forEach(function(p){p.classList.remove('active');});
       tab.classList.add('active');
       document.getElementById(tab.dataset.iot).classList.add('active');
     });
   });
 
-  /* ── SCROLL REVEAL ── */
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  // SCROLL REVEAL
+  var revealObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}
     });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
 
-  /* ── VIDEO VIEWPORT PLAYBACK ── */
-  var videoObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      var v = e.target;
-      if (e.isIntersecting) {
-        if (v.dataset.src && !v.querySelector('source[src]')) {
-          v.querySelectorAll('source').forEach(function(s) { if (s.dataset.src) s.src = s.dataset.src; });
+  // VIDEO VIEWPORT
+  var videoObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){
+        if(!v.querySelector('source[src]')){
+          v.querySelectorAll('source').forEach(function(s){if(s.dataset.src)s.src=s.dataset.src;});
           v.load();
         }
         v.play().catch(function(){});
-      } else {
-        v.pause();
+      }else{v.pause();}
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('video').forEach(function(v){videoObs.observe(v);});
+
+  // ANALYSIS CARD STAGGER
+  var anObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');anObs.unobserve(e.target);}
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.an-card').forEach(function(el){anObs.observe(el);});
+
+  // NAV ACTIVE
+  var navLinks=document.querySelectorAll('.nav-link[href^="#"]');
+  var navObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        navLinks.forEach(function(l){l.classList.remove('active-nav');});
+        var m=document.querySelector('.nav-link[href="#'+e.target.id+'"]');
+        if(m)m.classList.add('active-nav');
       }
     });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('video').forEach(function(v) { videoObs.observe(v); });
+  },{threshold:0.35,rootMargin:'-48px 0px 0px 0px'});
+  ['experience','projects','analysis','education','contact'].forEach(function(id){
+    var el=document.getElementById(id);if(el)navObs.observe(el);
+  });
 
-  /* ── PDF MODAL ── */
-  function openReport(src, title, sub) {
-    document.getElementById('report-iframe').src = src;
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-sub').textContent = sub;
+  // PDF MODAL
+  function openReport(src,title,sub){
+    document.getElementById('report-iframe').src=src;
+    document.getElementById('modal-title').textContent=title;
+    document.getElementById('modal-sub').textContent=sub;
     document.getElementById('report-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow='hidden';
   }
-  function closeReport() {
+  function closeReport(){
     document.getElementById('report-modal').classList.remove('open');
-    document.getElementById('report-iframe').src = '';
-    document.body.style.overflow = '';
+    document.getElementById('report-iframe').src='';
+    document.body.style.overflow='';
   }
-  document.getElementById('modal-close-btn').addEventListener('click', closeReport);
-  document.getElementById('report-modal').addEventListener('click', function(e) { if (e.target === e.currentTarget) closeReport(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeReport(); exitEdit(); } });
+  document.getElementById('modal-close-btn').addEventListener('click',closeReport);
+  document.getElementById('report-modal').addEventListener('click',function(e){if(e.target===e.currentTarget)closeReport();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeReport();exitEdit();}});
 
-  /* ── EDIT MODE ── */
-  var editUnlocked = false;
-  var EDIT_PW = '666';
-  var STORAGE_KEY = 'dr_portfolio_edits';
-
-  function openEditOverlay() {
-    document.getElementById('edit-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function exitEdit() {
-    document.getElementById('edit-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-    if (editUnlocked) document.body.classList.remove('edit-mode');
-  }
-  document.getElementById('edit-open-btn').addEventListener('click', openEditOverlay);
-  document.getElementById('edit-exit-btn').addEventListener('click', exitEdit);
-
-  document.getElementById('edit-pw-btn').addEventListener('click', function() {
-    var pw = document.getElementById('edit-pw-input').value;
-    if (pw === EDIT_PW) {
-      editUnlocked = true;
-      document.getElementById('edit-auth-screen').style.display = 'none';
-      document.getElementById('edit-instructions').style.display = 'block';
+  // EDIT MODE
+  var editUnlocked=false;
+  var STORAGE_KEY='dr_portfolio_edits';
+  function openEditOverlay(){document.getElementById('edit-overlay').classList.add('open');document.body.style.overflow='hidden';}
+  function exitEdit(){document.getElementById('edit-overlay').classList.remove('open');document.body.style.overflow='';if(editUnlocked)document.body.classList.remove('edit-mode');}
+  document.getElementById('edit-open-btn').addEventListener('click',openEditOverlay);
+  document.getElementById('edit-exit-btn').addEventListener('click',exitEdit);
+  document.getElementById('edit-pw-btn').addEventListener('click',function(){
+    if(document.getElementById('edit-pw-input').value==='666'){
+      editUnlocked=true;
+      document.getElementById('edit-auth-screen').style.display='none';
+      document.getElementById('edit-instructions').style.display='block';
       document.getElementById('edit-overlay').classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.style.overflow='';
       activateEditMode();
-    } else {
-      document.getElementById('edit-pw-err').style.display = 'block';
-    }
+    }else{document.getElementById('edit-pw-err').style.display='block';}
   });
-  document.getElementById('edit-pw-input').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') document.getElementById('edit-pw-btn').click();
-  });
-
-  function activateEditMode() {
+  document.getElementById('edit-pw-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('edit-pw-btn').click();});
+  function activateEditMode(){
     document.body.classList.add('edit-mode');
-    /* make all text nodes editable */
-    var textEls = document.querySelectorAll(
-      '.proj-body p, .proj-card-desc, .proj-card-title, .proj-card-sub, .exp-body, .exp-title, .exp-org, .exp-date, .feat-title, .feat-eyebrow, .an-title, .an-desc, .an-result, .edu-card-title, .edu-card-sub, .skill-name, .small-card-title, .small-card-desc, .outside-val, .hero-sub, .stat-label, .contact-value'
-    );
-    textEls.forEach(function(el) {
-      el.setAttribute('contenteditable', 'true');
-      el.setAttribute('data-editable', 'true');
-    });
-    /* make images replaceable */
-    document.querySelectorAll('figure img, .hero-photo, .proj-card-media img, .small-card-media img').forEach(function(img) {
-      img.parentElement.classList.add('img-wrap');
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', function() {
-        var inp = document.createElement('input');
-        inp.type = 'file'; inp.accept = 'image/*';
-        inp.onchange = function(ev) {
-          var file = ev.target.files[0]; if (!file) return;
-          var reader = new FileReader();
-          reader.onload = function(re) {
-            img.src = re.result;
-            saveEdits();
-          };
+    var textEls=document.querySelectorAll('.proj-body p,.proj-card-desc,.proj-card-title,.proj-card-sub,.exp-body,.exp-title,.exp-org,.exp-date,.feat-title,.feat-eyebrow,.an-title,.an-desc,.an-result,.edu-card-title,.edu-card-sub,.skill-name,.small-card-title,.small-card-desc,.outside-val,.hero-sub,.stat-label,.contact-value');
+    textEls.forEach(function(el){el.setAttribute('contenteditable','true');el.setAttribute('data-editable','true');});
+    document.querySelectorAll('figure img,.proj-card-media img,.small-card-media img').forEach(function(img){
+      img.style.cursor='pointer';
+      img.addEventListener('click',function(){
+        var inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+        inp.onchange=function(ev){
+          var file=ev.target.files[0];if(!file)return;
+          var reader=new FileReader();
+          reader.onload=function(re){img.src=re.result;saveEdits();};
           reader.readAsDataURL(file);
-        };
-        inp.click();
+        };inp.click();
       });
     });
     loadEdits();
   }
-
-  function saveEdits() {
-    var data = {};
-    document.querySelectorAll('[data-editable]').forEach(function(el, i) {
-      data['text_' + i] = el.innerHTML;
-    });
-    document.querySelectorAll('figure img, .hero-photo, .proj-card-media img, .small-card-media img').forEach(function(img, i) {
-      if (img.src.startsWith('data:')) data['img_' + i] = img.src;
-    });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  function saveEdits(){
+    var data={};
+    document.querySelectorAll('[data-editable]').forEach(function(el,i){data['text_'+i]=el.innerHTML;});
+    document.querySelectorAll('figure img,.proj-card-media img,.small-card-media img').forEach(function(img,i){if(img.src.startsWith('data:'))data['img_'+i]=img.src;});
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
   }
-
-  function loadEdits() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    try {
-      var data = JSON.parse(raw);
-      document.querySelectorAll('[data-editable]').forEach(function(el, i) {
-        if (data['text_' + i]) el.innerHTML = data['text_' + i];
-      });
-      document.querySelectorAll('figure img, .hero-photo, .proj-card-media img, .small-card-media img').forEach(function(img, i) {
-        if (data['img_' + i]) img.src = data['img_' + i];
-      });
-    } catch(e) {}
+  function loadEdits(){
+    var raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;
+    try{var data=JSON.parse(raw);
+      document.querySelectorAll('[data-editable]').forEach(function(el,i){if(data['text_'+i])el.innerHTML=data['text_'+i];});
+      document.querySelectorAll('figure img,.proj-card-media img,.small-card-media img').forEach(function(img,i){if(data['img_'+i])img.src=data['img_'+i];});
+    }catch(e){}
   }
-
-  document.getElementById('edit-save-btn').addEventListener('click', function() {
-    saveEdits();
-    var btn = document.getElementById('edit-save-btn');
-    btn.textContent = 'Saved!';
-    setTimeout(function() { btn.textContent = 'Save All'; }, 1800);
+  document.getElementById('edit-save-btn').addEventListener('click',function(){
+    saveEdits();var btn=document.getElementById('edit-save-btn');
+    btn.textContent='Saved!';setTimeout(function(){btn.textContent='Save All';},1800);
   });
-
-  /* apply saved edits on every page load */
   loadEdits();
-
-
-  /* ── NAV ACTIVE SECTION ── */
-  var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-  var sectionIds = [];
-  navLinks.forEach(function(l){ var h = l.getAttribute('href').slice(1); if(h) sectionIds.push(h); });
-  var navObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        navLinks.forEach(function(l){ l.classList.remove('active-nav'); });
-        var match = document.querySelector('.nav-link[href="#'+e.target.id+'"]');
-        if(match) match.classList.add('active-nav');
-      }
-    });
-  },{threshold:0.35,rootMargin:'-46px 0px 0px 0px'});
-  sectionIds.forEach(function(id){ var el=document.getElementById(id); if(el) navObs.observe(el); });
-
-  /* ── ANALYSIS CARD STAGGER ── */
-  var anObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); anObs.unobserve(e.target); }
-    });
-  },{threshold:0.08});
-  document.querySelectorAll('.an-card').forEach(function(el){ anObs.observe(el); });
-
 </script>
 </body>
 </html>
