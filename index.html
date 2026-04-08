@@ -133,8 +133,9 @@
       opacity:0;animation:fadeIn .5s .6s ease forwards}
     @media(max-width:920px){.hero-lower{grid-template-columns:1fr}}
     .hero-sub{font-family:var(--mono);font-size:.82rem;letter-spacing:.03em;
-      color:var(--muted);max-width:420px;line-height:1.7}
+      color:var(--muted);max-width:520px;line-height:1.7;white-space:nowrap}
     .hero-sub strong{color:var(--text)}
+    @media(max-width:600px){.hero-sub{white-space:normal;max-width:100%}}
     .hero-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
 
     /* stats inline row */
@@ -665,7 +666,7 @@
     <div class="hero-rule"></div>
     <div class="hero-lower">
       <div>
-        <p class="hero-sub"><strong>Hardware systems, additive manufacturing, robotics.</strong><br>DFAM &#183; FEA &#183; Modal Analysis &#183; Embedded &#183; Fabrication</p>
+        <p class="hero-sub"><strong>Robotics &#183; Additive manufacturing &#183; Hardware systems.</strong><br>DFAM &#183; FEA &#183; Modal Analysis &#183; Embedded &#183; PCB</p>
         <div class="hero-btns" style="margin-top:20px;">
           <a class="btn btn--primary" href="Daniel_Rosamond_Mechanical_Engineering_Resume.pdf" target="_blank">Resume PDF</a>
           <a class="btn" href="https://www.linkedin.com/in/dvrosamo/" target="_blank">LinkedIn</a>
@@ -792,6 +793,7 @@
           <p><strong>Scope:</strong> Directed five concurrent subteams: drivetrain, payload, chassis, electronics, and system integration testing. Full documentation available via the design report.</p>
           <p><strong>Validation:</strong> Sand-bed testing across multiple configurations; modal analysis on gimbal; FEA across drivetrain and structural components.</p>
           <div class="chips"><span class="chip--a">50-member team</span><span class="chip--a">5 subteams led</span><span class="chip">30&#215;30&#215;30&#160;cm</span><span class="chip--o">Sand-validated</span><span class="chip--o">Competing April 2026</span></div>
+          <figure style="margin-top:14px;"><video data-src="rover_antisand_tread.mp4" muted loop playsinline><source data-src="rover_antisand_tread.mp4" type="video/mp4"/><img loading="lazy" src="rover_tread_exploded.png" alt="Final movement system"/></video><figcaption>Prototype movement system &#8212; snow testing, validating traction and continuous track engagement under low-grip conditions.</figcaption></figure>
         </div>
         <div class="media-stack">
           <figure><video data-src="rover_overview.mp4" muted loop playsinline><source data-src="rover_overview.mp4" type="video/mp4"/><img loading="lazy" src="rover_assembly_spin.gif" alt="Rover assembly"/></video><figcaption>Rover Assembly</figcaption></figure>
@@ -815,7 +817,7 @@
           </div>
         </div>
         <div class="media-stack">
-          <figure><video data-src="rover_antisand_tread.mp4" muted loop playsinline><source data-src="rover_antisand_tread.mp4" type="video/mp4"/><img loading="lazy" src="rover_tread_exploded.png" alt="Anti-sand tread"/></video><figcaption>Final anti-sand tread &#8212; prototype snow testing, validating traction and continuous track engagement under low-grip conditions.</figcaption></figure>
+          <figure><video data-src="rover_final_tread.mp4" muted loop playsinline><source data-src="rover_final_tread.mp4" type="video/mp4"/><img loading="lazy" src="rover_tread_exploded.png" alt="Final anti-sand tread"/></video><figcaption>Final anti-sand tread &#8212; wide-link geometry with deep sand-displacement grooves and outer sprocket engagement.</figcaption></figure>
           <figure><img loading="lazy" src="rover_drivetrain_section.png" alt="Drivetrain sectional analysis" style="object-fit:contain;aspect-ratio:auto;width:100%;display:block;background:var(--bg-2);"/><figcaption class="fea">Final drivetrain &#8212; cross-sectional view showing sprocket geometry, link engagement interface, track channel, and bearing load paths.</figcaption></figure>
           <figure><video data-src="rover_sprocket_proto.mp4" muted loop playsinline><source data-src="rover_sprocket_proto.mp4" type="video/mp4"/><img loading="lazy" src="rover_track_closeup.jpg" alt="Internal sprocket"/></video><figcaption>Early internal sprocket prototype &#8212; faster but derailed in sand.</figcaption></figure>
         </div>
@@ -903,7 +905,7 @@
       </div>
       <div class="proj-card-body">
         <div class="proj-card-title">50&#160;lb Combat Robot</div>
-        <div class="proj-card-sub">Horizontal Spinner &#183; NHRL-Compliant &#183; Machined Al &#183; UB Engineers Week 2026</div>
+        <div class="proj-card-sub">Horizontal Spinner &#183; NHRL-Compliant &#183; Machined Al + Steel Weapon &#183; UB Engineers Week 2026</div>
         <p class="proj-card-desc">Led design and machining of a 50&#160;lb combat robot in a team of three. Horizontal spinner at 25&#160;kJ &#8212; equivalent to a small car crash &#8212; within NHRL safety parameters. Weapon inertia, stresses, and geometry validated through centrifugal loading FEA. Placed top&#160;4 at UB Engineers Week 2026 competition.</p>
         <div style="border:1px solid var(--border);margin-top:16px;margin-bottom:16px;background:var(--bg);">
           <!-- Big stats row -->
@@ -1054,13 +1056,14 @@
     </div>
     <div class="proj-grid-3">
       <div class="small-card">
-        <div class="small-card-media"><img loading="lazy" src="octopus_lamp.jpg" alt="Laser-cut octopus lamp"/></div>
+        <div class="small-card-media"><img loading="lazy" src="octopus_lamp.jpg" alt="Laser-cut octopus lamp finished"/></div>
         <div class="small-card-body">
           <div class="small-card-title">Laser-Cut Octopus Lamp</div>
-          <div class="small-card-sub">~30 interlocking pieces &#183; Industrial design</div>
-          <p class="small-card-desc">~30 unique wood panels with press-fit joinery and no fasteners. An exercise in flat-to-3D industrial design and kerf compensation.</p>
-          <div class="chips" style="margin-top:8px;"><span class="chip">Laser cut</span><span class="chip">Press-fit joinery</span><span class="chip">Industrial design</span></div>
+          <div class="small-card-sub">30 unique parts &#183; ~140 total pieces &#183; Industrial design</div>
+          <p class="small-card-desc">30 unique wood panel designs totaling ~140 individual pieces, press-fit with no fasteners or adhesive. An exercise in flat-to-3D industrial design, kerf compensation, and part nesting.</p>
+          <div class="chips" style="margin-top:8px;"><span class="chip">Laser cut</span><span class="chip">Press-fit joinery</span><span class="chip">Industrial design</span><span class="chip">140 pieces</span></div>
         </div>
+        <figure style="border-top:1px solid var(--border);"><img loading="lazy" src="octopus_lamp_assembly.jpg" alt="Octopus lamp assembly process" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover;object-position:center;"/><figcaption>Assembly process &#8212; press-fit interlocking panels coming together without fasteners or adhesive.</figcaption></figure>
       </div>
       <div class="small-card">
         <div class="small-card-body" style="padding:18px 16px;">
