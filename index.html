@@ -517,8 +517,10 @@
       background:rgba(232,255,65,.04)}
 
     /* FOOTER */
+    .footer-wrap{padding-top:24px}
     .footer-wrap::before{content:'';display:block;height:2px;
-      background:linear-gradient(to right,transparent,var(--acc),transparent)}
+      background:linear-gradient(to right,transparent,var(--acc),transparent);
+      margin-bottom:0}
     .footer{padding:36px 48px;display:flex;justify-content:space-between;
       align-items:center;flex-wrap:wrap;gap:20px;
       max-width:1440px;margin:0 auto}
@@ -548,7 +550,7 @@
     a.btn.btn--primary,button.btn.btn--primary{color:#0b0b0a !important}
     a.btn--primary:hover,button.btn--primary:hover{color:#0b0b0a !important}
     /* SCROLL MARGIN — prevents section anchors hiding behind sticky nav */
-    #experience,#projects,#analysis,#education,#contact{scroll-margin-top:60px}
+    #experience,#projects,#analysis,#skills,#education,#contact{scroll-margin-top:60px}
 
     /* ANIMATIONS */
     @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -852,12 +854,14 @@
           <p><strong>Outer Chassis FEA:</strong> Static structural analysis under worst-case payload and terrain impact loads. Validated wall thickness, rib geometry, and print orientation.</p>
           <p><strong>Full-system:</strong> Complete FEA methodology in the design report.</p>
           <div class="chips"><span class="chip--a">Modal analysis</span><span class="chip--a">Dynamic event simulation</span><span class="chip--a">Chassis FEA</span><span class="chip--a">Crossbar FEA</span><span class="chip--a">Diagonal crossmember</span><span class="chip--v">Design report</span></div>
+          <div class="media-stack" style="margin-top:14px;">
+            <figure><img loading="lazy" src="rover_gimbal_modal.gif" alt="Modal analysis"/><figcaption class="fea">Modal analysis &#8212; gimbal base. Natural frequency tuned to servo vibration modes.</figcaption></figure>
+            <figure><img loading="lazy" src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><figcaption class="fea">Dynamic event simulation &#8212; tread link under time-dependent terrain loading.</figcaption></figure>
+            <figure><img loading="lazy" src="rover_tread_pin_fea.png" alt="Pin FEA"/><figcaption class="fea">Tread link pin FEA (Displacement) &#8212; stress concentration at pin-to-link interface under peak sprocket drive force.</figcaption></figure>
+          </div>
         </div>
         <div class="media-stack">
-          <figure><img loading="lazy" src="rover_gimbal_modal.gif" alt="Modal analysis"/><figcaption class="fea">Modal analysis &#8212; gimbal base. Natural frequency tuned to servo vibration modes.</figcaption></figure>
-          <figure><img loading="lazy" src="rover_tread_fea.gif" alt="Tread dynamic simulation"/><figcaption class="fea">Dynamic event simulation &#8212; tread link under time-dependent terrain loading.</figcaption></figure>
           <figure><img loading="lazy" src="rover_chassis_fea.png" alt="Outer chassis FEA"/><figcaption class="fea">Outer chassis FEA &#8212; worst-case payload and terrain impact. Wall thickness and rib geometry validated.</figcaption></figure>
-          <figure><img loading="lazy" src="rover_tread_pin_fea.png" alt="Pin FEA"/><figcaption class="fea">Tread link pin FEA (Displacement) &#8212; stress concentration at pin-to-link interface under peak sprocket drive force.</figcaption></figure>
           <figure><img loading="lazy" src="rover_crossbar_fea.png" alt="Horizontal crossbar FEA"/><figcaption class="fea">Horizontal crossbar FEA (Displacement) &#8212; static loading under combined chassis and payload weight.</figcaption></figure>
           <figure><img loading="lazy" src="rover_drivetrain_fea.png" alt="Diagonal crossmember FEA"/><figcaption class="fea">Diagonal crossmember FEA (Displacement) &#8212; static simulation under torsional and chassis loading.</figcaption></figure>
         </div>
@@ -874,8 +878,8 @@
       </div>
       <div class="proj-card-body">
         <div class="proj-card-title">C.O.B.R.A.&#160;6000</div>
-        <div class="proj-card-sub">Constructed Optimally by Rapid Additive-Manufacturing &#183; Iteration&#160;6 &#183; ASME UB</div>
-        <p class="proj-card-desc">Co-led design of the C.O.B.R.A. 6000 &#8212; a fully 3D-printed FPV cargo racing drone for ASME IAM3D 2024&#8211;25. Frame topology-optimized using <strong>Altair Inspire&#8482;</strong> across three load cases. Biomimetic <strong>Struct-Core Elastomer Shell</strong> (rigid PLA + flexible TPU). Dual payload: electromagnet + precision motorized claw. Zero purchased fasteners. Survived 13 consecutive 40&#8211;60&#160;mph impacts.</p>
+        <div class="proj-card-sub">Constructed Optimally by Rapid Additive-Manufacturing &#183; Iteration&#160;6 &#183; Co-lead + Electrical Lead</div>
+        <p class="proj-card-desc">Co-led the C.O.B.R.A. 6000 as <strong>Electrical Lead</strong> &#8212; designed the motor control system, wiring layout, power testing protocols, and simulations for this fully 3D-printed FPV cargo racing drone (ASME IAM3D 2024&#8211;25). Frame topology-optimized using <strong>Altair Inspire&#8482;</strong> across three load cases. Biomimetic <strong>Struct-Core Elastomer Shell</strong> (rigid PLA + flexible TPU). Dual payload: electromagnet + precision motorized claw. Zero purchased fasteners. Survived 13 consecutive 40&#8211;60&#160;mph impacts.</p>
         <div class="chips" style="margin-top:10px;"><span class="chip--a">&gt;2:1 T/W</span><span class="chip--a">~16&#160;min flight</span><span class="chip--a">~4.9&#160;lb payload</span><span class="chip--a">6 iterations</span><span class="chip">13 impacts</span><span class="chip--o">Altair Inspire&#8482;</span><span class="chip--o">Top third &#183; 20 teams</span></div>
         <div class="proj-card-actions">
           <button class="report-btn" style="font-size:.64rem;padding:4px 10px;" onclick="openReport('IAM3D_2025_Design_Report.pdf','C.O.B.R.A.&#160;6000 &#8212; IAM3D Drone Competition 2024&#8211;25','Struct-Core Elastomer &#183; Altair Inspire&#8482; Topology &#183; Dual Payload &#183; 6 Iterations')">
@@ -966,7 +970,7 @@
           </div>
           <div class="media-stack">
             <figure class="kresling-fig"><img loading="lazy" src="kresling_fusion.jpg" alt="Kresling in Fusion 360"/><figcaption>Kresling origami mechanism modeled in Fusion&#160;360 &#8212; cylindrical structure that simultaneously rotates and collapses along its central axis.</figcaption></figure>
-            <figure><img loading="lazy" src="kresling_printed.gif" alt="3D printed Kresling deploying"/><figcaption>3D-printed prototype deploying through full stroke, showing fold propagation and panel engagement.</figcaption></figure>
+            <figure class="natural"><img loading="lazy" src="kresling_printed.gif" alt="3D printed Kresling deploying" style="object-fit:contain;aspect-ratio:auto;max-height:340px;background:var(--bg-2);"/><figcaption>3D-printed prototype deploying through full stroke, showing fold propagation and panel engagement.</figcaption></figure>
           </div>
         </div>
       </div>
@@ -1004,6 +1008,7 @@
           </div>
           <div class="media-stack">
             <figure><video controls preload="metadata" style="width:100%;max-width:100%;display:block;background:var(--bg-2);"><source src="iot_demo.mp4" type="video/mp4"/></video><figcaption>Early prototype demo &#8212; RFID tag authentication triggering relay activation and real-time dashboard state update.</figcaption></figure>
+            <figure><img loading="lazy" src="iot_rfid_camera_module.jpg" alt="RFID Camera module"/><figcaption>RFID&#160;+&#160;Camera combo module &#8212; integrated entry point with simultaneous access control and MJPEG video.</figcaption></figure>
           </div>
         </div>
 
@@ -1018,7 +1023,6 @@
             <div class="chips"><span class="chip--g">~15&#160;fps face tracking</span><span class="chip--g">MFRC522 RFID</span><span class="chip--g">8-ch relay array</span><span class="chip--a">~8&#160;ms interrupt latency</span><span class="chip">Offline keyword detection</span><span class="chip">MQTT pub/sub</span></div>
           </div>
           <div class="media-stack">
-            <figure><img loading="lazy" src="iot_rfid_camera_module.jpg" alt="RFID Camera module"/><figcaption>RFID&#160;+&#160;Camera combo module &#8212; integrated entry point with simultaneous access control and MJPEG video.</figcaption></figure>
             <figure><img loading="lazy" src="iot_rfid_camera_exploded.png" alt="Exploded RFID Camera"/><figcaption>Exploded view &#8212; RFID reader, ESP32-CAM, 3D-printed housing, and wiring harness.</figcaption></figure>
             <figure><img loading="lazy" src="iot_camera_only.jpg" alt="Single camera module"/><figcaption>Single ESP32-CAM node &#8212; standalone security camera with adjustable mount and onboard motion detection.</figcaption></figure>
           </div>
@@ -1095,8 +1099,8 @@
 <hr class="full-divider"/>
 
 <!-- SKILLS -->
-<div class="skills-section-bg">
-<section class="section" style="padding-top:0;padding-bottom:0;">
+<div class="skills-section-bg" id="skills">
+<section class="section" style="padding-top:32px;padding-bottom:0;">
   <div class="section-label reveal">
     <span class="section-label-num">05</span>
     <span class="section-label-text">Skills</span>
@@ -1107,8 +1111,8 @@
       <div class="skill-col-label">CAD &amp; Analysis</div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Fusion 360</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">SolidWorks</span></div>
-      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">FEA &#8212; Static &amp; Structural</span></div>
-      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Modal Analysis</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">FEA &#8212; Fusion&#160;360 Simulation</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Modal Analysis &#8212; Fusion&#160;360</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Dynamic Event Simulation</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">DFAM / DFMA</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Altair Inspire&#8482; (Topology)</span></div>
@@ -1285,18 +1289,25 @@
 
   // NAV ACTIVE
   var navLinks=document.querySelectorAll('.nav-link[href^="#"]');
-  var navObs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        navLinks.forEach(function(l){l.classList.remove('active-nav');});
-        var m=document.querySelector('.nav-link[href="#'+e.target.id+'"]');
-        if(m)m.classList.add('active-nav');
+  /* NAV ACTIVE — use scroll position to find nearest section */
+  function updateActiveNav(){
+    var scrollY = window.scrollY + 100;
+    var ids = ['experience','projects','analysis','skills','education','contact'];
+    var active = null;
+    ids.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top + window.scrollY <= scrollY){
+        active = id;
       }
     });
-  },{threshold:0.35,rootMargin:'-48px 0px 0px 0px'});
-  ['experience','projects','analysis','education','contact'].forEach(function(id){
-    var el=document.getElementById(id);if(el)navObs.observe(el);
-  });
+    navLinks.forEach(function(l){l.classList.remove('active-nav');});
+    if(active){
+      var m = document.querySelector('.nav-link[href="#'+active+'"]');
+      if(m) m.classList.add('active-nav');
+    }
+  }
+  window.addEventListener('scroll', updateActiveNav, {passive:true});
+  updateActiveNav();
 
   // PDF MODAL
   function openReport(src,title,sub){
